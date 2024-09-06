@@ -1,7 +1,14 @@
+import MainPanel from "../MainPanel/MainPanel";
+import SidePanel from "../SidePanel/SidePanel";
 import "./App.css";
 
-function App() {
-  return <div id="app">WhatsApp Clone</div>;
-}
+const App = () => {
+  return (
+    <div id="app">
+      <SidePanel />
+      <MainPanel />
+    </div>
+  );
+};
 
 export default App;
