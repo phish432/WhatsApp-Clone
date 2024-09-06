@@ -1,5 +1,5 @@
-import MainPanel from "../MainPanel/MainPanel";
-import SidePanel from "../SidePanel/SidePanel";
+import MainPanel from "./components/MainPanel/MainPanel";
+import SidePanel from "./components/SidePanel/SidePanel";
 import "./App.css";
 
 const App = () => {
