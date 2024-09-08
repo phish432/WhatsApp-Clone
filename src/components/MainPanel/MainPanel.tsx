@@ -1,7 +1,7 @@
 import "./MainPanel.css";
 
 const MainPanel = () => {
-  return <div id="mainPanel">Main Panel</div>;
+  return <div className="mainPanel">Main Panel</div>;
 };
 
 export default MainPanel;

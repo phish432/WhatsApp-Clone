@@ -1,0 +1,13 @@
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+
+  height: 100px;
+}
+
+.userInfo .userName {
+  font-size: 1.25em;
+  font-weight: bold;
+}
