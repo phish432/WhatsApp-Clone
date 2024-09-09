@@ -8,3 +8,23 @@
 
   scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
 }
+
+.conversations .connectionCard {
+  height: 80px;
+}
+
+.conversations .connectionCard .userInfo {
+  border-top: 1px solid rgba(134, 150, 160, 0.15);
+}
+
+.conversations .connectionCard:last-child .userInfo {
+  border-bottom: 1px solid rgba(134, 150, 160, 0.15);
+}
+
+.conversations .connectionCard:hover {
+  background-color: #202c33;
+}
+
+.conversations .connectionCard:hover .userInfo {
+  border-top: 1px solid #202c33;
+}

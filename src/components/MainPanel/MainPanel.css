@@ -9,7 +9,6 @@
 }
 
 .mainPanel .fallback {
-  border-left: 1px solid rgba(134, 150, 160, 0.15);
   background-color: #222e35;
   font-size: 1.5em;
   font-weight: bold;

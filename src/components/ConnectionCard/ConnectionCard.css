@@ -2,18 +2,8 @@
   display: flex;
   align-items: center;
 
-  min-height: 80px;
-  height: 80px;
-
+  height: 100%;
   width: 100%;
-}
-
-.connectionCard:hover {
-  background-color: #202c33;
-}
-
-.connectionCard:hover .userInfo {
-  border-top: 1px solid #202c33;
 }
 
 .connectionCard.active {
@@ -27,19 +17,4 @@
 .connectionCard .avatar {
   padding: 0 20px;
   height: 100%;
-}
-
-.connectionCard .avatar .avatarImg {
-  height: 60px;
-  width: 60px;
-}
-
-.connectionCard .userInfo {
-  border-top: 1px solid rgba(134, 150, 160, 0.15);
-  padding-right: 20px;
-  height: 100%;
-}
-
-.connectionCard:last-child .userInfo {
-  border-bottom: 1px solid rgba(134, 150, 160, 0.15);
 }

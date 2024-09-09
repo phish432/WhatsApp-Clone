@@ -1,6 +1,8 @@
 import { Connection } from "../../constant/connections";
 import Fallback from "../Fallback/Fallback";
-import ConnectionCard from "../ConnectionCard/ConnectionCard";
+import Header from "../Header/Header";
+import ChatArea from "../ChatArea/ChatArea";
+import TextComposer from "../TextComposer/TextComposer";
 import "./MainPanel.css";
 
 type Props = {
@@ -17,11 +19,9 @@ const MainPanel = (props: Props) => {
   } else {
     return (
       <div className="mainPanel">
-        <ConnectionCard
-          connection={props.activeConnection}
-          onClick={() => {}}
-          isActive={true}
-        />
+        <Header activeConnection={props.activeConnection} />
+        <ChatArea />
+        <TextComposer />
       </div>
     );
   }
