@@ -1,7 +1,7 @@
 type Connection = {
-  id: string;
-  name: string;
-  profileImg: string;
+  readonly id: string;
+  readonly name: string;
+  readonly profileImg: string;
 };
 
 const CONNECTIONS: Connection[] = [

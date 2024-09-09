@@ -1,0 +1,21 @@
+.messageBox {
+  width: 200px;
+
+  border-radius: 8px;
+  padding: 8px;
+
+  background-color: #212c33;
+}
+
+.messageBox .messageBoxTime {
+  font-size: 0.75em;
+  color: #7d868a;
+}
+
+.messageBox.client {
+  background-color: #035c4c;
+}
+
+.messageBox.client .messageBoxTime {
+  color: #99beb7;
+}

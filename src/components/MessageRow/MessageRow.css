@@ -1,0 +1,17 @@
+.messageRow {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  margin-bottom: 4px;
+  padding: 0 40px;
+}
+
+.messageRow:last-child {
+  margin-top: 4px;
+}
+
+.messageRow.client {
+  justify-content: flex-end;
+}

@@ -1,9 +1,14 @@
 .chatArea {
   display: flex;
+  flex-direction: column-reverse;
   flex-grow: 1;
 
   width: 100%;
 
   background-color: #0f181e;
   overflow-y: scroll;
+}
+
+.chatArea > .fallback {
+  font-size: 1.5em;
 }

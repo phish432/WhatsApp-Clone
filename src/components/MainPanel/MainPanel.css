@@ -8,7 +8,7 @@
   min-width: 640px;
 }
 
-.mainPanel .fallback {
+.mainPanel > .fallback {
   background-color: #222e35;
   font-size: 1.5em;
   font-weight: bold;

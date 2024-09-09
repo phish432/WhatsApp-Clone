@@ -1,21 +1,25 @@
 import { useState } from "react";
-import CONNECTIONS from "./constant/connections";
+import CONNECTIONS, { Connection } from "./constant/connections";
+import DEFAULT_MESSAGES, { Message } from "./constant/defaultMessages";
 import MainPanel from "./components/MainPanel/MainPanel";
 import SidePanel from "./components/SidePanel/SidePanel";
 import "./App.css";
 
 const App = () => {
-  let [activeConnId, setActiveConnId] = useState<string | null>(null);
+  let [activeConnect, setActiveConnect] = useState<Connection | null>(null);
+  let [allMessages, setAllMessages] = useState<Message[]>(DEFAULT_MESSAGES);
 
   return (
     <div id="app">
       <SidePanel
-        connections={CONNECTIONS}
-        activeConnId={activeConnId}
-        setActiveConnId={setActiveConnId}
+        allConnections={CONNECTIONS}
+        activeConnection={activeConnect}
+        setActiveConnection={setActiveConnect}
       />
       <MainPanel
-        activeConnection={CONNECTIONS.find((conn) => conn.id === activeConnId)}
+        activeConnection={activeConnect || null}
+        allMessages={allMessages}
+        setAllMessages={setAllMessages}
       />
     </div>
   );
