@@ -4,6 +4,8 @@
 
   min-height: 80px;
   height: 80px;
+
+  width: 100%;
 }
 
 .connectionCard:hover {
