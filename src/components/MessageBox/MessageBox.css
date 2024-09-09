@@ -1,13 +1,30 @@
 .messageBox {
-  width: 200px;
+  display: flex;
+  align-items: center;
 
   border-radius: 8px;
-  padding: 8px;
+  padding: 8px 12px 4px 12px;
 
   background-color: #212c33;
 }
 
+.messageBox .messageBoxContent {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+
+  padding-bottom: 8px;
+
+  min-width: 64px;
+  max-width: 320px;
+  width: fit-content;
+}
+
 .messageBox .messageBoxTime {
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+
   font-size: 0.75em;
   color: #7d868a;
 }

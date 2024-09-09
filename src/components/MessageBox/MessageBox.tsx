@@ -14,6 +14,7 @@ const MessageBox = (props: Props) => {
         {props.time.toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
+          hour12: false,
         })}
       </div>
     </div>

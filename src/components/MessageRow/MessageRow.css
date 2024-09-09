@@ -8,8 +8,8 @@
   padding: 0 40px;
 }
 
-.messageRow:last-child {
-  margin-top: 4px;
+.messageRow:first-child {
+  margin-bottom: 12px;
 }
 
 .messageRow.client {
