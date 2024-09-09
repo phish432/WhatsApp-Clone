@@ -1,4 +1,5 @@
 import { Connection } from "../../constant/connections";
+import Fallback from "../Fallback/Fallback";
 import ConnectionCard from "../ConnectionCard/ConnectionCard";
 import "./MainPanel.css";
 
@@ -8,7 +9,11 @@ type Props = {
 
 const MainPanel = (props: Props) => {
   if (props.activeConnection === undefined) {
-    return <div className="mainPanel">Select a connection</div>;
+    return (
+      <div className="mainPanel">
+        <Fallback />
+      </div>
+    );
   } else {
     return (
       <div className="mainPanel">
