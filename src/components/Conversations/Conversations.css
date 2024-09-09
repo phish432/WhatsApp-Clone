@@ -6,6 +6,7 @@
   width: 100%;
   overflow-y: auto;
 
+  scrollbar-width: 4px;
   scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
 }
 

@@ -7,6 +7,9 @@
 
   background-color: #0f181e;
   overflow-y: scroll;
+
+  scrollbar-width: 6px;
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
 }
 
 .chatArea > .fallback {

@@ -6,14 +6,6 @@ import ChatArea from "../ChatArea/ChatArea";
 import TextComposer from "../TextComposer/TextComposer";
 import "./MainPanel.css";
 
-function isMessageFromAToB(
-  msg: Message,
-  userA: string | null,
-  userB: string | null,
-) {
-  return msg.fromConnId === userA && msg.toConnId === userB;
-}
-
 type Props = {
   activeConnection: Connection | null;
   allMessages: Message[];
@@ -29,25 +21,17 @@ const MainPanel = (props: Props) => {
     );
   }
 
-  let otherUser = props.activeConnection.id;
-  let client = null;
-  let activeMessages = props.allMessages.filter(
-    (msg) =>
-      isMessageFromAToB(msg, otherUser, client) ||
-      isMessageFromAToB(msg, client, otherUser),
-  );
-  activeMessages.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
-
   return (
     <div className="mainPanel">
       <Header activeConnection={props.activeConnection} />
       <ChatArea
         activeConnection={props.activeConnection}
-        activeMessages={activeMessages}
+        allMessages={props.allMessages}
         setAllMessages={props.setAllMessages}
       />
       <TextComposer
         activeConnection={props.activeConnection}
+        allMessages={props.allMessages}
         setAllMessages={props.setAllMessages}
       />
     </div>

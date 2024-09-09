@@ -15,3 +15,7 @@
 .messageRow.client {
   justify-content: flex-end;
 }
+
+.messageRow.client .messageDelButton {
+  margin-right: 8px;
+}

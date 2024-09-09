@@ -1,10 +1,33 @@
+import { Connection } from "../../constant/connections";
+import { Message } from "../../constant/defaultMessages";
 import { useState } from "react";
 import "./MessageForm.css";
 
-type Props = {};
+type Props = {
+  activeConnection: Connection;
+  allMessages: Message[];
+  setAllMessages: (messages: Message[]) => void;
+};
 
 const MessageForm = (props: Props) => {
   let [message, setMessage] = useState("");
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    if (message === "") {
+      return;
+    }
+    let newMessage: Message = {
+      messageId: self.crypto.randomUUID(),
+      timestamp: new Date(),
+      fromConnId: null,
+      toConnId: props.activeConnection.id,
+      content: message,
+    };
+    props.setAllMessages([...props.allMessages, newMessage]);
+    setMessage("");
+  };
+
   return (
     <form className="messageForm">
       <input
@@ -17,10 +40,7 @@ const MessageForm = (props: Props) => {
       <button
         className="messageForm__button"
         type="submit"
-        onClick={(e) => {
-          e.preventDefault();
-          setMessage("");
-        }}
+        onClick={handleClick}
       >
         <svg
           viewBox="0 0 24 24"
