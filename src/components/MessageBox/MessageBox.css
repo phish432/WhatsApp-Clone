@@ -14,10 +14,13 @@
   align-self: flex-start;
 
   padding-bottom: 8px;
+  padding-right: 8px;
 
   min-width: 64px;
   max-width: 320px;
   width: fit-content;
+
+  overflow-wrap: anywhere;
 }
 
 .messageBox .messageBoxTime {
