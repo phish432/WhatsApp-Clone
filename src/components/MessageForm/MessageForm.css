@@ -1,0 +1,34 @@
+.messageForm {
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+}
+
+.messageForm .messageForm__input {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+
+  height: 100%;
+
+  margin: 0 10px;
+  border-radius: 10px;
+  padding: 0 10px;
+
+  background-color: #293941;
+}
+
+.messageForm .messageForm__input::placeholder {
+  color: #87979f;
+}
+
+.messageForm .messageForm__button {
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+
+  margin: 0 10px;
+}

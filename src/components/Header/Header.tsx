@@ -8,13 +8,13 @@ type Props = {
 
 const Header = (props: Props) => {
   return (
-    <header className="header">
+    <div className="header">
       <ConnectionCard
         connection={props.activeConnection}
         onClick={() => {}}
         isActive={false}
       />
-    </header>
+    </div>
   );
 };
 

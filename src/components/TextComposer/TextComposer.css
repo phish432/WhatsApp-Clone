@@ -1,10 +1,11 @@
 .textComposer {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
 
-  height: 60px;
+  height: 64px;
   width: 100%;
+
+  padding: 12px 20px;
 
   background-color: #212c33;
 }

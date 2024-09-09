@@ -1,9 +1,12 @@
+import MessageForm from "../MessageForm/MessageForm";
 import "./TextComposer.css";
 
-type Props = {};
-
-const TextComposer = (props: Props) => {
-  return <div className="textComposer">Text Composer</div>;
+const TextComposer = () => {
+  return (
+    <div className="textComposer">
+      <MessageForm />
+    </div>
+  );
 };
 
 export default TextComposer;

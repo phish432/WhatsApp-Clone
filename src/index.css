@@ -36,3 +36,8 @@ body {
 
   overflow: hidden;
 }
+
+input,
+button {
+  all: unset;
+}
