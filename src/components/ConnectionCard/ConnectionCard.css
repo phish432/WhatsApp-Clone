@@ -4,17 +4,15 @@
 
   height: 100%;
   width: 100%;
-}
 
-.connectionCard.active {
-  background-color: #293941;
-}
-
-.connectionCard.active .userInfo {
-  border-top: 1px solid #293941;
+  cursor: pointer;
 }
 
 .connectionCard .avatar {
   padding: 0 20px;
   height: 100%;
+}
+
+.connectionCard.active {
+  background-color: #2a3942;
 }

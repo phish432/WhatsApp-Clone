@@ -21,10 +21,26 @@
   border-bottom: 1px solid rgba(134, 150, 160, 0.15);
 }
 
+.conversations .connectionCard.active {
+  background-color: #2a3942;
+}
+
+.conversations .connectionCard.active .userInfo {
+  border-top: 1px solid #2a3942;
+}
+
 .conversations .connectionCard:hover {
   background-color: #202c33;
 }
 
 .conversations .connectionCard:hover .userInfo {
   border-top: 1px solid #202c33;
+}
+
+.conversations .connectionCard.active:hover {
+  background-color: #2a3942;
+}
+
+.conversations .connectionCard.active:hover .userInfo {
+  border-top: 1px solid #2a3942;
 }
