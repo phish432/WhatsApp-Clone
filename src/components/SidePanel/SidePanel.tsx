@@ -1,4 +1,5 @@
 import { Connection } from "../../constant/connections";
+import { useState } from "react";
 import Conversations from "../Conversations/Conversations";
 import Header from "../Header/Header";
 import SearchBar from "../SearchBar/SearchBar";
@@ -11,6 +12,8 @@ type Props = {
 };
 
 const SidePanel = (props: Props) => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
   const { activeConnection, setActiveConnection, allConnections } = props;
 
   return (
@@ -19,11 +22,15 @@ const SidePanel = (props: Props) => {
         connection={allConnections.find((c) => c.id === "user_id_0")!}
         showUserInfo={false}
       />
-      <SearchBar />
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Conversations
         activeConnection={activeConnection}
         setActiveConnection={setActiveConnection}
-        allConnections={allConnections.filter((c) => c.id !== "user_id_0")}
+        allConnections={allConnections
+          .filter((c) => c.id !== "user_id_0")
+          .filter((c) =>
+            c.name.toLowerCase().includes(searchTerm.toLowerCase()),
+          )}
       />
     </div>
   );
