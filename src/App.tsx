@@ -6,8 +6,8 @@ import SidePanel from "./components/SidePanel/SidePanel";
 import "./App.css";
 
 const App = () => {
-  let [activeConnect, setActiveConnect] = useState<Connection | null>(null);
-  let [allMessages, setAllMessages] = useState<Message[]>(DEFAULT_MESSAGES);
+  const [activeConnect, setActiveConnect] = useState<Connection | null>(null);
+  const [allMessages, setAllMessages] = useState<Message[]>(DEFAULT_MESSAGES);
 
   return (
     <div id="app">
