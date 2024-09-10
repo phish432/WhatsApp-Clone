@@ -10,9 +10,9 @@ type Props = {
 };
 
 const MessageForm = (props: Props) => {
-  const { activeConnection, allMessages, setAllMessages } = props;
-
   const [message, setMessage] = useState("");
+
+  const { activeConnection, allMessages, setAllMessages } = props;
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();

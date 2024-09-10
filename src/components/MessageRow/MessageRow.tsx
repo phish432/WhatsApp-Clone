@@ -11,9 +11,9 @@ type Props = {
 };
 
 const MessageRow = (props: Props) => {
-  const { message, isOutgoing, onDelete } = props;
+  const [isContextMenuOpen, setIsContextMenuOpen] = useState(false);
 
-  let [isContextMenuOpen, setIsContextMenuOpen] = useState(false);
+  const { message, isOutgoing, onDelete } = props;
 
   const handleContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
