@@ -7,10 +7,12 @@ type Props = {
 };
 
 const Header = (props: Props) => {
+  const { activeConnection } = props;
+
   return (
     <div className="header">
       <ConnectionCard
-        connection={props.activeConnection}
+        connection={activeConnection}
         onClick={() => {}}
         isActive={false}
       />

@@ -4,8 +4,6 @@
 
   border-radius: 8px;
   padding: 8px 12px 4px 12px;
-
-  background-color: #212c33;
 }
 
 .messageBox .messageBoxContent {
@@ -29,13 +27,4 @@
   align-self: flex-end;
 
   font-size: 0.75em;
-  color: #7d868a;
-}
-
-.messageBox.client {
-  background-color: #035c4c;
-}
-
-.messageBox.client .messageBoxTime {
-  color: #99beb7;
 }

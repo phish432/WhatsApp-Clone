@@ -3,18 +3,20 @@ import Conversations from "../Conversations/Conversations";
 import "./SidePanel.css";
 
 type Props = {
-  allConnections: Connection[];
   activeConnection: Connection | null;
   setActiveConnection: (connect: Connection) => void;
+  allConnections: Connection[];
 };
 
 const SidePanel = (props: Props) => {
+  const { activeConnection, setActiveConnection, allConnections } = props;
+
   return (
     <div className="sidePanel">
       <Conversations
-        allConnections={props.allConnections}
-        activeConnection={props.activeConnection}
-        setActiveConnection={props.setActiveConnection}
+        activeConnection={activeConnection}
+        setActiveConnection={setActiveConnection}
+        allConnections={allConnections}
       />
     </div>
   );

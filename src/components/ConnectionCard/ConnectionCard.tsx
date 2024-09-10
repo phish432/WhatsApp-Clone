@@ -5,16 +5,24 @@ import "./ConnectionCard.css";
 
 type Props = {
   connection: Connection;
-  onClick: () => void;
+  onClick: (connection: Connection) => void;
   isActive: boolean;
 };
 
 const ConnectionCard = (props: Props) => {
-  let activeClass = props.isActive ? " active" : "";
+  const { connection, onClick, isActive } = props;
+
+  const handleClick = () => {
+    onClick(connection);
+  };
+
   return (
-    <div className={`connectionCard${activeClass}`} onClick={props.onClick}>
-      <Avatar src={props.connection.profileImg} alt={props.connection.name} />
-      <UserInfo name={props.connection.name} />
+    <div
+      className={`connectionCard${isActive ? " active" : ""}`}
+      onClick={handleClick}
+    >
+      <Avatar src={connection.profileImg} alt={connection.name} />
+      <UserInfo name={connection.name} />
     </div>
   );
 };

@@ -5,7 +5,7 @@ type Props = {
 };
 
 const Fallback = (props: Props) => {
-  return <span className="fallback">{props.children}</span>;
+  return <div className="fallback">{props.children}</div>;
 };
 
 export default Fallback;

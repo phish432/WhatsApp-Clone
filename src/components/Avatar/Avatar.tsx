@@ -6,9 +6,11 @@ type Props = {
 };
 
 const Avatar = (props: Props) => {
+  const { src, alt } = props;
+
   return (
     <div className="avatar">
-      <img className="avatarImg" src={props.src} alt={props.alt} />
+      <img className="avatarImg" src={src} alt={alt} />
     </div>
   );
 };

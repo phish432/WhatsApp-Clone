@@ -3,20 +3,26 @@ import ConnectionCard from "../ConnectionCard/ConnectionCard";
 import "./Conversations.css";
 
 type Props = {
-  allConnections: Connection[];
   activeConnection: Connection | null;
   setActiveConnection: (connect: Connection) => void;
+  allConnections: Connection[];
 };
 
 const Conversations = (props: Props) => {
+  const { activeConnection, setActiveConnection, allConnections } = props;
+
+  const handleClick = (connection: Connection) => {
+    setActiveConnection(connection);
+  };
+
   return (
     <div className="conversations">
-      {props.allConnections.map((connection) => (
+      {allConnections.map((connection) => (
         <ConnectionCard
           key={connection.id}
           connection={connection}
-          onClick={() => props.setActiveConnection(connection)}
-          isActive={connection === props.activeConnection}
+          onClick={handleClick}
+          isActive={connection === activeConnection}
         />
       ))}
     </div>

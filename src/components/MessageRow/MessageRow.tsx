@@ -1,16 +1,18 @@
 import { Message } from "../../constant/defaultMessages";
 import { useState } from "react";
 import MessageBox from "../MessageBox/MessageBox";
-import "./MessageRow.css";
 import MessageDelButton from "../MessageDelButton/MessageDelButton";
+import "./MessageRow.css";
 
 type Props = {
   message: Message;
-  isClient: boolean;
+  isOutgoing: boolean;
   onDelete: (message: Message) => void;
 };
 
 const MessageRow = (props: Props) => {
+  const { message, isOutgoing, onDelete } = props;
+
   let [isContextMenuOpen, setIsContextMenuOpen] = useState(false);
 
   const handleContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -19,26 +21,19 @@ const MessageRow = (props: Props) => {
   };
 
   const handleClick = () => {
-    props.onDelete(props.message);
+    onDelete(message);
     setIsContextMenuOpen(false);
   };
 
-  return props.isClient ? (
-    <div className="messageRow client">
+  return isOutgoing ? (
+    <div className="messageRow outgoing">
       {isContextMenuOpen && <MessageDelButton onClick={handleClick} />}
-      <MessageBox
-        isClient={props.isClient}
-        message={props.message}
-        onContextMenu={handleContextMenu}
-      />
+      <MessageBox message={message} onContextMenu={handleContextMenu} />
     </div>
   ) : (
-    <div className="messageRow">
-      <MessageBox
-        isClient={props.isClient}
-        message={props.message}
-        onContextMenu={handleContextMenu}
-      />
+    <div className="messageRow incoming">
+      <MessageBox message={message} onContextMenu={handleContextMenu} />
+      {isContextMenuOpen && <MessageDelButton onClick={handleClick} />}
     </div>
   );
 };

@@ -12,10 +12,9 @@ type Props = {
 };
 
 const ChatArea = (props: Props) => {
-  const activeMessages = getActiveMessages(
-    props.activeConnection,
-    props.allMessages,
-  );
+  const { activeConnection, allMessages, setAllMessages } = props;
+
+  const activeMessages = getActiveMessages(activeConnection, allMessages);
 
   if (activeMessages.length === 0) {
     return (
@@ -26,10 +25,10 @@ const ChatArea = (props: Props) => {
   }
 
   const handleDelete = (message: Message) => {
-    const updatedMessages = props.allMessages.filter(
+    const updatedMessages = allMessages.filter(
       (m) => m.timestamp !== message.timestamp,
     );
-    props.setAllMessages(updatedMessages);
+    setAllMessages(updatedMessages);
   };
 
   return (
@@ -38,7 +37,7 @@ const ChatArea = (props: Props) => {
         <MessageRow
           key={index}
           message={message}
-          isClient={message.fromConnId === null}
+          isOutgoing={message.fromConnId === null}
           onDelete={handleDelete}
         />
       ))}

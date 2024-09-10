@@ -12,10 +12,35 @@
   margin-bottom: 12px;
 }
 
-.messageRow.client {
+.messageRow.outgoing {
   justify-content: flex-end;
 }
 
-.messageRow.client .messageDelButton {
+.messageRow.outgoing .messageBox {
+  background-color: #035c4c;
+}
+
+.messageRow.outgoing .messageBox .messageBoxTime {
+  color: #99beb7;
+}
+
+.messageRow.outgoing .messageDelButton {
   margin-right: 8px;
+}
+
+.messageRow.incoming {
+  justify-content: flex-start;
+}
+
+.messageRow.incoming .messageBox {
+  justify-content: flex-start;
+  background-color: #212c33;
+}
+
+.messageRow.incoming .messageBox .messageBoxTime {
+  color: #7d868a;
+}
+
+.messageRow.incoming .messageDelButton {
+  margin-left: 8px;
 }

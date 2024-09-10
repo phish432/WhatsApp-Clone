@@ -1,8 +1,8 @@
 import { Connection } from "../../constant/connections";
 import { Message } from "../../constant/defaultMessages";
+import ChatArea from "../ChatArea/ChatArea";
 import Fallback from "../Fallback/Fallback";
 import Header from "../Header/Header";
-import ChatArea from "../ChatArea/ChatArea";
 import TextComposer from "../TextComposer/TextComposer";
 import "./MainPanel.css";
 
@@ -13,7 +13,9 @@ type Props = {
 };
 
 const MainPanel = (props: Props) => {
-  if (props.activeConnection === null) {
+  const { activeConnection, allMessages, setAllMessages } = props;
+
+  if (activeConnection === null) {
     return (
       <div className="mainPanel">
         <Fallback>Select a conversation to get started</Fallback>
@@ -23,16 +25,16 @@ const MainPanel = (props: Props) => {
 
   return (
     <div className="mainPanel">
-      <Header activeConnection={props.activeConnection} />
+      <Header activeConnection={activeConnection} />
       <ChatArea
-        activeConnection={props.activeConnection}
-        allMessages={props.allMessages}
-        setAllMessages={props.setAllMessages}
+        activeConnection={activeConnection}
+        allMessages={allMessages}
+        setAllMessages={setAllMessages}
       />
       <TextComposer
-        activeConnection={props.activeConnection}
-        allMessages={props.allMessages}
-        setAllMessages={props.setAllMessages}
+        activeConnection={activeConnection}
+        allMessages={allMessages}
+        setAllMessages={setAllMessages}
       />
     </div>
   );

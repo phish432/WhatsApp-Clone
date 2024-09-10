@@ -2,18 +2,20 @@ import { Message } from "../../constant/defaultMessages";
 import "./MessageBox.css";
 
 type Props = {
-  isClient: boolean;
   message: Message;
   onContextMenu: (event: React.MouseEvent<HTMLDivElement>) => void;
 };
 
 const MessageBox = (props: Props) => {
+  const { message, onContextMenu } = props;
+
+  const handleContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
+    onContextMenu(event);
+  };
+
   return (
-    <div
-      className={`messageBox${props.isClient ? " client" : ""}`}
-      onContextMenu={props.onContextMenu}
-    >
-      <div className="messageBoxContent">{props.message.content}</div>
+    <div className="messageBox" onContextMenu={handleContextMenu}>
+      <div className="messageBoxContent">{message.content}</div>
       <div className="messageBoxTime">
         {props.message.timestamp.toLocaleTimeString([], {
           hour: "2-digit",

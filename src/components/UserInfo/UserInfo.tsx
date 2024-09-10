@@ -5,9 +5,11 @@ type Props = {
 };
 
 const UserInfo = (props: Props) => {
+  const { name } = props;
+
   return (
     <div className="userInfo">
-      <span className="userName">{props.name}</span>
+      <span className="userName">{name}</span>
     </div>
   );
 };

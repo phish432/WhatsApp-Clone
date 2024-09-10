@@ -12,9 +12,9 @@ const App = () => {
   return (
     <div id="app">
       <SidePanel
-        allConnections={CONNECTIONS}
         activeConnection={activeConnect}
         setActiveConnection={setActiveConnect}
+        allConnections={CONNECTIONS}
       />
       <MainPanel
         activeConnection={activeConnect || null}
