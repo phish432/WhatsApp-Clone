@@ -10,7 +10,7 @@ type Props = {
 };
 
 const MessageForm = (props: Props) => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<string>("");
 
   const { activeConnection, allMessages, setAllMessages } = props;
 

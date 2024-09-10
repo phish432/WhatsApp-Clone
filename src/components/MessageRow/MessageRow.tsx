@@ -11,7 +11,7 @@ type Props = {
 };
 
 const MessageRow = (props: Props) => {
-  const [isContextMenuOpen, setIsContextMenuOpen] = useState(false);
+  const [isContextMenuOpen, setIsContextMenuOpen] = useState<boolean>(false);
 
   const { message, isOutgoing, onDelete } = props;
 
