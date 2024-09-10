@@ -10,12 +10,14 @@ type Props = {
 };
 
 const TextComposer = (props: Props) => {
+  const { activeConnection, allMessages, setAllMessages } = props;
+
   return (
     <div className="textComposer">
       <MessageForm
-        activeConnection={props.activeConnection}
-        allMessages={props.allMessages}
-        setAllMessages={props.setAllMessages}
+        activeConnection={activeConnection}
+        allMessages={allMessages}
+        setAllMessages={setAllMessages}
       />
     </div>
   );

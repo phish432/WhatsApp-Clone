@@ -5,8 +5,10 @@ type Props = {
 };
 
 const MessageDelButton = (props: Props) => {
+  const { onClick } = props;
+
   return (
-    <div className="messageDelButton" onClick={props.onClick}>
+    <div className="messageDelButton" onClick={onClick}>
       Delete
     </div>
   );
