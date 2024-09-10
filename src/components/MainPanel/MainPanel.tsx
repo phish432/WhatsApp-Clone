@@ -25,7 +25,7 @@ const MainPanel = (props: Props) => {
 
   return (
     <div className="mainPanel">
-      <Header activeConnection={activeConnection} />
+      <Header activeConnection={activeConnection} showUserInfo={true} />
       <ChatArea
         activeConnection={activeConnection}
         allMessages={allMessages}

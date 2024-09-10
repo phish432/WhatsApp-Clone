@@ -4,10 +4,11 @@ import "./Header.css";
 
 type Props = {
   activeConnection: Connection;
+  showUserInfo: boolean;
 };
 
 const Header = (props: Props) => {
-  const { activeConnection } = props;
+  const { activeConnection, showUserInfo } = props;
 
   return (
     <div className="header">
@@ -15,6 +16,7 @@ const Header = (props: Props) => {
         connection={activeConnection}
         onClick={() => {}}
         isActive={false}
+        showUserInfo={showUserInfo}
       />
     </div>
   );

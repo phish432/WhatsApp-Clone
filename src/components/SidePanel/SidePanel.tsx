@@ -1,5 +1,7 @@
 import { Connection } from "../../constant/connections";
 import Conversations from "../Conversations/Conversations";
+import Header from "../Header/Header";
+import SearchBar from "../SearchBar/SearchBar";
 import "./SidePanel.css";
 
 type Props = {
@@ -13,10 +15,15 @@ const SidePanel = (props: Props) => {
 
   return (
     <div className="sidePanel">
+      <Header
+        activeConnection={allConnections.find((c) => c.id === "user_id_0")!}
+        showUserInfo={false}
+      />
+      <SearchBar />
       <Conversations
         activeConnection={activeConnection}
         setActiveConnection={setActiveConnection}
-        allConnections={allConnections}
+        allConnections={allConnections.filter((c) => c.id !== "user_id_0")}
       />
     </div>
   );

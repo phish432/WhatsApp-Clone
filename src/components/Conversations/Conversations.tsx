@@ -23,6 +23,7 @@ const Conversations = (props: Props) => {
           connection={connection}
           onClick={handleClick}
           isActive={connection === activeConnection}
+          showUserInfo={true}
         />
       ))}
     </div>

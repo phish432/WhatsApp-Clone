@@ -6,6 +6,12 @@ type Connection = {
 
 const CONNECTIONS: Connection[] = [
   {
+    id: "user_id_0",
+    name: "User 0",
+    profileImg:
+      "https://fastly.picsum.photos/id/420/200/200.jpg?hmac=7hdmWb4uHh3ulb7_b_NXZ6QZY_mpCdVcwji4oMqP1Eg",
+  },
+  {
     id: "user_id_1",
     name: "User 1",
     profileImg:
