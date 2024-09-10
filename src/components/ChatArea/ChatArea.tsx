@@ -26,7 +26,7 @@ const ChatArea = (props: Props) => {
 
   const handleDelete = (message: Message) => {
     const updatedMessages = allMessages.filter(
-      (m) => m.timestamp !== message.timestamp,
+      (m) => m.messageId !== message.messageId,
     );
     setAllMessages(updatedMessages);
   };
@@ -37,7 +37,7 @@ const ChatArea = (props: Props) => {
         <MessageRow
           key={index}
           message={message}
-          isOutgoing={message.fromConnId === null}
+          isOutgoing={message.fromConnId === "user_id_0"}
           onDelete={handleDelete}
         />
       ))}

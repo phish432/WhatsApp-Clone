@@ -1,11 +1,7 @@
 import { Message } from "../../constant/defaultMessages";
 import { Connection } from "../../constant/connections";
 
-function isMessageFromAToB(
-  msg: Message,
-  userA: string | null,
-  userB: string | null,
-) {
+function isMessageFromAToB(msg: Message, userA: string, userB: string) {
   return msg.fromConnId === userA && msg.toConnId === userB;
 }
 
@@ -14,7 +10,7 @@ function getActiveMessages(
   allMessages: Message[],
 ): Message[] {
   const active = activeConnection.id;
-  const client = null;
+  const client = "user_id_0";
 
   let activeMessages = allMessages
     .filter(

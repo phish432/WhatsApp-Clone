@@ -16,7 +16,7 @@ const SidePanel = (props: Props) => {
   return (
     <div className="sidePanel">
       <Header
-        activeConnection={allConnections.find((c) => c.id === "user_id_0")!}
+        connection={allConnections.find((c) => c.id === "user_id_0")!}
         showUserInfo={false}
       />
       <SearchBar />

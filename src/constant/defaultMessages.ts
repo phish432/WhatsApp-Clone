@@ -1,8 +1,8 @@
 type Message = {
   readonly messageId: ReturnType<typeof self.crypto.randomUUID>;
   readonly timestamp: Date;
-  readonly fromConnId: string | null;
-  readonly toConnId: string | null;
+  readonly fromConnId: string;
+  readonly toConnId: string;
   readonly content: string;
 };
 
@@ -11,7 +11,7 @@ const DEFAULT_MESSAGES: Message[] = [
   {
     messageId: self.crypto.randomUUID(),
     timestamp: new Date(new Date().getTime() - 1000 * 60 * 60 * 6),
-    fromConnId: null,
+    fromConnId: "user_id_0",
     toConnId: "user_id_1",
     content: "Hi! How’s it going?",
   },
@@ -20,7 +20,7 @@ const DEFAULT_MESSAGES: Message[] = [
     timestamp: new Date(
       new Date().getTime() - 1000 * 60 * 60 * 5 + 1000 * 60 * 5,
     ),
-    fromConnId: null,
+    fromConnId: "user_id_0",
     toConnId: "user_id_1",
     content: "Have you finished the report I sent you?",
   },
@@ -29,7 +29,7 @@ const DEFAULT_MESSAGES: Message[] = [
     timestamp: new Date(
       new Date().getTime() - 1000 * 60 * 60 * 5 + 1000 * 60 * 10,
     ),
-    fromConnId: null,
+    fromConnId: "user_id_0",
     toConnId: "user_id_1",
     content: "Let me know if you need any help with it.",
   },
@@ -39,7 +39,7 @@ const DEFAULT_MESSAGES: Message[] = [
       new Date().getTime() - 1000 * 60 * 60 * 5 + 1000 * 60 * 20,
     ),
     fromConnId: "user_id_1",
-    toConnId: null,
+    toConnId: "user_id_0",
     content: "Hey! I’m doing well, thanks for asking.",
   },
   {
@@ -48,7 +48,7 @@ const DEFAULT_MESSAGES: Message[] = [
       new Date().getTime() - 1000 * 60 * 60 * 5 + 1000 * 60 * 25,
     ),
     fromConnId: "user_id_1",
-    toConnId: null,
+    toConnId: "user_id_0",
     content: "I’m almost done with the report.",
   },
   {
@@ -57,7 +57,7 @@ const DEFAULT_MESSAGES: Message[] = [
       new Date().getTime() - 1000 * 60 * 60 * 5 + 1000 * 60 * 30,
     ),
     fromConnId: "user_id_1",
-    toConnId: null,
+    toConnId: "user_id_0",
     content: "I might need a bit more time, but I’ll manage.",
   },
   {
@@ -65,7 +65,7 @@ const DEFAULT_MESSAGES: Message[] = [
     timestamp: new Date(
       new Date().getTime() - 1000 * 60 * 60 * 5 + 1000 * 60 * 35,
     ),
-    fromConnId: null,
+    fromConnId: "user_id_0",
     toConnId: "user_id_1",
     content: "No worries. Just update me when you’re ready.",
   },
@@ -74,7 +74,7 @@ const DEFAULT_MESSAGES: Message[] = [
     timestamp: new Date(
       new Date().getTime() - 1000 * 60 * 60 * 5 + 1000 * 60 * 40,
     ),
-    fromConnId: null,
+    fromConnId: "user_id_0",
     toConnId: "user_id_1",
     content: "Is there anything else I can help with today?",
   },
@@ -84,7 +84,7 @@ const DEFAULT_MESSAGES: Message[] = [
     messageId: self.crypto.randomUUID(),
     timestamp: new Date(new Date().getTime() - 1000 * 60 * 60 * 4),
     fromConnId: "user_id_2",
-    toConnId: null,
+    toConnId: "user_id_0",
     content: "Hello! I’ve been meaning to ask you about the project.",
   },
   {
@@ -93,7 +93,7 @@ const DEFAULT_MESSAGES: Message[] = [
       new Date().getTime() - 1000 * 60 * 60 * 4 + 1000 * 60 * 5,
     ),
     fromConnId: "user_id_2",
-    toConnId: null,
+    toConnId: "user_id_0",
     content: "Are there any updates on the timeline?",
   },
   {
@@ -102,7 +102,7 @@ const DEFAULT_MESSAGES: Message[] = [
       new Date().getTime() - 1000 * 60 * 60 * 4 + 1000 * 60 * 10,
     ),
     fromConnId: "user_id_2",
-    toConnId: null,
+    toConnId: "user_id_0",
     content: "I’m eager to get started on the next phase.",
   },
   {
@@ -110,7 +110,7 @@ const DEFAULT_MESSAGES: Message[] = [
     timestamp: new Date(
       new Date().getTime() - 1000 * 60 * 60 * 4 + 1000 * 60 * 15,
     ),
-    fromConnId: null,
+    fromConnId: "user_id_0",
     toConnId: "user_id_2",
     content: "Hi! The project timeline has been updated.",
   },
@@ -119,7 +119,7 @@ const DEFAULT_MESSAGES: Message[] = [
     timestamp: new Date(
       new Date().getTime() - 1000 * 60 * 60 * 4 + 1000 * 60 * 20,
     ),
-    fromConnId: null,
+    fromConnId: "user_id_0",
     toConnId: "user_id_2",
     content: "We’re aiming to start the next phase next week.",
   },
@@ -128,7 +128,7 @@ const DEFAULT_MESSAGES: Message[] = [
     timestamp: new Date(
       new Date().getTime() - 1000 * 60 * 60 * 4 + 1000 * 60 * 25,
     ),
-    fromConnId: null,
+    fromConnId: "user_id_0",
     toConnId: "user_id_2",
     content: "I’ll send out more details soon.",
   },
@@ -138,7 +138,7 @@ const DEFAULT_MESSAGES: Message[] = [
       new Date().getTime() - 1000 * 60 * 60 * 4 + 1000 * 60 * 35,
     ),
     fromConnId: "user_id_2",
-    toConnId: null,
+    toConnId: "user_id_0",
     content: "Great! I’ll be ready for next week.",
   },
   {
@@ -147,7 +147,7 @@ const DEFAULT_MESSAGES: Message[] = [
       new Date().getTime() - 1000 * 60 * 60 * 4 + 1000 * 60 * 40,
     ),
     fromConnId: "user_id_2",
-    toConnId: null,
+    toConnId: "user_id_0",
     content: "Looking forward to it!",
   },
 
@@ -155,7 +155,7 @@ const DEFAULT_MESSAGES: Message[] = [
   {
     messageId: self.crypto.randomUUID(),
     timestamp: new Date(new Date().getTime() - 1000 * 60 * 60 * 2),
-    fromConnId: null,
+    fromConnId: "user_id_0",
     toConnId: "user_id_3",
     content: "Hey! Did you get a chance to review the latest design?",
   },
@@ -164,7 +164,7 @@ const DEFAULT_MESSAGES: Message[] = [
     timestamp: new Date(
       new Date().getTime() - 1000 * 60 * 60 * 2 + 1000 * 60 * 5,
     ),
-    fromConnId: null,
+    fromConnId: "user_id_0",
     toConnId: "user_id_3",
     content: "Let me know your thoughts.",
   },
@@ -173,7 +173,7 @@ const DEFAULT_MESSAGES: Message[] = [
     timestamp: new Date(
       new Date().getTime() - 1000 * 60 * 60 * 2 + 1000 * 60 * 10,
     ),
-    fromConnId: null,
+    fromConnId: "user_id_0",
     toConnId: "user_id_3",
     content: "I’m looking forward to your feedback.",
   },
@@ -183,7 +183,7 @@ const DEFAULT_MESSAGES: Message[] = [
       new Date().getTime() - 1000 * 60 * 60 * 2 + 1000 * 60 * 15,
     ),
     fromConnId: "user_id_3",
-    toConnId: null,
+    toConnId: "user_id_0",
     content: "Hi! I just started reviewing the design.",
   },
   {
@@ -192,7 +192,7 @@ const DEFAULT_MESSAGES: Message[] = [
       new Date().getTime() - 1000 * 60 * 60 * 2 + 1000 * 60 * 20,
     ),
     fromConnId: "user_id_3",
-    toConnId: null,
+    toConnId: "user_id_0",
     content: "It looks good so far, but I have a few suggestions.",
   },
   {
@@ -201,7 +201,7 @@ const DEFAULT_MESSAGES: Message[] = [
       new Date().getTime() - 1000 * 60 * 60 * 2 + 1000 * 60 * 25,
     ),
     fromConnId: "user_id_3",
-    toConnId: null,
+    toConnId: "user_id_0",
     content: "I’ll compile them and send them to you soon.",
   },
   {
@@ -209,7 +209,7 @@ const DEFAULT_MESSAGES: Message[] = [
     timestamp: new Date(
       new Date().getTime() - 1000 * 60 * 60 * 2 + 1000 * 60 * 30,
     ),
-    fromConnId: null,
+    fromConnId: "user_id_0",
     toConnId: "user_id_3",
     content: "Sounds good! I’ll wait for your suggestions.",
   },

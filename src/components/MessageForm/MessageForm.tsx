@@ -10,7 +10,9 @@ type Props = {
 };
 
 const MessageForm = (props: Props) => {
-  let [message, setMessage] = useState("");
+  const { activeConnection, allMessages, setAllMessages } = props;
+
+  const [message, setMessage] = useState("");
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -20,11 +22,11 @@ const MessageForm = (props: Props) => {
     let newMessage: Message = {
       messageId: self.crypto.randomUUID(),
       timestamp: new Date(),
-      fromConnId: null,
-      toConnId: props.activeConnection.id,
+      fromConnId: "user_id_0",
+      toConnId: activeConnection.id,
       content: message,
     };
-    props.setAllMessages([...props.allMessages, newMessage]);
+    setAllMessages([...allMessages, newMessage]);
     setMessage("");
   };
 

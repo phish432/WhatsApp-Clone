@@ -3,17 +3,17 @@ import ConnectionCard from "../ConnectionCard/ConnectionCard";
 import "./Header.css";
 
 type Props = {
-  activeConnection: Connection;
+  connection: Connection;
   showUserInfo: boolean;
 };
 
 const Header = (props: Props) => {
-  const { activeConnection, showUserInfo } = props;
+  const { connection, showUserInfo } = props;
 
   return (
     <div className="header">
       <ConnectionCard
-        connection={activeConnection}
+        connection={connection}
         onClick={() => {}}
         isActive={false}
         showUserInfo={showUserInfo}
