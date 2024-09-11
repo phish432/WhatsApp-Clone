@@ -1,5 +1,6 @@
 import { Connection } from "../../constant/connections";
-import { Message } from "../../constant/defaultMessages";
+import DEFAULT_MESSAGES, { Message } from "../../constant/defaultMessages";
+import { useState } from "react";
 import ChatArea from "../ChatArea/ChatArea";
 import Fallback from "../Fallback/Fallback";
 import Header from "../Header/Header";
@@ -8,12 +9,12 @@ import "./MainPanel.css";
 
 type Props = {
   activeConnection: Connection | null;
-  allMessages: Message[];
-  setAllMessages: (messages: Message[]) => void;
 };
 
 const MainPanel = (props: Props) => {
-  const { activeConnection, allMessages, setAllMessages } = props;
+  const [allMessages, setAllMessages] = useState<Message[]>(DEFAULT_MESSAGES);
+
+  const { activeConnection } = props;
 
   if (activeConnection === null) {
     return (
