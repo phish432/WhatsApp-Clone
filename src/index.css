@@ -1,13 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Recursive:CASL,CRSV@1,0&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Recursive:slnt,CASL,CRSV@-8,1,0&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Recursive:wght,CASL,CRSV@700,1,0&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV@-8,700,1,0&display=swap");
-
 :root {
   color: #e9edef;
   background-color: #0d1318;
 
-  font-family: "Recursive";
+  font-family: Helvetica, Arial, system-ui, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: normal;
