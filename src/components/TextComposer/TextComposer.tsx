@@ -15,6 +15,7 @@ const TextComposer = (props: Props) => {
   return (
     <div className="textComposer">
       <MessageForm
+        key={activeConnection.id}
         activeConnection={activeConnection}
         allMessages={allMessages}
         setAllMessages={setAllMessages}
