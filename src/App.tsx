@@ -14,7 +14,7 @@ const App = () => {
         setActiveConnection={setActiveConnect}
         allConnections={CONNECTIONS}
       />
-      <MainPanel activeConnection={activeConnect || null} />
+      <MainPanel activeConnection={activeConnect} />
     </div>
   );
 };
