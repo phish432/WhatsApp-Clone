@@ -12,13 +12,11 @@ function getActiveMessages(
   const active = activeConnection.id;
   const client = "user_id_0";
 
-  let activeMessages = allMessages
-    .filter(
-      (msg) =>
-        isMessageFromAToB(msg, active, client) ||
-        isMessageFromAToB(msg, client, active),
-    )
-    .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+  let activeMessages = allMessages.filter(
+    (msg) =>
+      isMessageFromAToB(msg, active, client) ||
+      isMessageFromAToB(msg, client, active),
+  );
 
   return activeMessages;
 }

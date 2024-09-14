@@ -9,7 +9,7 @@
   padding: 0 40px;
 }
 
-.messageRow:first-child {
+.messageRow:last-child {
   margin-bottom: 16px;
 }
 
