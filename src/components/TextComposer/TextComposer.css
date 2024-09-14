@@ -8,3 +8,38 @@
 
   background-color: #212c33;
 }
+
+.textComposer .messageForm {
+  display: flex;
+  align-items: center;
+
+  height: 40px;
+  width: 100%;
+}
+
+.textComposer .messageForm .messageForm__input {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+
+  height: 100%;
+
+  margin: 0 10px;
+  border-radius: 10px;
+  padding: 0 10px;
+
+  background-color: #293941;
+}
+
+.textComposer .messageForm .messageForm__input::placeholder {
+  color: #87979f;
+}
+
+.textComposer .messageForm .messageForm__button {
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+
+  margin: 0 10px;
+}

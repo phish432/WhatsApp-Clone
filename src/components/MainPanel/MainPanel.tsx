@@ -33,6 +33,7 @@ const MainPanel = (props: Props) => {
         setAllMessages={setAllMessages}
       />
       <TextComposer
+        key={activeConnection.id}
         activeConnection={activeConnection}
         allMessages={allMessages}
         setAllMessages={setAllMessages}
