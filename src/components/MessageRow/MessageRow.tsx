@@ -1,6 +1,5 @@
 import { Message } from "../../constant/defaultMessages";
 import MessageBox from "../MessageBox/MessageBox";
-import MessageDelButton from "../MessageDelButton/MessageDelButton";
 import "./MessageRow.css";
 
 type Props = {
@@ -12,18 +11,13 @@ type Props = {
 const MessageRow = (props: Props) => {
   const { message, isOutgoing, onDelete } = props;
 
-  const handleClick = () => {
-    onDelete(message);
-  };
-
-  return isOutgoing ? (
-    <div className="messageRow outgoing">
-      <MessageDelButton onClick={handleClick} />
-      <MessageBox message={message} />
-    </div>
-  ) : (
-    <div className="messageRow incoming">
-      <MessageBox message={message} />
+  return (
+    <div className={`messageRow ${isOutgoing ? "outgoing" : "incoming"}`}>
+      <MessageBox
+        message={message}
+        isOutgoing={isOutgoing}
+        onDelete={onDelete}
+      />
     </div>
   );
 };

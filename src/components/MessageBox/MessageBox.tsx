@@ -1,23 +1,29 @@
 import { Message } from "../../constant/defaultMessages";
+import DeleteButton from "../DeleteButton/DeleteButton";
+import MessageContent from "../MessageContent/MessageContent";
 import "./MessageBox.css";
 
 type Props = {
   message: Message;
+  isOutgoing: boolean;
+  onDelete: (message: Message) => void;
 };
 
 const MessageBox = (props: Props) => {
-  const { message } = props;
+  const { message, isOutgoing, onDelete } = props;
 
-  return (
-    <div className="messageBox">
-      <div className="messageBoxContent">{message.content}</div>
-      <div className="messageBoxTime">
-        {props.message.timestamp.toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        })}
-      </div>
+  const handleClick = () => {
+    onDelete(message);
+  };
+
+  return isOutgoing ? (
+    <div className="messageBox outgoing">
+      <MessageContent message={message} />
+      <DeleteButton onClick={handleClick}>Delete</DeleteButton>
+    </div>
+  ) : (
+    <div className="messageBox incoming">
+      <MessageContent message={message} />
     </div>
   );
 };

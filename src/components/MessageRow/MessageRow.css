@@ -17,34 +17,6 @@
   justify-content: flex-end;
 }
 
-.messageRow.outgoing .messageBox {
-  background-color: #035c4c;
-}
-
-.messageRow.outgoing .messageBox .messageBoxTime {
-  color: #99beb7;
-}
-
-.messageRow.outgoing .messageDelButton {
-  opacity: 0;
-  position: absolute;
-  top: -1em;
-  right: 4em;
-}
-
-.messageRow.outgoing:hover .messageDelButton {
-  opacity: 1;
-}
-
 .messageRow.incoming {
   justify-content: flex-start;
-}
-
-.messageRow.incoming .messageBox {
-  justify-content: flex-start;
-  background-color: #212c33;
-}
-
-.messageRow.incoming .messageBox .messageBoxTime {
-  color: #7d868a;
 }
