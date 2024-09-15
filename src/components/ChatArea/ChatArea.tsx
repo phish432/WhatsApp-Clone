@@ -32,8 +32,8 @@ const ChatArea = (props: Props) => {
   };
 
   return (
-    <div className="chatArea">
-      {activeMessages.map((message, index) => (
+      <div className="chatArea">
+        {activeMessages.reverse().map((message, index) => (
         <MessageRow
           key={index}
           message={message}

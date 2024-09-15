@@ -5,7 +5,7 @@
   border-radius: 8px;
   padding: 8px 8px 4px 12px;
 
-  max-width: 20em;
+  max-width: 40em;
 }
 
 .messageContent .text {
@@ -19,7 +19,8 @@
 
   width: fit-content;
 
-  overflow-wrap: anywhere;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .messageContent .time {
