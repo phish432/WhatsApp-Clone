@@ -32,3 +32,31 @@
   right: 0.25em;
   gap: 0.25em;
 }
+
+.messageBox.outgoing .hoverButtons .actionButton.delete {
+  --primary-color: #c62040;
+  --secondary-color: #e9edef;
+}
+
+.messageBox.outgoing .hoverButtons .actionButton.edit {
+  --primary-color: #2040c6;
+  --secondary-color: #e9edef;
+}
+
+.messageBox.outgoing .hoverButtons .actionButton {
+  font-size: 0.75em;
+  font-weight: bold;
+
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  padding: 2px;
+
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  z-index: 3;
+}
+
+.messageBox.outgoing .hoverButtons .actionButton:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}

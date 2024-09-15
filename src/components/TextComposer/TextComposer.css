@@ -17,7 +17,7 @@
   width: 100%;
 }
 
-.textComposer .messageForm .messageForm__input {
+.textComposer .messageForm .content {
   display: flex;
   align-items: center;
   flex-grow: 1;
@@ -31,15 +31,11 @@
   background-color: #293941;
 }
 
-.textComposer .messageForm .messageForm__input::placeholder {
+.textComposer .messageForm .content::placeholder {
   color: #87979f;
 }
 
-.textComposer .messageForm .messageForm__button {
-  display: flex;
-  align-items: center;
-
+.textComposer .messageForm .actionButton.send {
   height: 100%;
-
   margin: 0 10px;
 }
