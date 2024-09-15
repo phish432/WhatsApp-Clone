@@ -1,0 +1,7 @@
+.deleteMessage {
+  display: flex;
+  flex-grow: 1;
+
+  width: 24em;
+  height: 6em;
+}
