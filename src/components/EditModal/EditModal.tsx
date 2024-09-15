@@ -1,6 +1,5 @@
 import { Message } from "../../constant/defaultMessages";
 import { useState, useRef, useEffect } from "react";
-import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
 import "./EditModal.css";
 
@@ -36,19 +35,16 @@ const EditModal = (props: Props) => {
     }
   };
 
-  return createPortal(
-    <>
-      <Modal onCancel={handleCancel} onConfirm={handleConfirm}>
-        <textarea
-          ref={editorRef}
-          className="editor"
-          value={newContent}
-          placeholder="Type a message"
-          onChange={(e) => setNewContent(e.target.value)}
-        />
-      </Modal>
-    </>,
-    document.body,
+  return (
+    <Modal onCancel={handleCancel} onConfirm={handleConfirm} confirmText="Save">
+      <textarea
+        ref={editorRef}
+        className="editor"
+        value={newContent}
+        placeholder="Type a message"
+        onChange={(e) => setNewContent(e.target.value)}
+      />
+    </Modal>
   );
 };
 

@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import ActionButton from "../ActionButton/ActionButton";
 import "./Modal.css";
 
@@ -11,7 +12,8 @@ type Props = {
 
 const Modal = (props: Props) => {
   const { onCancel, cancelText, onConfirm, confirmText, children } = props;
-  return (
+
+  return createPortal(
     <div className="modal">
       <div className="modalContent">
         {children}
@@ -22,7 +24,8 @@ const Modal = (props: Props) => {
           {cancelText || "Cancel"}
         </ActionButton>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 };
 

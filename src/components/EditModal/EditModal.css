@@ -3,8 +3,8 @@
   align-items: center;
   flex-grow: 1;
 
-  width: -webkit-fill-available;
-  width: -moz-available;
+  width: 24em;
+  height: 12em;
 
   border-radius: 8px;
   padding: 12px 12px;
