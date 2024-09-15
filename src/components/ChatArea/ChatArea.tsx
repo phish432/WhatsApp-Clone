@@ -33,6 +33,19 @@ const ChatArea = forwardRef(
       setAllMessages(updatedMessages);
     };
 
+    const handleEdit = (message: Message, newContent: string) => {
+      const updatedMessages = allMessages.map((m) => {
+        if (m.messageId === message.messageId) {
+          return {
+            ...m,
+            content: newContent,
+          };
+        }
+        return m;
+      });
+      setAllMessages(updatedMessages);
+    };
+
     return (
       <div className="chatArea">
         {activeMessages.reverse().map((message, index) => (
@@ -41,6 +54,7 @@ const ChatArea = forwardRef(
             message={message}
             isOutgoing={message.fromConnId === "user_id_0"}
             onDelete={handleDelete}
+            onEdit={handleEdit}
           />
         ))}
       </div>

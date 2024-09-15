@@ -21,13 +21,14 @@
   color: #7d868a;
 }
 
-.messageBox.outgoing .deleteButton {
+.messageBox.outgoing .hoverButtons {
   display: none;
+}
+
+.messageBox.outgoing:hover .hoverButtons {
+  display: flex;
   position: absolute;
   top: -1em;
   right: 0.25em;
-}
-
-.messageBox.outgoing:hover .deleteButton {
-  display: flex;
+  gap: 0.25em;
 }

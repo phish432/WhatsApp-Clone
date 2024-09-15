@@ -1,0 +1,35 @@
+.actionButton {
+  --primary-color: #000000;
+  --secondary-color: #ffffff;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 0.75em;
+  font-weight: bold;
+
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  padding: 2px;
+
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  z-index: 3;
+
+  cursor: pointer;
+}
+
+.actionButton:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.actionButton.delete {
+  --primary-color: #c62040;
+  --secondary-color: #e9edef;
+}
+
+.actionButton.edit {
+  --primary-color: #2040c6;
+  --secondary-color: #e9edef;
+}
