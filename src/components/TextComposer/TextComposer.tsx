@@ -7,12 +7,13 @@ type Props = {
   activeConnection: Connection;
   allMessages: Message[];
   setAllMessages: (messages: Message[]) => void;
+  onSend: () => void;
 };
 
 const TextComposer = (props: Props) => {
   const [newContent, setNewContent] = useState<string>("");
 
-  const { activeConnection, allMessages, setAllMessages } = props;
+  const { activeConnection, allMessages, setAllMessages, onSend } = props;
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -31,6 +32,7 @@ const TextComposer = (props: Props) => {
 
     setAllMessages([...allMessages, newMessage]);
     setNewContent("");
+    onSend();
   };
 
   return (

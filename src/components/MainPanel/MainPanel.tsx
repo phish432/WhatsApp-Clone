@@ -1,6 +1,6 @@
 import { Connection } from "../../constant/connections";
 import DEFAULT_MESSAGES, { Message } from "../../constant/defaultMessages";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ChatArea from "../ChatArea/ChatArea";
 import Fallback from "../Fallback/Fallback";
 import Header from "../Header/Header";
@@ -13,6 +13,7 @@ type Props = {
 
 const MainPanel = (props: Props) => {
   const [allMessages, setAllMessages] = useState<Message[]>(DEFAULT_MESSAGES);
+  const chatAreaRef = useRef<HTMLDivElement>(null);
 
   const { activeConnection } = props;
 
@@ -24,10 +25,17 @@ const MainPanel = (props: Props) => {
     );
   }
 
+  const scrollToChatEnd = () => {
+    if (chatAreaRef.current) {
+      chatAreaRef.current.scrollTop = chatAreaRef.current.scrollHeight;
+    }
+  };
+
   return (
     <div className="mainPanel">
       <Header connection={activeConnection} showUserInfo={true} />
       <ChatArea
+        ref={chatAreaRef}
         activeConnection={activeConnection}
         allMessages={allMessages}
         setAllMessages={setAllMessages}
@@ -37,6 +45,7 @@ const MainPanel = (props: Props) => {
         activeConnection={activeConnection}
         allMessages={allMessages}
         setAllMessages={setAllMessages}
+        onSend={scrollToChatEnd}
       />
     </div>
   );

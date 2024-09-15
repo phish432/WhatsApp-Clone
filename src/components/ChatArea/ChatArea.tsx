@@ -1,5 +1,6 @@
 import { Connection } from "../../constant/connections";
 import { Message } from "../../constant/defaultMessages";
+import { forwardRef } from "react";
 import Fallback from "../Fallback/Fallback";
 import MessageRow from "../MessageRow/MessageRow";
 import getActiveMessages from "./ChatAreaUtils";
@@ -11,38 +12,40 @@ type Props = {
   setAllMessages: (messages: Message[]) => void;
 };
 
-const ChatArea = (props: Props) => {
-  const { activeConnection, allMessages, setAllMessages } = props;
+const ChatArea = forwardRef(
+  (props: Props, chatAreaRef: React.LegacyRef<HTMLDivElement>) => {
+    const { activeConnection, allMessages, setAllMessages } = props;
 
-  const activeMessages = getActiveMessages(activeConnection, allMessages);
+    const activeMessages = getActiveMessages(activeConnection, allMessages);
 
-  if (activeMessages.length === 0) {
+    if (activeMessages.length === 0) {
+      return (
+        <div className="chatArea" ref={chatAreaRef}>
+          <Fallback>No messages yet</Fallback>
+        </div>
+      );
+    }
+
+    const handleDelete = (message: Message) => {
+      const updatedMessages = allMessages.filter(
+        (m) => m.messageId !== message.messageId,
+      );
+      setAllMessages(updatedMessages);
+    };
+
     return (
       <div className="chatArea">
-        <Fallback>No messages yet</Fallback>
+        {activeMessages.reverse().map((message, index) => (
+          <MessageRow
+            key={index}
+            message={message}
+            isOutgoing={message.fromConnId === "user_id_0"}
+            onDelete={handleDelete}
+          />
+        ))}
       </div>
     );
-  }
-
-  const handleDelete = (message: Message) => {
-    const updatedMessages = allMessages.filter(
-      (m) => m.messageId !== message.messageId,
-    );
-    setAllMessages(updatedMessages);
-  };
-
-  return (
-      <div className="chatArea">
-        {activeMessages.reverse().map((message, index) => (
-        <MessageRow
-          key={index}
-          message={message}
-          isOutgoing={message.fromConnId === "user_id_0"}
-          onDelete={handleDelete}
-        />
-      ))}
-    </div>
-  );
-};
+  },
+);
 
 export default ChatArea;
