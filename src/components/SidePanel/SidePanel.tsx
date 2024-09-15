@@ -12,9 +12,9 @@ type Props = {
 };
 
 const SidePanel = (props: Props) => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
-
   const { activeConnection, setActiveConnection, allConnections } = props;
+
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   return (
     <div className="sidePanel">

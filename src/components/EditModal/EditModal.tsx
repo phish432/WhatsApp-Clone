@@ -5,15 +5,15 @@ import Modal from "../Modal/Modal";
 import "./EditModal.css";
 
 type Props = {
-  onClose: () => void;
+  closeEditModal: () => void;
   message: Message;
-  onEdit: (message: Message, newContent: string) => void;
+  editMessage: (message: Message, newContent: string) => void;
 };
 
 const EditModal = (props: Props) => {
-  const { onClose, message: oldMessage, onEdit } = props;
+  const { closeEditModal, message, editMessage } = props;
 
-  const [newContent, setNewContent] = useState<string>(oldMessage.content);
+  const [newContent, setNewContent] = useState<string>(message.content);
   const editorRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -25,20 +25,20 @@ const EditModal = (props: Props) => {
     }
   }, []);
 
-  const onCancel = () => {
-    onClose();
+  const handleCancel = () => {
+    closeEditModal();
   };
 
-  const onConfirm = () => {
+  const handleConfirm = () => {
     if (newContent !== "") {
-      onEdit(oldMessage, newContent);
-      onClose();
+      editMessage(message, newContent);
+      closeEditModal();
     }
   };
 
   return createPortal(
     <>
-      <Modal onCancel={onCancel} onConfirm={onConfirm}>
+      <Modal onCancel={handleCancel} onConfirm={handleConfirm}>
         <textarea
           ref={editorRef}
           className="editor"

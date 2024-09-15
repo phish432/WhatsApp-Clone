@@ -8,13 +8,18 @@ type Props = {
   activeConnection: Connection;
   allMessages: Message[];
   setAllMessages: (messages: Message[]) => void;
-  onSend: () => void;
+  scrollToEndOfChatArea: () => void;
 };
 
 const TextComposer = (props: Props) => {
-  const [newContent, setNewContent] = useState<string>("");
+  const {
+    activeConnection,
+    allMessages,
+    setAllMessages,
+    scrollToEndOfChatArea,
+  } = props;
 
-  const { activeConnection, allMessages, setAllMessages, onSend } = props;
+  const [newContent, setNewContent] = useState<string>("");
 
   const handleClick = () => {
     if (newContent !== "") {
@@ -28,7 +33,7 @@ const TextComposer = (props: Props) => {
 
       setAllMessages([...allMessages, newMessage]);
       setNewContent("");
-      onSend();
+      scrollToEndOfChatArea();
     }
   };
 

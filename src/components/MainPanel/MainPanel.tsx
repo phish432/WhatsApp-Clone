@@ -12,9 +12,6 @@ type Props = {
 };
 
 const MainPanel = (props: Props) => {
-  const [allMessages, setAllMessages] = useState<Message[]>(DEFAULT_MESSAGES);
-  const chatAreaRef = useRef<HTMLDivElement>(null);
-
   const { activeConnection } = props;
 
   if (activeConnection === null) {
@@ -25,7 +22,10 @@ const MainPanel = (props: Props) => {
     );
   }
 
-  const scrollToChatEnd = () => {
+  const [allMessages, setAllMessages] = useState<Message[]>(DEFAULT_MESSAGES);
+  const chatAreaRef = useRef<HTMLDivElement>(null);
+
+  const scrollToEndOfChatArea = () => {
     if (chatAreaRef.current) {
       chatAreaRef.current.scrollTop = chatAreaRef.current.scrollHeight;
     }
@@ -45,7 +45,7 @@ const MainPanel = (props: Props) => {
         activeConnection={activeConnection}
         allMessages={allMessages}
         setAllMessages={setAllMessages}
-        onSend={scrollToChatEnd}
+        scrollToEndOfChatArea={scrollToEndOfChatArea}
       />
     </div>
   );

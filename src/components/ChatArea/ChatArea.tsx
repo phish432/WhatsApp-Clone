@@ -26,14 +26,14 @@ const ChatArea = forwardRef(
       );
     }
 
-    const handleDelete = (message: Message) => {
+    const deleteMessage = (message: Message) => {
       const updatedMessages = allMessages.filter(
         (m) => m.messageId !== message.messageId,
       );
       setAllMessages(updatedMessages);
     };
 
-    const handleEdit = (message: Message, newContent: string) => {
+    const editMessage = (message: Message, newContent: string) => {
       const updatedMessages = allMessages.map((m) => {
         if (m.messageId === message.messageId) {
           return {
@@ -53,8 +53,8 @@ const ChatArea = forwardRef(
             key={index}
             message={message}
             isOutgoing={message.fromConnId === "user_id_0"}
-            onDelete={handleDelete}
-            onEdit={handleEdit}
+            deleteMessage={deleteMessage}
+            editMessage={editMessage}
           />
         ))}
       </div>

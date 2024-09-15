@@ -8,25 +8,25 @@ import "./MessageBox.css";
 type Props = {
   message: Message;
   isOutgoing: boolean;
-  onDelete: (message: Message) => void;
-  onEdit: (message: Message, newContent: string) => void;
+  deleteMessage: (message: Message) => void;
+  editMessage: (message: Message, newContent: string) => void;
 };
 
 const MessageBox = (props: Props) => {
+  const { message, isOutgoing, deleteMessage, editMessage } = props;
+
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
 
-  const { message, isOutgoing, onDelete, onEdit } = props;
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
+  };
 
   const handleDeleteClick = () => {
-    onDelete(message);
+    deleteMessage(message);
   };
 
   const handleEditClick = () => {
     setIsEditModalOpen(true);
-  };
-
-  const handleEditModalClose = () => {
-    setIsEditModalOpen(false);
   };
 
   return isOutgoing ? (
@@ -44,9 +44,9 @@ const MessageBox = (props: Props) => {
       </div>
       {isEditModalOpen && (
         <EditModal
-          onClose={handleEditModalClose}
+          closeEditModal={closeEditModal}
           message={message}
-          onEdit={onEdit}
+          editMessage={editMessage}
         />
       )}
     </>
