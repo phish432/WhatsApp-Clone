@@ -17,21 +17,19 @@ const TextComposer = (props: Props) => {
   const { activeConnection, allMessages, setAllMessages, onSend } = props;
 
   const handleClick = () => {
-    if (newContent === "") {
-      return;
+    if (newContent !== "") {
+      let newMessage: Message = {
+        messageId: self.crypto.randomUUID(),
+        timestamp: new Date(),
+        fromConnId: "user_id_0",
+        toConnId: activeConnection.id,
+        content: newContent,
+      };
+
+      setAllMessages([...allMessages, newMessage]);
+      setNewContent("");
+      onSend();
     }
-
-    let newMessage: Message = {
-      messageId: self.crypto.randomUUID(),
-      timestamp: new Date(),
-      fromConnId: "user_id_0",
-      toConnId: activeConnection.id,
-      content: newContent,
-    };
-
-    setAllMessages([...allMessages, newMessage]);
-    setNewContent("");
-    onSend();
   };
 
   return (

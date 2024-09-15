@@ -3,7 +3,7 @@ import "./ActionButton.css";
 
 type Props = {
   onClick: () => void;
-  appendClass: "edit" | "delete" | "send";
+  appendClass: string;
   children?: React.ReactNode;
 };
 

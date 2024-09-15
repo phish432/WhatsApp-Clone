@@ -1,6 +1,8 @@
 import { Message } from "../../constant/defaultMessages";
+import { useState } from "react";
 import ActionButton from "../ActionButton/ActionButton";
 import MessageContent from "../MessageContent/MessageContent";
+import EditModal from "../EditModal/EditModal";
 import "./MessageBox.css";
 
 type Props = {
@@ -11,6 +13,8 @@ type Props = {
 };
 
 const MessageBox = (props: Props) => {
+  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+
   const { message, isOutgoing, onDelete, onEdit } = props;
 
   const handleDeleteClick = () => {
@@ -18,22 +22,34 @@ const MessageBox = (props: Props) => {
   };
 
   const handleEditClick = () => {
-    const newContent = prompt("Enter new message content") || "";
-    onEdit(message, newContent);
+    setIsEditModalOpen(true);
+  };
+
+  const handleEditModalClose = () => {
+    setIsEditModalOpen(false);
   };
 
   return isOutgoing ? (
-    <div className="messageBox outgoing">
-      <MessageContent message={message} />
-      <div className="hoverButtons">
-        <ActionButton onClick={handleEditClick} appendClass="edit">
-          Edit
-        </ActionButton>
-        <ActionButton onClick={handleDeleteClick} appendClass="delete">
-          Delete
-        </ActionButton>
+    <>
+      <div className="messageBox outgoing">
+        <MessageContent message={message} />
+        <div className="hoverButtons">
+          <ActionButton onClick={handleEditClick} appendClass="edit">
+            Edit
+          </ActionButton>
+          <ActionButton onClick={handleDeleteClick} appendClass="delete">
+            Delete
+          </ActionButton>
+        </div>
       </div>
-    </div>
+      {isEditModalOpen && (
+        <EditModal
+          onClose={handleEditModalClose}
+          message={message}
+          onEdit={onEdit}
+        />
+      )}
+    </>
   ) : (
     <div className="messageBox incoming">
       <MessageContent message={message} />
