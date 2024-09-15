@@ -2,12 +2,12 @@
   color: #e9edef;
   background-color: #0d1318;
 
-  font-family: Helvetica, Arial, system-ui, sans-serif;
+  font-family: system-ui, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: normal;
 
-  line-height: 1.5;
+  line-height: 1.25;
   text-rendering: optimizeLegibility;
 
   -webkit-font-smoothing: antialiased;
