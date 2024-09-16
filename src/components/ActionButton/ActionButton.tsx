@@ -3,12 +3,11 @@ import "./ActionButton.css";
 
 type Props = {
   onClick: () => void;
-  appendClass: string;
   children?: React.ReactNode;
 };
 
 const ActionButton = (props: Props) => {
-  const { onClick, appendClass, children } = props;
+  const { onClick, children } = props;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -16,7 +15,7 @@ const ActionButton = (props: Props) => {
   };
 
   return (
-    <button className={`actionButton ${appendClass}`} onClick={handleClick}>
+    <button className="actionButton" onClick={handleClick}>
       {children}
     </button>
   );

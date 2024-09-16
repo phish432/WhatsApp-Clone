@@ -17,12 +17,10 @@ const Modal = (props: Props) => {
     <div className="modal">
       <div className="modalContent">
         {children}
-        <ActionButton onClick={onConfirm} appendClass="confirm">
+        <ActionButton onClick={onConfirm}>
           {confirmText || "Confirm"}
         </ActionButton>
-        <ActionButton onClick={onCancel} appendClass="cancel">
-          {cancelText || "Cancel"}
-        </ActionButton>
+        <ActionButton onClick={onCancel}>{cancelText || "Cancel"}</ActionButton>
       </div>
     </div>,
     document.body,

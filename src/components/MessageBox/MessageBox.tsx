@@ -41,13 +41,9 @@ const MessageBox = (props: Props) => {
     <>
       <div className="messageBox outgoing">
         <MessageContent content={content} timestamp={timestamp} />
-        <div className="hoverButtons">
-          <ActionButton onClick={handleEditClick} appendClass="edit">
-            Edit
-          </ActionButton>
-          <ActionButton onClick={handleDeleteClick} appendClass="delete">
-            Delete
-          </ActionButton>
+        <div className="hoverTooltip">
+          <ActionButton onClick={handleEditClick}>Edit</ActionButton>
+          <ActionButton onClick={handleDeleteClick}>Delete</ActionButton>
         </div>
       </div>
       {isEditModalOpen && (

@@ -47,7 +47,7 @@ const TextComposer = (props: Props) => {
           value={newContent}
           onChange={(event) => setNewContent(event.target.value)}
         />
-        <ActionButton onClick={handleClick} appendClass="send">
+        <ActionButton onClick={handleClick}>
           <svg
             viewBox="0 0 24 24"
             height="24"
