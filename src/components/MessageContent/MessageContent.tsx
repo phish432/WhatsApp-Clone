@@ -1,13 +1,12 @@
-import { Message } from "../../constant/defaultMessages";
 import "./MessageContent.css";
 
 type Props = {
-  message: Message;
+  content: string;
+  timestamp: Date;
 };
 
 const MessageContent = (props: Props) => {
-  const { message } = props;
-  const { content, timestamp } = message;
+  const { content, timestamp } = props;
 
   return (
     <div className="messageContent">

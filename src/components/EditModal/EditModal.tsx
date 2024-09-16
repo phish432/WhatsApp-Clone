@@ -1,18 +1,17 @@
-import { Message } from "../../constant/defaultMessages";
 import { useState, useRef, useEffect } from "react";
 import Modal from "../Modal/Modal";
 import "./EditModal.css";
 
 type Props = {
   closeEditModal: () => void;
-  message: Message;
-  editMessage: (message: Message, newContent: string) => void;
+  oldContent: string;
+  editMessage: (newContent: string) => void;
 };
 
 const EditModal = (props: Props) => {
-  const { closeEditModal, message, editMessage } = props;
+  const { closeEditModal, oldContent, editMessage } = props;
 
-  const [newContent, setNewContent] = useState<string>(message.content);
+  const [newContent, setNewContent] = useState<string>(oldContent);
   const editorRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -29,8 +28,8 @@ const EditModal = (props: Props) => {
   };
 
   const handleConfirm = () => {
-    if (newContent !== "") {
-      editMessage(message, newContent);
+    if (newContent.trim() !== "") {
+      editMessage(newContent);
       closeEditModal();
     }
   };

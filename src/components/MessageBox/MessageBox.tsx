@@ -1,4 +1,3 @@
-import { Message } from "../../constant/defaultMessages";
 import { useState } from "react";
 import ActionButton from "../ActionButton/ActionButton";
 import MessageContent from "../MessageContent/MessageContent";
@@ -7,14 +6,15 @@ import DeleteModal from "../DeleteModal/DeleteModal";
 import "./MessageBox.css";
 
 type Props = {
-  message: Message;
+  content: string;
+  timestamp: Date;
   isOutgoing: boolean;
-  deleteMessage: (message: Message) => void;
-  editMessage: (message: Message, newContent: string) => void;
+  deleteMessage: () => void;
+  editMessage: (newContent: string) => void;
 };
 
 const MessageBox = (props: Props) => {
-  const { message, isOutgoing, deleteMessage, editMessage } = props;
+  const { content, timestamp, isOutgoing, deleteMessage, editMessage } = props;
 
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
@@ -40,7 +40,7 @@ const MessageBox = (props: Props) => {
   return isOutgoing ? (
     <>
       <div className="messageBox outgoing">
-        <MessageContent message={message} />
+        <MessageContent content={content} timestamp={timestamp} />
         <div className="hoverButtons">
           <ActionButton onClick={handleEditClick} appendClass="edit">
             Edit
@@ -53,21 +53,21 @@ const MessageBox = (props: Props) => {
       {isEditModalOpen && (
         <EditModal
           closeEditModal={closeEditModal}
-          message={message}
+          oldContent={content}
           editMessage={editMessage}
         />
       )}
       {isDeleteModalOpen && (
         <DeleteModal
           closeDeleteModal={closeDeleteModal}
-          deleteMessage={() => deleteMessage(message)}
+          deleteMessage={deleteMessage}
           confirmText="Delete Message"
         />
       )}
     </>
   ) : (
     <div className="messageBox incoming">
-      <MessageContent message={message} />
+      <MessageContent content={content} timestamp={timestamp} />
     </div>
   );
 };

@@ -48,13 +48,14 @@ const ChatArea = forwardRef(
 
     return (
       <div className="chatArea">
-        {activeMessages.reverse().map((message, index) => (
+        {activeMessages.reverse().map((message) => (
           <MessageRow
-            key={index}
-            message={message}
+            key={message.messageId}
+            content={message.content}
+            timestamp={message.timestamp}
             isOutgoing={message.fromConnId === "user_id_0"}
-            deleteMessage={deleteMessage}
-            editMessage={editMessage}
+            deleteMessage={() => deleteMessage(message)}
+            editMessage={(newConent: string) => editMessage(message, newConent)}
           />
         ))}
       </div>
