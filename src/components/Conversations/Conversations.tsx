@@ -11,19 +11,15 @@ type Props = {
 const Conversations = (props: Props) => {
   const { activeConnection, setActiveConnection, allConnections } = props;
 
-  const handleClick = (connection: Connection) => {
-    setActiveConnection(connection);
-  };
-
   return (
     <div className="conversations">
       {allConnections.map((connection) => (
         <ConnectionCard
           key={connection.id}
-          connection={connection}
-          onClick={handleClick}
+          userName={connection.name}
+          profileImg={connection.profileImg}
+          onClick={() => setActiveConnection(connection)}
           isActive={connection === activeConnection}
-          showUserInfo={true}
         />
       ))}
     </div>

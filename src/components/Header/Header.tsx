@@ -1,25 +1,13 @@
-import { Connection } from "../../constant/connections";
-import ConnectionCard from "../ConnectionCard/ConnectionCard";
 import "./Header.css";
 
 type Props = {
-  connection: Connection;
-  showUserInfo: boolean;
+  children?: React.ReactNode;
 };
 
 const Header = (props: Props) => {
-  const { connection, showUserInfo } = props;
+  const { children } = props;
 
-  return (
-    <div className="header">
-      <ConnectionCard
-        connection={connection}
-        onClick={() => {}}
-        isActive={false}
-        showUserInfo={showUserInfo}
-      />
-    </div>
-  );
+  return <div className="header">{children}</div>;
 };
 
 export default Header;

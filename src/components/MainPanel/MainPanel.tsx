@@ -2,6 +2,7 @@ import { Connection } from "../../constant/connections";
 import DEFAULT_MESSAGES, { Message } from "../../constant/defaultMessages";
 import { useState, useRef } from "react";
 import ChatArea from "../ChatArea/ChatArea";
+import ConnectionCard from "../ConnectionCard/ConnectionCard";
 import Fallback from "../Fallback/Fallback";
 import Header from "../Header/Header";
 import TextComposer from "../TextComposer/TextComposer";
@@ -33,7 +34,14 @@ const MainPanel = (props: Props) => {
 
   return (
     <div className="mainPanel">
-      <Header connection={activeConnection} showUserInfo={true} />
+      <Header>
+        <ConnectionCard
+          userName={activeConnection.name}
+          profileImg={activeConnection.profileImg}
+          onClick={() => {}}
+          isActive={false}
+        />
+      </Header>
       <ChatArea
         ref={chatAreaRef}
         activeConnection={activeConnection}

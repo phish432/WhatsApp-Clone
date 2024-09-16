@@ -1,5 +1,6 @@
 import { Connection } from "../../constant/connections";
 import { useState } from "react";
+import Avatar from "../Avatar/Avatar";
 import Conversations from "../Conversations/Conversations";
 import Header from "../Header/Header";
 import SearchBar from "../SearchBar/SearchBar";
@@ -16,12 +17,13 @@ const SidePanel = (props: Props) => {
 
   const [searchTerm, setSearchTerm] = useState<string>("");
 
+  const clientConnection = allConnections.find((c) => c.id === "user_id_0")!;
+
   return (
     <div className="sidePanel">
-      <Header
-        connection={allConnections.find((c) => c.id === "user_id_0")!}
-        showUserInfo={false}
-      />
+      <Header>
+        <Avatar src={clientConnection.profileImg} alt={clientConnection.name} />
+      </Header>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Conversations
         activeConnection={activeConnection}

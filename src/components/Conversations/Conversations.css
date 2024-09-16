@@ -12,11 +12,6 @@
 .conversations > .connectionCard {
   height: 80px;
 
-  & > .avatar {
-    padding: 0 20px;
-    height: 100%;
-  }
-
   & > .userInfo {
     border-top: 1px solid rgba(134, 150, 160, 0.15);
   }
