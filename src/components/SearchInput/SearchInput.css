@@ -4,8 +4,8 @@
   flex-grow: 1;
 
   height: 100%;
-}
 
-.searchInput::placeholder {
-  color: #87979f;
+  &::placeholder {
+    color: #87979f;
+  }
 }

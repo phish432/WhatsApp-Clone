@@ -8,7 +8,7 @@
   max-width: 40em;
 }
 
-.messageContent .text {
+.messageContent > .text {
   display: flex;
   align-items: center;
   align-self: flex-start;
@@ -23,7 +23,7 @@
   white-space: pre-wrap;
 }
 
-.messageContent .time {
+.messageContent > .time {
   display: flex;
   align-items: center;
   align-self: flex-end;

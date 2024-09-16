@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-.header .connectionCard {
+.header > .connectionCard {
   height: 60px;
   background-color: #212c33;
   cursor: default;

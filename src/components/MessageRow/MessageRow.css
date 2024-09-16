@@ -7,14 +7,14 @@
 
   margin-bottom: 12px;
   padding: 0 40px;
-}
 
-.messageRow:first-child {
-  margin-bottom: 16px;
-}
+  &:first-child {
+    margin-bottom: 16px;
+  }
 
-.messageRow:last-child {
-  margin-top: 16px;
+  &:last-child {
+    margin-top: 16px;
+  }
 }
 
 .messageRow.outgoing {

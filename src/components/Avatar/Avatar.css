@@ -5,7 +5,7 @@
   height: 100%;
 }
 
-.avatar .avatarImg {
+.avatar > .avatarImg {
   height: 75%;
   border-radius: 50%;
 }

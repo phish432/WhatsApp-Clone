@@ -9,38 +9,43 @@
   scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
 }
 
-.conversations .connectionCard {
+.conversations > .connectionCard {
   height: 80px;
+
+  & > .avatar {
+    padding: 0 20px;
+    height: 100%;
+  }
+
+  & > .userInfo {
+    border-top: 1px solid rgba(134, 150, 160, 0.15);
+  }
+
+  &:last-child > .userInfo {
+    border-bottom: 1px solid rgba(134, 150, 160, 0.15);
+  }
+
+  &:hover {
+    background-color: #202c33;
+
+    & > .userInfo {
+      border-top: 1px solid #202c33;
+    }
+  }
 }
 
-.conversations .connectionCard .userInfo {
-  border-top: 1px solid rgba(134, 150, 160, 0.15);
-}
-
-.conversations .connectionCard:last-child .userInfo {
-  border-bottom: 1px solid rgba(134, 150, 160, 0.15);
-}
-
-.conversations .connectionCard.active {
+.conversations > .connectionCard.active {
   background-color: #2a3942;
-}
 
-.conversations .connectionCard.active .userInfo {
-  border-top: 1px solid #2a3942;
-}
+  & > .userInfo {
+    border-top: 1px solid #2a3942;
+  }
 
-.conversations .connectionCard:hover {
-  background-color: #202c33;
-}
+  &:hover {
+    background-color: #2a3942;
 
-.conversations .connectionCard:hover .userInfo {
-  border-top: 1px solid #202c33;
-}
-
-.conversations .connectionCard.active:hover {
-  background-color: #2a3942;
-}
-
-.conversations .connectionCard.active:hover .userInfo {
-  border-top: 1px solid #2a3942;
+    & > .userInfo {
+      border-top: 1px solid #2a3942;
+    }
+  }
 }

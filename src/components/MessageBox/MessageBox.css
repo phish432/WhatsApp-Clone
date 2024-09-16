@@ -5,58 +5,55 @@
   position: relative;
 }
 
-.messageBox.outgoing .messageContent {
+.messageBox.outgoing > .messageContent {
   background-color: #035c4c;
+
+  & > .time {
+    color: #99beb7;
+  }
 }
 
-.messageBox.outgoing .messageContent .time {
-  color: #99beb7;
+.messageBox.outgoing {
+  & > .hoverTooltip {
+    display: none;
+  }
+
+  &:hover > .hoverTooltip {
+    display: flex;
+    position: absolute;
+    top: -1em;
+    right: 0.25em;
+    gap: 0.25em;
+  }
+}
+
+.messageBox.outgoing > .hoverTooltip > .actionButton {
+  --foreground-color: #00a884;
+  --foreground-color-hover: #06cf9c;
+  --background-color: #212c33;
+
+  font-size: 0.75em;
+  font-weight: bold;
+
+  border: 1px solid var(--foreground-color);
+  border-radius: 4px;
+  padding: 4px;
+
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+
+  z-index: 3;
+
+  &:hover {
+    color: var(--foreground-color-hover);
+    box-shadow: rgba(11, 20, 26, 0.5) 0px 0px 8px 2px;
+  }
 }
 
 .messageBox.incoming .messageContent {
   background-color: #212c33;
-}
 
-.messageBox.incoming .messageContent .time {
-  color: #7d868a;
-}
-
-.messageBox.outgoing .hoverButtons {
-  display: none;
-}
-
-.messageBox.outgoing:hover .hoverButtons {
-  display: flex;
-  position: absolute;
-  top: -1em;
-  right: 0.25em;
-  gap: 0.25em;
-}
-
-.messageBox.outgoing .hoverButtons .actionButton.delete {
-  --primary-color: #c62040;
-  --secondary-color: #e9edef;
-}
-
-.messageBox.outgoing .hoverButtons .actionButton.edit {
-  --primary-color: #2040c6;
-  --secondary-color: #e9edef;
-}
-
-.messageBox.outgoing .hoverButtons .actionButton {
-  font-size: 0.75em;
-  font-weight: bold;
-
-  border: 2px solid var(--primary-color);
-  border-radius: 4px;
-  padding: 2px;
-
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  z-index: 3;
-}
-
-.messageBox.outgoing .hoverButtons .actionButton:hover {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  & .time {
+    color: #7d868a;
+  }
 }
