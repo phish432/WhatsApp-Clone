@@ -4,26 +4,40 @@
 
   width: 100%;
 
-  padding: 0px 20px;
+  padding: 8px 20px;
 }
 
-.searchBar > .searchBox {
+.searchBar > .searchWrapper {
   display: flex;
   align-items: center;
 
-  height: 40px;
   width: 100%;
+  max-height: 40px;
 
-  margin: 8px 0px;
   border-radius: 8px;
+  padding: 8px 0;
 
   background-color: #212c33;
 
-  & .searchButton {
-    padding: 0px 20px;
+  & > .actionButton {
+    height: 100%;
+
+    padding: 0 12px;
+
+    color: #87979f;
   }
 
-  & .searchInput {
-    padding-right: 20px;
+  & > .searchInput {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+
+    height: 100%;
+
+    padding-right: 12px;
+
+    &::placeholder {
+      color: #87979f;
+    }
   }
 }
