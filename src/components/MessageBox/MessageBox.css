@@ -15,38 +15,33 @@
   }
 }
 
-.messageBox.outgoing {
-  & > .hoverTooltip {
-    display: none;
-  }
+.messageBox.outgoing > .hoverTooltip {
+  display: flex;
+  gap: 0.25em;
 
-  &:hover > .hoverTooltip {
-    display: flex;
-    position: absolute;
-    top: -1em;
-    right: 0.25em;
-    gap: 0.25em;
-  }
-}
+  position: absolute;
+  top: -1em;
+  right: 0.25em;
 
-.messageBox.outgoing > .hoverTooltip > .actionButton {
-  --foreground-color: #06cf9c;
-  --background-color: #212c33;
+  & > .actionButton {
+    --foreground-color: #06cf9c;
+    --background-color: #212c33;
 
-  font-size: 0.75em;
-  font-weight: bold;
+    font-size: 0.75em;
+    font-weight: bold;
 
-  border: 1px solid var(--foreground-color);
-  border-radius: 4px;
-  padding: 4px;
+    border: 1px solid var(--foreground-color);
+    border-radius: 4px;
+    padding: 4px;
 
-  background-color: var(--background-color);
-  color: var(--foreground-color);
+    background-color: var(--background-color);
+    color: var(--foreground-color);
 
-  z-index: 3;
+    z-index: 3;
 
-  &:hover {
-    box-shadow: rgba(11, 20, 26, 0.5) 0px 0px 8px 4px;
+    &:hover {
+      box-shadow: rgba(11, 20, 26, 0.5) 0px 0px 8px 4px;
+    }
   }
 }
 

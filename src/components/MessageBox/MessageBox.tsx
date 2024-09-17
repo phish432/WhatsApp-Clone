@@ -16,16 +16,17 @@ type Props = {
 const MessageBox = (props: Props) => {
   const { content, timestamp, isOutgoing, deleteMessage, editMessage } = props;
 
+  if (!isOutgoing) {
+    return (
+      <div className="messageBox incoming">
+        <MessageContent content={content} timestamp={timestamp} />
+      </div>
+    );
+  }
+
+  const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
-
-  const closeEditModal = () => {
-    setIsEditModalOpen(false);
-  };
-
-  const closeDeleteModal = () => {
-    setIsDeleteModalOpen(false);
-  };
 
   const handleDeleteClick = () => {
     setIsEditModalOpen(false);
@@ -37,34 +38,37 @@ const MessageBox = (props: Props) => {
     setIsEditModalOpen(true);
   };
 
-  return isOutgoing ? (
+  return (
     <>
-      <div className="messageBox outgoing">
+      <div
+        className="messageBox outgoing"
+        onMouseEnter={() => setIsTooltipOpen(true)}
+        onMouseLeave={() => setIsTooltipOpen(false)}
+      >
         <MessageContent content={content} timestamp={timestamp} />
-        <div className="hoverTooltip">
-          <ActionButton onClick={handleEditClick}>Edit</ActionButton>
-          <ActionButton onClick={handleDeleteClick}>Delete</ActionButton>
-        </div>
+        {isTooltipOpen && (
+          <div className="hoverTooltip">
+            <ActionButton onClick={handleEditClick}>Edit</ActionButton>
+            <ActionButton onClick={handleDeleteClick}>Delete</ActionButton>
+          </div>
+        )}
       </div>
       {isEditModalOpen && (
         <EditModal
-          closeEditModal={closeEditModal}
+          closeEditModal={() => setIsEditModalOpen(false)}
           oldContent={content}
           editMessage={editMessage}
         />
       )}
       {isDeleteModalOpen && (
         <DeleteModal
-          closeDeleteModal={closeDeleteModal}
+          closeDeleteModal={() => setIsDeleteModalOpen(false)}
           deleteMessage={deleteMessage}
           confirmText="Delete Message"
         />
       )}
     </>
-  ) : (
-    <div className="messageBox incoming">
-      <MessageContent content={content} timestamp={timestamp} />
-    </div>
   );
 };
+
 export default MessageBox;
