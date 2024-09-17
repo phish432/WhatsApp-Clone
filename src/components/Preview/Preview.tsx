@@ -39,7 +39,7 @@ const Preview = (props: Props) => {
         <div className="previewBannerName">{connection.name}</div>
         <div className="previewBannerTime">{time24Hour}</div>
       </div>
-      <div className="previewMessage">
+      <div className="previewMessage" title={content}>
         {sender}: {content}
       </div>
     </div>
