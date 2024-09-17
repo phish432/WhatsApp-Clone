@@ -1,23 +1,41 @@
-import { Connection } from "../../constant/connections";
+import type {
+  Connection,
+  ConnectionWithPreview,
+  Message,
+} from "../../types/types";
 import { useState } from "react";
 import Avatar from "../Avatar/Avatar";
 import Conversations from "../Conversations/Conversations";
 import Header from "../Header/Header";
 import SearchBar from "../SearchBar/SearchBar";
+import getConnectionsBySearch from "../../utils/getConnectionsBySearch";
 import "./SidePanel.css";
+import getLatestMessage from "../../utils/getLatestMessage";
 
 type Props = {
   activeConnection: Connection | null;
   setActiveConnection: (connect: Connection) => void;
+  allMessages: Message[];
   allConnections: Connection[];
 };
 
 const SidePanel = (props: Props) => {
-  const { activeConnection, setActiveConnection, allConnections } = props;
+  const { activeConnection, setActiveConnection, allMessages, allConnections } =
+    props;
 
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   const clientConnection = allConnections.find((c) => c.id === "user_id_0")!;
+  const otherConnections = allConnections.filter((c) => c.id !== "user_id_0");
+
+  const matchConnections = getConnectionsBySearch(otherConnections, searchTerm);
+  const previewList = matchConnections.map(
+    (connection) =>
+      ({
+        connection,
+        latestMessage: getLatestMessage(connection, allMessages),
+      }) as ConnectionWithPreview,
+  );
 
   return (
     <div className="sidePanel">
@@ -28,11 +46,7 @@ const SidePanel = (props: Props) => {
       <Conversations
         activeConnection={activeConnection}
         setActiveConnection={setActiveConnection}
-        allConnections={allConnections
-          .filter((c) => c.id !== "user_id_0")
-          .filter((c) =>
-            c.name.toLowerCase().includes(searchTerm.toLowerCase()),
-          )}
+        previewList={previewList}
       />
     </div>
   );

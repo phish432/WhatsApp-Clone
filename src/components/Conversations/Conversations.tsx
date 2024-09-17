@@ -1,25 +1,24 @@
-import { Connection } from "../../constant/connections";
+import { Connection, ConnectionWithPreview } from "../../types/types";
 import ConnectionCard from "../ConnectionCard/ConnectionCard";
 import "./Conversations.css";
 
 type Props = {
   activeConnection: Connection | null;
   setActiveConnection: (connect: Connection) => void;
-  allConnections: Connection[];
+  previewList: ConnectionWithPreview[];
 };
 
 const Conversations = (props: Props) => {
-  const { activeConnection, setActiveConnection, allConnections } = props;
+  const { activeConnection, setActiveConnection, previewList } = props;
 
   return (
     <div className="conversations">
-      {allConnections.map((connection) => (
+      {previewList.map((preview) => (
         <ConnectionCard
-          key={connection.id}
-          userName={connection.name}
-          profileImg={connection.profileImg}
-          onClick={() => setActiveConnection(connection)}
-          isActive={connection === activeConnection}
+          key={preview.connection.id}
+          preview={preview}
+          onClick={() => setActiveConnection(preview.connection)}
+          isActive={preview.connection === activeConnection}
         />
       ))}
     </div>

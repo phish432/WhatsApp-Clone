@@ -7,3 +7,7 @@
 
   background-color: #212c33;
 }
+
+.header > .avatar {
+  height: 60px;
+}

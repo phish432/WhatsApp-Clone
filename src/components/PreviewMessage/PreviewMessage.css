@@ -1,0 +1,9 @@
+.previewMessage {
+  display: flex;
+  align-items: flex-start;
+
+  max-height: 1em;
+  width: 100%;
+
+  font-size: 0.875em;
+}

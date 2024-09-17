@@ -1,24 +1,25 @@
+import { ConnectionWithPreview } from "../../types/types";
 import Avatar from "../Avatar/Avatar";
-import UserInfo from "../UserInfo/UserInfo";
+import Preview from "../Preview/Preview";
 import "./ConnectionCard.css";
 
 type Props = {
-  userName: string;
-  profileImg: string;
+  preview: ConnectionWithPreview;
   onClick: () => void;
   isActive: boolean;
 };
 
 const ConnectionCard = (props: Props) => {
-  const { userName, profileImg, onClick, isActive } = props;
+  const { preview, onClick, isActive } = props;
+  const { name, profileImg } = preview.connection;
 
   return (
     <div
       className={`connectionCard${isActive ? " active" : ""}`}
       onClick={onClick}
     >
-      <Avatar src={profileImg} alt={userName} />
-      <UserInfo name={userName} />
+      <Avatar src={profileImg} alt={name} />
+      <Preview preview={preview} />
     </div>
   );
 };

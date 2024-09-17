@@ -1,10 +1,4 @@
-type Message = {
-  readonly messageId: ReturnType<typeof self.crypto.randomUUID>;
-  readonly timestamp: Date;
-  readonly fromConnId: string;
-  readonly toConnId: string;
-  readonly content: string;
-};
+import { Message } from "../types/types";
 
 const DEFAULT_MESSAGES: Message[] = [
   // Conversation 1: Client and User 1
@@ -215,5 +209,4 @@ const DEFAULT_MESSAGES: Message[] = [
   },
 ];
 
-export type { Message };
 export default DEFAULT_MESSAGES;

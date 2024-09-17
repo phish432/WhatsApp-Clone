@@ -1,6 +1,5 @@
-import { Connection } from "../../constant/connections";
-import DEFAULT_MESSAGES, { Message } from "../../constant/defaultMessages";
-import { useState, useRef } from "react";
+import { Connection, Message } from "../../types/types";
+import { useRef } from "react";
 import ChatArea from "../ChatArea/ChatArea";
 import ConnectionCard from "../ConnectionCard/ConnectionCard";
 import Fallback from "../Fallback/Fallback";
@@ -10,10 +9,12 @@ import "./MainPanel.css";
 
 type Props = {
   activeConnection: Connection | null;
+  allMessages: Message[];
+  setAllMessages: (messages: Message[]) => void;
 };
 
 const MainPanel = (props: Props) => {
-  const { activeConnection } = props;
+  const { activeConnection, allMessages, setAllMessages } = props;
 
   if (activeConnection === null) {
     return (
@@ -23,7 +24,6 @@ const MainPanel = (props: Props) => {
     );
   }
 
-  const [allMessages, setAllMessages] = useState<Message[]>(DEFAULT_MESSAGES);
   const chatAreaRef = useRef<HTMLDivElement>(null);
 
   const scrollToEndOfChatArea = () => {
@@ -35,12 +35,13 @@ const MainPanel = (props: Props) => {
   return (
     <div className="mainPanel">
       <Header>
-        <ConnectionCard
+        {/* <ConnectionCard
           userName={activeConnection.name}
           profileImg={activeConnection.profileImg}
           onClick={() => {}}
           isActive={false}
-        />
+          latestMessage={null}
+        /> */}
       </Header>
       <ChatArea
         ref={chatAreaRef}

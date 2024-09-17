@@ -1,9 +1,8 @@
-import { Connection } from "../../constant/connections";
-import { Message } from "../../constant/defaultMessages";
+import { Connection, Message } from "../../types/types";
 import { forwardRef } from "react";
 import Fallback from "../Fallback/Fallback";
 import MessageRow from "../MessageRow/MessageRow";
-import getActiveMessages from "./ChatAreaUtils";
+import getChatHistory from "../../utils/getChatHistory";
 import "./ChatArea.css";
 
 type Props = {
@@ -16,9 +15,12 @@ const ChatArea = forwardRef(
   (props: Props, chatAreaRef: React.LegacyRef<HTMLDivElement>) => {
     const { activeConnection, allMessages, setAllMessages } = props;
 
-    const activeMessages = getActiveMessages(activeConnection, allMessages);
+    const chatHistoryWithActiveConnection = getChatHistory(
+      activeConnection,
+      allMessages,
+    );
 
-    if (activeMessages.length === 0) {
+    if (chatHistoryWithActiveConnection.length === 0) {
       return (
         <div className="chatArea" ref={chatAreaRef}>
           <Fallback>No messages yet</Fallback>
@@ -48,7 +50,7 @@ const ChatArea = forwardRef(
 
     return (
       <div className="chatArea">
-        {activeMessages.reverse().map((message) => (
+        {chatHistoryWithActiveConnection.map((message) => (
           <MessageRow
             key={message.messageId}
             content={message.content}

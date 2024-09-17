@@ -1,8 +1,4 @@
-type Connection = {
-  readonly id: string;
-  readonly name: string;
-  readonly profileImg: string;
-};
+import { Connection } from "../types/types";
 
 const CONNECTIONS: Connection[] = [
   {
@@ -43,5 +39,4 @@ const CONNECTIONS: Connection[] = [
   },
 ];
 
-export type { Connection };
 export default CONNECTIONS;

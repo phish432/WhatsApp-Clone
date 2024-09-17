@@ -6,3 +6,15 @@
   width: 100%;
   cursor: pointer;
 }
+
+.connectionCard {
+  background-color: #121b22;
+}
+
+.connectionCard:hover {
+  background-color: #202c33;
+}
+
+.connectionCard.active {
+  background-color: #2a3942;
+}
