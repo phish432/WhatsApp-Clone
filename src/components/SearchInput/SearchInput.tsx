@@ -10,6 +10,7 @@ const SearchInput = (props: Props) => {
 
   return (
     <input
+      name="searchInput"
       className="searchInput"
       type="text"
       placeholder="Search"

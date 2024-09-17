@@ -1,5 +1,4 @@
-import { Connection } from "../../constant/connections";
-import { Message } from "../../constant/defaultMessages";
+import { Connection, Message } from "../../types/types";
 import { useState } from "react";
 import ActionButton from "../ActionButton/ActionButton";
 import "./TextComposer.css";
@@ -41,6 +40,7 @@ const TextComposer = (props: Props) => {
     <div className="textComposer">
       <form className="messageForm">
         <input
+          name="content"
           className="content"
           type="text"
           placeholder="Type a message"
