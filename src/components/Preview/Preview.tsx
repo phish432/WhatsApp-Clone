@@ -1,7 +1,5 @@
 import { ConnectionWithPreview } from "../../types/types";
 import isMessageFromAToB from "../../utils/isMessageFromAToB";
-import PreviewBanner from "../PreviewBanner/PreviewBanner";
-import PreviewMessage from "../PreviewMessage/PreviewMessage";
 import "./Preview.css";
 
 type Props = {
@@ -15,21 +13,35 @@ const Preview = (props: Props) => {
   if (latestMessage === null) {
     return (
       <div className="preview">
-        <PreviewBanner connectionName={connection.name} timestamp={null} />
-        <PreviewMessage sender={null} content={null} />
+        <div className="previewBanner">
+          <div className="previewBannerName">{connection.name}</div>
+        </div>
+        <div className="previewMessage none">
+          <em>No Messages Yet</em>
+        </div>
       </div>
     );
   }
 
-  const { content, timestamp } = latestMessage;
+  const time24Hour = latestMessage.timestamp.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
   const sender = isMessageFromAToB(latestMessage, connection.id, "user_id_0")
     ? connection.name
     : "You";
+  const content = latestMessage.content;
 
   return (
     <div className="preview">
-      <PreviewBanner connectionName={connection.name} timestamp={timestamp} />
-      <PreviewMessage sender={sender} content={content} />
+      <div className="previewBanner">
+        <div className="previewBannerName">{connection.name}</div>
+        <div className="previewBannerTime">{time24Hour}</div>
+      </div>
+      <div className="previewMessage">
+        {sender}: {content}
+      </div>
     </div>
   );
 };
