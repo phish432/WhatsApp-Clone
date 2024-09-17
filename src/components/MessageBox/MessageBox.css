@@ -3,6 +3,8 @@
   align-items: center;
 
   position: relative;
+
+  max-width: 66%;
 }
 
 .messageBox.outgoing > .messageContent {
@@ -28,8 +30,7 @@
 }
 
 .messageBox.outgoing > .hoverTooltip > .actionButton {
-  --foreground-color: #00a884;
-  --foreground-color-hover: #06cf9c;
+  --foreground-color: #06cf9c;
   --background-color: #212c33;
 
   font-size: 0.75em;
@@ -45,8 +46,7 @@
   z-index: 3;
 
   &:hover {
-    color: var(--foreground-color-hover);
-    box-shadow: rgba(11, 20, 26, 0.5) 0px 0px 8px 2px;
+    box-shadow: rgba(11, 20, 26, 0.5) 0px 0px 8px 4px;
   }
 }
 

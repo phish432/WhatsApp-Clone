@@ -2,12 +2,7 @@
   display: flex;
   align-items: center;
 
-  height: 60px;
   width: 100%;
 
   background-color: #212c33;
-}
-
-.header > .avatar {
-  height: 60px;
 }

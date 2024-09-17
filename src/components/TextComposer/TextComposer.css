@@ -13,29 +13,28 @@
   display: flex;
   align-items: center;
 
-  height: 40px;
   width: 100%;
-}
+  height: 40px;
 
-.textComposer > .messageForm > .content {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
+  & .content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
 
-  height: 100%;
+    height: 100%;
 
-  margin: 0 12px;
-  border-radius: 8px;
-  padding: 0 12px;
+    border-radius: 8px;
+    padding: 0 12px;
 
-  background-color: #293941;
+    background-color: #293941;
 
-  &::placeholder {
-    color: #87979f;
+    &::placeholder {
+      color: #87979f;
+    }
   }
-}
 
-.textComposer > .messageForm > .actionButton {
-  height: 100%;
-  margin: 0 10px;
+  & .actionButton {
+    height: 100%;
+    padding: 0 20px;
+  }
 }

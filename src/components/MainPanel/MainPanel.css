@@ -3,13 +3,40 @@
   flex-direction: column;
   align-items: center;
 
+  width: 100%;
   height: 100%;
-  width: 70%;
-  min-width: 640px;
 }
 
 .mainPanel > .fallback {
   background-color: #222e35;
   font-size: 1.5em;
-  font-weight: bold;
+}
+
+.mainPanel > .header {
+  height: 60px;
+
+  & .activeName {
+    --font-factor: 1.25;
+    display: flex;
+    flex-grow: 1;
+
+    max-height: calc(
+      (var(--font-factor) * 1rem) * (1 * var(--default-line-height))
+    );
+
+    padding-right: 20px;
+
+    font-size: calc(var(--font-factor) * 1rem);
+    font-weight: bold;
+
+    overflow: hidden;
+  }
+}
+
+.mainPanel .chatArea {
+  flex-grow: 1;
+}
+
+.mainPanel .textComposer {
+  height: 64px;
 }

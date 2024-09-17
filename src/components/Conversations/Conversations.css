@@ -2,15 +2,20 @@
   display: flex;
   flex-direction: column;
 
-  height: 100%;
   width: 100%;
+  height: auto;
+
   overflow-y: scroll;
 
   scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
 }
 
+.conversations > .connectionCard > .avatar {
+  height: 100px;
+}
+
 .conversations > .connectionCard {
-  height: 80px;
+  background-color: #121b22;
 
   & > .preview {
     border-top: 1px solid rgba(134, 150, 160, 0.15);
@@ -19,8 +24,28 @@
   &:last-child > .preview {
     border-bottom: 1px solid rgba(134, 150, 160, 0.15);
   }
+}
 
-  &:hover > .preview {
+.conversations > .connectionCard:hover {
+  background-color: #202c33;
+
+  & > .preview {
     border-top: 1px solid #202c33;
+  }
+
+  &:last-child > .preview {
+    border-bottom: 1px solid #202c33;
+  }
+}
+
+.conversations > .connectionCard.active {
+  background-color: #2a3942;
+
+  & > .preview {
+    border-top: 1px solid #2a3942;
+  }
+
+  &:last-child > .preview {
+    border-bottom: 1px solid #2a3942;
   }
 }

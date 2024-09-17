@@ -4,8 +4,6 @@
 
   border-radius: 8px;
   padding: 8px 8px 4px 12px;
-
-  max-width: 40em;
 }
 
 .messageContent > .text {
@@ -16,8 +14,6 @@
 
   padding-bottom: 8px;
   padding-right: 8px;
-
-  width: fit-content;
 
   overflow-wrap: anywhere;
   white-space: pre-wrap;

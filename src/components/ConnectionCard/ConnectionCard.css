@@ -2,17 +2,10 @@
   display: flex;
   align-items: center;
 
-  height: 100%;
   width: 100%;
+  height: fit-content;
+
   cursor: pointer;
-}
-
-.connectionCard {
-  background-color: #121b22;
-}
-
-.connectionCard:hover {
-  background-color: #202c33;
 }
 
 .connectionCard.active {
