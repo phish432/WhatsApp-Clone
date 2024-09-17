@@ -12,7 +12,7 @@ type Props = {
 };
 
 const ChatArea = forwardRef(
-  (props: Props, chatAreaRef: React.LegacyRef<HTMLDivElement>) => {
+  (props: Props, chatAreaRef: React.Ref<HTMLDivElement>) => {
     const { activeConnection, allMessages, setAllMessages } = props;
 
     const chatHistoryWithActiveConnection = getChatHistory(

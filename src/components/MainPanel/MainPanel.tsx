@@ -1,7 +1,7 @@
 import { Connection, Message } from "../../types/types";
 import { useRef } from "react";
+import Avatar from "../Avatar/Avatar";
 import ChatArea from "../ChatArea/ChatArea";
-import ConnectionCard from "../ConnectionCard/ConnectionCard";
 import Fallback from "../Fallback/Fallback";
 import Header from "../Header/Header";
 import TextComposer from "../TextComposer/TextComposer";
@@ -35,13 +35,8 @@ const MainPanel = (props: Props) => {
   return (
     <div className="mainPanel">
       <Header>
-        {/* <ConnectionCard
-          userName={activeConnection.name}
-          profileImg={activeConnection.profileImg}
-          onClick={() => {}}
-          isActive={false}
-          latestMessage={null}
-        /> */}
+        <Avatar src={activeConnection.profileImg} alt={activeConnection.name} />
+        <div className="activeName">{activeConnection.name}</div>
       </Header>
       <ChatArea
         ref={chatAreaRef}
