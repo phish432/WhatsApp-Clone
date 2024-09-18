@@ -11,23 +11,31 @@ import SearchBar from "../SearchBar/SearchBar";
 import getConnectionsBySearch from "../../utils/getConnectionsBySearch";
 import "./SidePanel.css";
 import getLatestMessage from "../../utils/getLatestMessage";
+import isMessageFromAToB from "../../utils/isMessageFromAToB";
 
 type Props = {
-  activeConnection: Connection | null;
-  setActiveConnection: (connect: Connection) => void;
-  allMessages: Message[];
   allConnections: Connection[];
+  allMessages: Message[];
+  activeConnection: Connection | null;
+  setAllConnections: (connections: Connection[]) => void;
+  setAllMessages: (messages: Message[]) => void;
+  setActiveConnection: (connect: Connection) => void;
 };
 
 const SidePanel = (props: Props) => {
-  const { activeConnection, setActiveConnection, allMessages, allConnections } =
-    props;
+  const {
+    allConnections,
+    allMessages,
+    activeConnection,
+    setAllMessages,
+    setActiveConnection,
+    setAllConnections,
+  } = props;
 
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   const clientConnection = allConnections.find((c) => c.id === "user_id_0")!;
   const otherConnections = allConnections.filter((c) => c.id !== "user_id_0");
-
   const matchConnections = getConnectionsBySearch(otherConnections, searchTerm);
   const previewList = matchConnections
     .map(
@@ -52,6 +60,19 @@ const SidePanel = (props: Props) => {
       return -1;
     });
 
+  const deleteConversation = (connection: Connection) => {
+    const newMessages = allMessages.filter((message) => {
+      return !(
+        isMessageFromAToB(message, connection.id, clientConnection.id) ||
+        isMessageFromAToB(message, clientConnection.id, connection.id)
+      );
+    });
+    setAllMessages(newMessages);
+
+    const newConnections = allConnections.filter((c) => c.id !== connection.id);
+    setAllConnections(newConnections);
+  };
+
   return (
     <div className="sidePanel">
       <Header>
@@ -62,6 +83,7 @@ const SidePanel = (props: Props) => {
         activeConnection={activeConnection}
         setActiveConnection={setActiveConnection}
         previewList={previewList}
+        deleteConversation={deleteConversation}
       />
     </div>
   );

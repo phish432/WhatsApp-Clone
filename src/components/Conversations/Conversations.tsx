@@ -6,10 +6,16 @@ type Props = {
   activeConnection: Connection | null;
   setActiveConnection: (connect: Connection) => void;
   previewList: ConnectionWithPreview[];
+  deleteConversation: (connection: Connection) => void;
 };
 
 const Conversations = (props: Props) => {
-  const { activeConnection, setActiveConnection, previewList } = props;
+  const {
+    activeConnection,
+    setActiveConnection,
+    previewList,
+    deleteConversation,
+  } = props;
 
   return (
     <div className="conversations">
@@ -19,6 +25,7 @@ const Conversations = (props: Props) => {
           preview={preview}
           onClick={() => setActiveConnection(preview.connection)}
           isActive={preview.connection === activeConnection}
+          deleteConversation={() => deleteConversation(preview.connection)}
         />
       ))}
     </div>

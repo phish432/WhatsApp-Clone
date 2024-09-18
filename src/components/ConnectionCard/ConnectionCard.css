@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
 
+  position: relative;
+
   width: 100%;
   height: fit-content;
 
@@ -10,4 +12,34 @@
 
 .connectionCard.active {
   background-color: #2a3942;
+}
+
+.connectionCard > .hoverTooltip {
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  & > .actionButton {
+    --foreground-color: #06cf9c;
+    --background-color: #212c33;
+
+    font-size: 0.75em;
+    font-weight: bold;
+
+    border: 1px solid var(--foreground-color);
+    border-radius: 4px;
+    padding: 2px;
+
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+
+    z-index: 3;
+
+    &:hover {
+      box-shadow: rgba(11, 20, 26, 0.5) 0px 0px 8px 4px;
+    }
+  }
 }
