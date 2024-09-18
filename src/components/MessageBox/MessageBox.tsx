@@ -16,14 +16,6 @@ type Props = {
 const MessageBox = (props: Props) => {
   const { content, timestamp, isOutgoing, deleteMessage, editMessage } = props;
 
-  if (!isOutgoing) {
-    return (
-      <div className="messageBox incoming">
-        <MessageContent content={content} timestamp={timestamp} />
-      </div>
-    );
-  }
-
   const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
@@ -38,6 +30,17 @@ const MessageBox = (props: Props) => {
     setIsEditModalOpen(true);
   };
 
+  if (!isOutgoing) {
+    return (
+      <div className="messageBox incoming">
+        <MessageContent
+          content={content}
+          timestamp={timestamp}
+        />
+      </div>
+    );
+  }
+
   return (
     <>
       <div
@@ -45,7 +48,10 @@ const MessageBox = (props: Props) => {
         onMouseEnter={() => setIsTooltipOpen(true)}
         onMouseLeave={() => setIsTooltipOpen(false)}
       >
-        <MessageContent content={content} timestamp={timestamp} />
+        <MessageContent
+          content={content}
+          timestamp={timestamp}
+        />
         {isTooltipOpen && (
           <div className="hoverTooltip">
             <ActionButton onClick={handleEditClick}>Edit</ActionButton>
@@ -55,16 +61,16 @@ const MessageBox = (props: Props) => {
       </div>
       {isEditModalOpen && (
         <EditModal
-          closeEditModal={() => setIsEditModalOpen(false)}
           oldContent={content}
+          closeEditModal={() => setIsEditModalOpen(false)}
           editMessage={editMessage}
         />
       )}
       {isDeleteModalOpen && (
         <DeleteModal
+          confirmText="Delete Message"
           closeDeleteModal={() => setIsDeleteModalOpen(false)}
           deleteMessage={deleteMessage}
-          confirmText="Delete Message"
         />
       )}
     </>

@@ -1,3 +1,4 @@
+import React from "react";
 import "./Fallback.css";
 
 type Props = {

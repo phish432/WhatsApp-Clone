@@ -15,7 +15,10 @@ const ActionButton = (props: Props) => {
   };
 
   return (
-    <button className="actionButton" onClick={handleClick}>
+    <button
+      className="actionButton"
+      onClick={handleClick}
+    >
       {children}
     </button>
   );

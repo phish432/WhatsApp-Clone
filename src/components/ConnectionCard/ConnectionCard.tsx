@@ -1,4 +1,4 @@
-import { ConnectionWithPreview } from "../../types/types";
+import type { ConnectionWithPreview } from "../../types/types";
 import { useState } from "react";
 import ActionButton from "../ActionButton/ActionButton";
 import Avatar from "../Avatar/Avatar";
@@ -8,13 +8,14 @@ import "./ConnectionCard.css";
 
 type Props = {
   preview: ConnectionWithPreview;
-  onClick: () => void;
   isActive: boolean;
+  onClick: () => void;
   deleteConversation: () => void;
 };
 
 const ConnectionCard = (props: Props) => {
-  const { preview, onClick, isActive, deleteConversation } = props;
+  const { preview, isActive, onClick, deleteConversation } = props;
+  const { name, profileImg } = preview.connection;
 
   const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
@@ -22,8 +23,6 @@ const ConnectionCard = (props: Props) => {
   const handleDeleteClick = () => {
     setIsDeleteModalOpen(true);
   };
-
-  const { name, profileImg } = preview.connection;
 
   return (
     <>
@@ -33,7 +32,10 @@ const ConnectionCard = (props: Props) => {
         onMouseEnter={() => setIsTooltipOpen(true)}
         onMouseLeave={() => setIsTooltipOpen(false)}
       >
-        <Avatar src={profileImg} alt={name} />
+        <Avatar
+          src={profileImg}
+          alt={name}
+        />
         <Preview preview={preview} />
         {isTooltipOpen && (
           <div className="hoverTooltip">
@@ -43,9 +45,9 @@ const ConnectionCard = (props: Props) => {
       </div>
       {isDeleteModalOpen && (
         <DeleteModal
+          confirmText="Delete Conversation"
           closeDeleteModal={() => setIsDeleteModalOpen(false)}
           deleteMessage={deleteConversation}
-          confirmText="Delete Conversation"
         />
       )}
     </>

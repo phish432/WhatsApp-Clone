@@ -3,17 +3,16 @@ import Modal from "../Modal/Modal";
 import "./EditModal.css";
 
 type Props = {
-  closeEditModal: () => void;
   oldContent: string;
+  closeEditModal: () => void;
   editMessage: (newContent: string) => void;
 };
 
 const EditModal = (props: Props) => {
-  const { closeEditModal, oldContent, editMessage } = props;
+  const { oldContent, closeEditModal, editMessage } = props;
 
   const [newContent, setNewContent] = useState<string>(oldContent);
   const editorRef = useRef<HTMLTextAreaElement>(null);
-
   useEffect(() => {
     const editor = editorRef.current;
     if (editor !== null) {
@@ -35,7 +34,11 @@ const EditModal = (props: Props) => {
   };
 
   return (
-    <Modal onCancel={handleCancel} onConfirm={handleConfirm} confirmText="Save">
+    <Modal
+      confirmText="Save"
+      onCancel={handleCancel}
+      onConfirm={handleConfirm}
+    >
       <textarea
         ref={editorRef}
         className="editor"

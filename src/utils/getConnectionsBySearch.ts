@@ -1,4 +1,4 @@
-import { Connection } from "../types/types";
+import type { Connection } from "../types/types";
 
 function getConnectionsBySearch(connections: Connection[], searchTerm: string) {
   const searchResults = connections.filter((connection) => {

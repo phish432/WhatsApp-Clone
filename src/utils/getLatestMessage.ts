@@ -1,4 +1,4 @@
-import { Connection, Message } from "../types/types";
+import type { Connection, Message } from "../types/types";
 import getChatHistory from "./getChatHistory";
 
 function getLatestMessage(connection: Connection, allMessages: Message[]) {

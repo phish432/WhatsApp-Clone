@@ -10,7 +10,11 @@ const Avatar = (props: Props) => {
 
   return (
     <div className="avatar">
-      <img className="avatarImg" src={src} alt={alt} />
+      <img
+        className="avatarImg"
+        src={src}
+        alt={alt}
+      />
     </div>
   );
 };

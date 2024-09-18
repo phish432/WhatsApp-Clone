@@ -1,4 +1,4 @@
-import { ConnectionWithPreview } from "../../types/types";
+import type { ConnectionWithPreview } from "../../types/types";
 import isMessageFromAToB from "../../utils/isMessageFromAToB";
 import "./Preview.css";
 
@@ -28,9 +28,7 @@ const Preview = (props: Props) => {
     minute: "2-digit",
     hour12: false,
   });
-  const sender = isMessageFromAToB(latestMessage, connection.id, "user_id_0")
-    ? connection.name
-    : "You";
+  const sender = isMessageFromAToB(latestMessage, connection.id, "user_id_0") ? connection.name : "You";
   const content = latestMessage.content;
 
   return (
@@ -39,7 +37,10 @@ const Preview = (props: Props) => {
         <div className="previewBannerName">{connection.name}</div>
         <div className="previewBannerTime">{time24Hour}</div>
       </div>
-      <div className="previewMessage" title={content}>
+      <div
+        className="previewMessage"
+        title={content}
+      >
         {sender}: {content}
       </div>
     </div>

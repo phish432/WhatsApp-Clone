@@ -18,9 +18,7 @@
   & > .previewBannerName {
     --font-factor: 1;
 
-    max-height: calc(
-      (var(--font-factor) * 1rem) * (1 * var(--default-line-height))
-    );
+    max-height: calc((var(--font-factor) * 1rem) * (1 * var(--default-line-height)));
 
     padding-right: 20px;
 
@@ -41,9 +39,7 @@
   display: flex;
   align-items: flex-start;
 
-  max-height: calc(
-    (var(--font-factor) * 1rem) * (3 * var(--default-line-height))
-  );
+  max-height: calc((var(--font-factor) * 1rem) * (3 * var(--default-line-height)));
 
   font-size: calc(var(--font-factor) * 1rem);
 

@@ -1,8 +1,4 @@
-import type {
-  Connection,
-  ConnectionWithPreview,
-  Message,
-} from "../../types/types";
+import type { Connection, ConnectionWithPreview, Message } from "../../types/types";
 import { useState } from "react";
 import Avatar from "../Avatar/Avatar";
 import Conversations from "../Conversations/Conversations";
@@ -23,14 +19,8 @@ type Props = {
 };
 
 const SidePanel = (props: Props) => {
-  const {
-    allConnections,
-    allMessages,
-    activeConnection,
-    setAllMessages,
-    setActiveConnection,
-    setAllConnections,
-  } = props;
+  const { allConnections, allMessages, activeConnection, setAllMessages, setActiveConnection, setAllConnections } =
+    props;
 
   const [searchTerm, setSearchTerm] = useState<string>("");
 
@@ -76,13 +66,19 @@ const SidePanel = (props: Props) => {
   return (
     <div className="sidePanel">
       <Header>
-        <Avatar src={clientConnection.profileImg} alt={clientConnection.name} />
+        <Avatar
+          src={clientConnection.profileImg}
+          alt={clientConnection.name}
+        />
       </Header>
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <SearchBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
       <Conversations
         activeConnection={activeConnection}
-        setActiveConnection={setActiveConnection}
         previewList={previewList}
+        setActiveConnection={setActiveConnection}
         deleteConversation={deleteConversation}
       />
     </div>

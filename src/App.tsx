@@ -7,12 +7,9 @@ import SidePanel from "./components/SidePanel/SidePanel";
 import "./App.css";
 
 const App = () => {
-  const [allConnections, setAllConnections] =
-    useState<Connection[]>(CONNECTIONS);
+  const [allConnections, setAllConnections] = useState<Connection[]>(CONNECTIONS);
   const [allMessages, setAllMessages] = useState<Message[]>(DEFAULT_MESSAGES);
-  const [activeConnection, setActiveConnection] = useState<Connection | null>(
-    null,
-  );
+  const [activeConnection, setActiveConnection] = useState<Connection | null>(null);
 
   return (
     <div id="app">

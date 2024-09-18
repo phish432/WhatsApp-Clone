@@ -11,18 +11,13 @@ type Props = {
 };
 
 const TextComposer = (props: Props) => {
-  const {
-    activeConnection,
-    allMessages,
-    setAllMessages,
-    scrollToEndOfChatArea,
-  } = props;
+  const { activeConnection, allMessages, setAllMessages, scrollToEndOfChatArea } = props;
 
   const [newContent, setNewContent] = useState<string>("");
 
   const handleClick = () => {
     if (newContent !== "") {
-      let newMessage: Message = {
+      const newMessage: Message = {
         messageId: self.crypto.randomUUID(),
         timestamp: new Date(),
         fromConnId: "user_id_0",

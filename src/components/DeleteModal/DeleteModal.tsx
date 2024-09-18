@@ -2,13 +2,13 @@ import Modal from "../Modal/Modal";
 import "./DeleteModal.css";
 
 type Props = {
+  confirmText: string;
   closeDeleteModal: () => void;
   deleteMessage: () => void;
-  confirmText: string;
 };
 
 const DeleteModal = (props: Props) => {
-  const { closeDeleteModal, deleteMessage, confirmText } = props;
+  const { confirmText, closeDeleteModal, deleteMessage } = props;
 
   const handleCancel = () => {
     closeDeleteModal();
@@ -21,9 +21,9 @@ const DeleteModal = (props: Props) => {
 
   return (
     <Modal
+      confirmText={confirmText}
       onCancel={handleCancel}
       onConfirm={handleConfirm}
-      confirmText={confirmText}
     >
       <div className="deleteMessage">Are you sure you want to delete?</div>
     </Modal>

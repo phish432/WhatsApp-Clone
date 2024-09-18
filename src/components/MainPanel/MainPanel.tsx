@@ -1,4 +1,4 @@
-import { Connection, Message } from "../../types/types";
+import type { Connection, Message } from "../../types/types";
 import { useRef } from "react";
 import Avatar from "../Avatar/Avatar";
 import ChatArea from "../ChatArea/ChatArea";
@@ -16,14 +16,6 @@ type Props = {
 const MainPanel = (props: Props) => {
   const { activeConnection, allMessages, setAllMessages } = props;
 
-  if (activeConnection === null) {
-    return (
-      <div className="mainPanel">
-        <Fallback>Select a conversation to get started</Fallback>
-      </div>
-    );
-  }
-
   const chatAreaRef = useRef<HTMLDivElement>(null);
 
   const scrollToEndOfChatArea = () => {
@@ -32,10 +24,21 @@ const MainPanel = (props: Props) => {
     }
   };
 
+  if (activeConnection === null) {
+    return (
+      <div className="mainPanel">
+        <Fallback>Select a conversation to get started</Fallback>
+      </div>
+    );
+  }
+
   return (
     <div className="mainPanel">
       <Header>
-        <Avatar src={activeConnection.profileImg} alt={activeConnection.name} />
+        <Avatar
+          src={activeConnection.profileImg}
+          alt={activeConnection.name}
+        />
         <div className="activeName">{activeConnection.name}</div>
       </Header>
       <ChatArea

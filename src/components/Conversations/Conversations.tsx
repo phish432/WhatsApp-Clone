@@ -1,21 +1,16 @@
-import { Connection, ConnectionWithPreview } from "../../types/types";
+import type { Connection, ConnectionWithPreview } from "../../types/types";
 import ConnectionCard from "../ConnectionCard/ConnectionCard";
 import "./Conversations.css";
 
 type Props = {
   activeConnection: Connection | null;
-  setActiveConnection: (connect: Connection) => void;
   previewList: ConnectionWithPreview[];
+  setActiveConnection: (connection: Connection) => void;
   deleteConversation: (connection: Connection) => void;
 };
 
 const Conversations = (props: Props) => {
-  const {
-    activeConnection,
-    setActiveConnection,
-    previewList,
-    deleteConversation,
-  } = props;
+  const { activeConnection, previewList, setActiveConnection, deleteConversation } = props;
 
   return (
     <div className="conversations">
@@ -23,8 +18,8 @@ const Conversations = (props: Props) => {
         <ConnectionCard
           key={preview.connection.id}
           preview={preview}
-          onClick={() => setActiveConnection(preview.connection)}
           isActive={preview.connection === activeConnection}
+          onClick={() => setActiveConnection(preview.connection)}
           deleteConversation={() => deleteConversation(preview.connection)}
         />
       ))}
