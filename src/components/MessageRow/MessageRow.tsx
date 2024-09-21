@@ -5,12 +5,12 @@ type Props = {
   content: string;
   timestamp: Date;
   isOutgoing: boolean;
-  deleteMessage: () => void;
+  removeMessage: () => void;
   editMessage: (newContent: string) => void;
 };
 
 const MessageRow = (props: Props) => {
-  const { content, timestamp, isOutgoing, deleteMessage, editMessage } = props;
+  const { content, timestamp, isOutgoing, removeMessage, editMessage } = props;
 
   return (
     <div className={`messageRow${isOutgoing ? " outgoing" : " incoming"}`}>
@@ -18,7 +18,7 @@ const MessageRow = (props: Props) => {
         content={content}
         timestamp={timestamp}
         isOutgoing={isOutgoing}
-        deleteMessage={deleteMessage}
+        deleteMessage={removeMessage}
         editMessage={editMessage}
       />
     </div>

@@ -1,64 +1,70 @@
-import type { Connection, Message } from "../../types/types";
+import DEFAULT_CLIENT from "../../constant/defaultClient";
 import React, { forwardRef } from "react";
+import { useActiveUserContext } from "../../contexts/activeUserContext";
+import { useMessagesContext } from "../../contexts/messagesContext";
 import Fallback from "../Fallback/Fallback";
 import MessageRow from "../MessageRow/MessageRow";
-import getChatHistory from "../../utils/getChatHistory";
+import getOrderedChatHistoryOfAB from "../../utils/getChatHistory";
+import isMessageFromAToB from "../../utils/isMessageFromAToB";
 import "./ChatArea.css";
+import { Message } from "../../types/types";
 
-type Props = {
-  activeConnection: Connection;
-  allMessages: Message[];
-  setAllMessages: (messages: Message[]) => void;
-};
+const ChatArea = forwardRef(
+  (_props, chatAreaRef: React.Ref<HTMLDivElement>) => {
+    const { activeUser } = useActiveUserContext();
+    const { messages, messagesDispatch } = useMessagesContext();
 
-const ChatArea = forwardRef((props: Props, chatAreaRef: React.Ref<HTMLDivElement>) => {
-  const { activeConnection, allMessages, setAllMessages } = props;
+    const chatHistoryWithAciveUser = getOrderedChatHistoryOfAB(
+      DEFAULT_CLIENT.id,
+      activeUser!.id,
+      messages,
+    );
 
-  const chatHistoryWithActiveConnection = getChatHistory(activeConnection, allMessages);
+    const removeMessage = (messageId: Message["id"]) =>
+      messagesDispatch({
+        type: "REMOVE_MESSAGE",
+        payload: messageId,
+      });
 
-  const deleteMessage = (message: Message) => {
-    const updatedMessages = allMessages.filter((m) => m.messageId !== message.messageId);
-    setAllMessages(updatedMessages);
-  };
+    const updateMessage = (messageId: Message["id"], newContent: string) =>
+      messagesDispatch({
+        type: "UPDATE_MESSAGE",
+        payload: { id: messageId, newContent: newContent },
+      });
 
-  const editMessage = (message: Message, newContent: string) => {
-    const updatedMessages = allMessages.map((m) => {
-      if (m.messageId === message.messageId) {
-        return {
-          ...m,
-          content: newContent,
-        };
-      }
-      return m;
-    });
-    setAllMessages(updatedMessages);
-  };
+    if (chatHistoryWithAciveUser.length === 0) {
+      return (
+        <div
+          className="chatArea"
+          ref={chatAreaRef}
+        >
+          <Fallback>No messages yet</Fallback>
+        </div>
+      );
+    }
 
-  if (chatHistoryWithActiveConnection.length === 0) {
     return (
       <div
         className="chatArea"
         ref={chatAreaRef}
       >
-        <Fallback>No messages yet</Fallback>
+        {chatHistoryWithAciveUser.map((message) => (
+          <MessageRow
+            key={message.id}
+            content={message.content}
+            timestamp={message.timestamp}
+            isOutgoing={isMessageFromAToB(
+              message,
+              DEFAULT_CLIENT.id,
+              activeUser!.id,
+            )}
+            removeMessage={() => removeMessage(message.id)}
+            editMessage={(newContent) => updateMessage(message.id, newContent)}
+          />
+        ))}
       </div>
     );
-  }
-
-  return (
-    <div className="chatArea">
-      {chatHistoryWithActiveConnection.map((message) => (
-        <MessageRow
-          key={message.messageId}
-          content={message.content}
-          timestamp={message.timestamp}
-          isOutgoing={message.fromConnId === "user_id_0"}
-          deleteMessage={() => deleteMessage(message)}
-          editMessage={(newConent: string) => editMessage(message, newConent)}
-        />
-      ))}
-    </div>
-  );
-});
+  },
+);
 
 export default ChatArea;

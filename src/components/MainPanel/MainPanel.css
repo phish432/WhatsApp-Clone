@@ -20,7 +20,9 @@
     display: flex;
     flex-grow: 1;
 
-    max-height: calc((var(--font-factor) * 1rem) * (1 * var(--default-line-height)));
+    max-height: calc(
+      (var(--font-factor) * 1rem) * (1 * var(--default-line-height))
+    );
 
     padding-right: 20px;
 

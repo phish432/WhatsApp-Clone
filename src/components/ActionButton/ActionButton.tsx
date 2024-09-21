@@ -11,6 +11,7 @@ const ActionButton = (props: Props) => {
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    e.stopPropagation();
     onClick();
   };
 

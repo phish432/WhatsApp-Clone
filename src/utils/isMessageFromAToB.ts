@@ -1,7 +1,11 @@
-import type { Message } from "../types/types";
+import type { Message, User } from "../types/types";
 
-function isMessageFromAToB(msg: Message, userA: string, userB: string) {
-  return msg.fromConnId === userA && msg.toConnId === userB;
+function isMessageFromAToB(
+  msg: Message,
+  userAId: User["id"],
+  userBId: User["id"],
+) {
+  return msg.fromUserId === userAId && msg.toUserId === userBId;
 }
 
 export default isMessageFromAToB;

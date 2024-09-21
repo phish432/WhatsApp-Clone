@@ -1,14 +1,18 @@
-import type { Connection, Message } from "../types/types";
-import getChatHistory from "./getChatHistory";
+import type { User, Message } from "../types/types";
+import getOrderedChatHistoryOfAB from "./getChatHistory";
 
-function getLatestMessage(connection: Connection, allMessages: Message[]) {
-  const chatHistoryWithConnection = getChatHistory(connection, allMessages);
+function getLatestMessageFromAToB(
+  userAId: User["id"],
+  userBId: User["id"],
+  messages: Message[],
+) {
+  const chatHistoryOfAB = getOrderedChatHistoryOfAB(userAId, userBId, messages);
 
-  if (chatHistoryWithConnection.length === 0) {
+  if (chatHistoryOfAB.length === 0) {
     return null;
   }
 
-  return chatHistoryWithConnection[0];
+  return chatHistoryOfAB[0];
 }
 
-export default getLatestMessage;
+export default getLatestMessageFromAToB;

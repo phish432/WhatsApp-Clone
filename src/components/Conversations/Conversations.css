@@ -10,11 +10,11 @@
   scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
 }
 
-.conversations > .connectionCard > .avatar {
+.conversations > .previewCard > .avatar {
   height: 100px;
 }
 
-.conversations > .connectionCard {
+.conversations > .previewCard {
   background-color: #121b22;
 
   & > .preview {
@@ -26,7 +26,7 @@
   }
 }
 
-.conversations > .connectionCard:hover {
+.conversations > .previewCard:hover {
   background-color: #202c33;
 
   & > .preview {
@@ -38,7 +38,7 @@
   }
 }
 
-.conversations > .connectionCard.active {
+.conversations > .previewCard.active {
   background-color: #2a3942;
 
   & > .preview {

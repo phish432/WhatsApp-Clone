@@ -1,5 +1,5 @@
-import type { Connection, Message } from "../../types/types";
 import { useRef } from "react";
+import { useActiveUserContext } from "../../contexts/activeUserContext";
 import Avatar from "../Avatar/Avatar";
 import ChatArea from "../ChatArea/ChatArea";
 import Fallback from "../Fallback/Fallback";
@@ -7,16 +7,9 @@ import Header from "../Header/Header";
 import TextComposer from "../TextComposer/TextComposer";
 import "./MainPanel.css";
 
-type Props = {
-  activeConnection: Connection | null;
-  allMessages: Message[];
-  setAllMessages: (messages: Message[]) => void;
-};
-
-const MainPanel = (props: Props) => {
-  const { activeConnection, allMessages, setAllMessages } = props;
-
+const MainPanel = () => {
   const chatAreaRef = useRef<HTMLDivElement>(null);
+  const { activeUser } = useActiveUserContext();
 
   const scrollToEndOfChatArea = () => {
     if (chatAreaRef.current) {
@@ -24,7 +17,7 @@ const MainPanel = (props: Props) => {
     }
   };
 
-  if (activeConnection === null) {
+  if (activeUser === null) {
     return (
       <div className="mainPanel">
         <Fallback>Select a conversation to get started</Fallback>
@@ -36,22 +29,14 @@ const MainPanel = (props: Props) => {
     <div className="mainPanel">
       <Header>
         <Avatar
-          src={activeConnection.profileImg}
-          alt={activeConnection.name}
+          src={activeUser.profileImg}
+          alt={activeUser.name}
         />
-        <div className="activeName">{activeConnection.name}</div>
+        <div className="activeName">{activeUser.name}</div>
       </Header>
-      <ChatArea
-        ref={chatAreaRef}
-        activeConnection={activeConnection}
-        allMessages={allMessages}
-        setAllMessages={setAllMessages}
-      />
+      <ChatArea ref={chatAreaRef} />
       <TextComposer
-        key={activeConnection.id}
-        activeConnection={activeConnection}
-        allMessages={allMessages}
-        setAllMessages={setAllMessages}
+        key={activeUser.id}
         scrollToEndOfChatArea={scrollToEndOfChatArea}
       />
     </div>

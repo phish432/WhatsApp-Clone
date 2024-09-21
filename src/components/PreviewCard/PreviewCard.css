@@ -1,4 +1,4 @@
-.connectionCard {
+.previewCard {
   display: flex;
   align-items: center;
 
@@ -10,11 +10,11 @@
   cursor: pointer;
 }
 
-.connectionCard.active {
+.previewCard.active {
   background-color: #2a3942;
 }
 
-.connectionCard > .hoverTooltip {
+.previewCard > .hoverTooltip {
   display: flex;
   align-items: center;
 

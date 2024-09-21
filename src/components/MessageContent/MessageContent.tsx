@@ -12,7 +12,7 @@ const MessageContent = (props: Props) => {
     <div className="messageContent">
       <div className="text">{content}</div>
       <div className="time">
-        {timestamp.toLocaleTimeString([], {
+        {new Date(timestamp).toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
           hour12: false,

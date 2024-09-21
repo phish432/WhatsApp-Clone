@@ -4,11 +4,11 @@ import "./DeleteModal.css";
 type Props = {
   confirmText: string;
   closeDeleteModal: () => void;
-  deleteMessage: () => void;
+  deleteMethod: () => void;
 };
 
 const DeleteModal = (props: Props) => {
-  const { confirmText, closeDeleteModal, deleteMessage } = props;
+  const { confirmText, closeDeleteModal, deleteMethod: deleteMessage } = props;
 
   const handleCancel = () => {
     closeDeleteModal();

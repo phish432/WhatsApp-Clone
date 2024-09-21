@@ -1,31 +1,36 @@
-import { Connection, Message } from "../../types/types";
+import type { Message } from "../../types/types";
+import DEFAULT_CLIENT from "../../constant/defaultClient";
 import { useState } from "react";
+import { useActiveUserContext } from "../../contexts/activeUserContext";
+import { useMessagesContext } from "../../contexts/messagesContext";
 import ActionButton from "../ActionButton/ActionButton";
 import "./TextComposer.css";
 
 type Props = {
-  activeConnection: Connection;
-  allMessages: Message[];
-  setAllMessages: (messages: Message[]) => void;
   scrollToEndOfChatArea: () => void;
 };
 
 const TextComposer = (props: Props) => {
-  const { activeConnection, allMessages, setAllMessages, scrollToEndOfChatArea } = props;
+  const { scrollToEndOfChatArea } = props;
 
   const [newContent, setNewContent] = useState<string>("");
+  const { activeUser } = useActiveUserContext();
+  const { messagesDispatch } = useMessagesContext();
 
-  const handleClick = () => {
+  const sendMessage = () => {
     if (newContent !== "") {
       const newMessage: Message = {
-        messageId: self.crypto.randomUUID(),
+        id: window.crypto.randomUUID(),
         timestamp: new Date(),
-        fromConnId: "user_id_0",
-        toConnId: activeConnection.id,
+        fromUserId: DEFAULT_CLIENT.id,
+        toUserId: activeUser!.id,
         content: newContent,
       };
 
-      setAllMessages([...allMessages, newMessage]);
+      messagesDispatch({
+        type: "ADD_MESSAGE",
+        payload: newMessage,
+      });
       setNewContent("");
       scrollToEndOfChatArea();
     }
@@ -42,7 +47,7 @@ const TextComposer = (props: Props) => {
           value={newContent}
           onChange={(event) => setNewContent(event.target.value)}
         />
-        <ActionButton onClick={handleClick}>
+        <ActionButton onClick={sendMessage}>
           <svg
             viewBox="0 0 24 24"
             height="24"

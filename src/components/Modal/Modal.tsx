@@ -18,7 +18,9 @@ const Modal = (props: Props) => {
     <div className="modal">
       <div className="modalContent">
         {children}
-        <ActionButton onClick={onConfirm}>{confirmText || "Confirm"}</ActionButton>
+        <ActionButton onClick={onConfirm}>
+          {confirmText || "Confirm"}
+        </ActionButton>
         <ActionButton onClick={onCancel}>{cancelText || "Cancel"}</ActionButton>
       </div>
     </div>,

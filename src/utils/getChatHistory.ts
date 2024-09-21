@@ -1,16 +1,25 @@
-import type { Connection, Message } from "../types/types";
+import type { User, Message } from "../types/types";
 import isMessageFromAToB from "./isMessageFromAToB";
 
-function getChatHistory(connection: Connection, allMessages: Message[]): Message[] {
-  const active = connection.id;
-  const client = "user_id_0";
-
-  const chatHistory = allMessages
-    .filter((msg) => isMessageFromAToB(msg, active, client) || isMessageFromAToB(msg, client, active))
-    .sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime())
-    .reverse();
+function getOrderedChatHistoryOfAB(
+  userAId: User["id"],
+  userBId: User["id"],
+  messages: Message[],
+) {
+  const chatHistory = messages
+    // get all messages in conversation
+    .filter((message) => {
+      return (
+        isMessageFromAToB(message, userAId, userBId) ||
+        isMessageFromAToB(message, userBId, userAId)
+      );
+    })
+    // sort by timestamp with latest message first
+    .sort((a, b) => {
+      return b.timestamp > a.timestamp ? 1 : -1;
+    });
 
   return chatHistory;
 }
 
-export default getChatHistory;
+export default getOrderedChatHistoryOfAB;

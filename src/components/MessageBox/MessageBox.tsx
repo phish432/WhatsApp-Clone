@@ -70,7 +70,7 @@ const MessageBox = (props: Props) => {
         <DeleteModal
           confirmText="Delete Message"
           closeDeleteModal={() => setIsDeleteModalOpen(false)}
-          deleteMessage={deleteMessage}
+          deleteMethod={deleteMessage}
         />
       )}
     </>
