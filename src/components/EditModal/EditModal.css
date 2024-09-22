@@ -1,4 +1,4 @@
-.editor {
+.messageEditor {
   display: flex;
   align-items: center;
   flex-grow: 1;
@@ -10,6 +10,10 @@
   padding: 12px 12px;
 
   background-color: #293941;
+
+  &::placeholder {
+    color: #87979f;
+  }
 }
 
 textarea {

@@ -17,11 +17,11 @@
 .conversations > .previewCard {
   background-color: #121b22;
 
-  & > .preview {
+  & > .previewContent {
     border-top: 1px solid rgba(134, 150, 160, 0.15);
   }
 
-  &:last-child > .preview {
+  &:last-of-type > .previewContent {
     border-bottom: 1px solid rgba(134, 150, 160, 0.15);
   }
 }
@@ -29,11 +29,11 @@
 .conversations > .previewCard:hover {
   background-color: #202c33;
 
-  & > .preview {
+  & > .previewContent {
     border-top: 1px solid #202c33;
   }
 
-  &:last-child > .preview {
+  &:last-of-type > .previewContent {
     border-bottom: 1px solid #202c33;
   }
 }
@@ -41,11 +41,11 @@
 .conversations > .previewCard.active {
   background-color: #2a3942;
 
-  & > .preview {
+  & > .previewContent {
     border-top: 1px solid #2a3942;
   }
 
-  &:last-child > .preview {
+  &:last-of-type > .previewContent {
     border-bottom: 1px solid #2a3942;
   }
 }

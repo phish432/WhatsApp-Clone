@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import Modal from "../Modal/Modal";
 import "./EditModal.css";
 
@@ -41,7 +41,7 @@ const EditModal = (props: Props) => {
     >
       <textarea
         ref={editorRef}
-        className="editor"
+        className="messageEditor"
         value={newContent}
         placeholder="Type a message"
         onChange={(e) => setNewContent(e.target.value)}
