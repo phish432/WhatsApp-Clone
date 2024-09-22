@@ -1,0 +1,15 @@
+.nameEditor {
+  display: flex;
+  align-items: center;
+
+  width: 24em;
+
+  border-radius: 8px;
+  padding: 12px 12px;
+
+  background-color: #293941;
+
+  &::placeholder {
+    color: #87979f;
+  }
+}
