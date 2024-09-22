@@ -5,11 +5,11 @@ import "./EditModal.css";
 type Props = {
   oldContent: string;
   closeEditModal: () => void;
-  editMessage: (newContent: string) => void;
+  editMethod: (newContent: string) => void;
 };
 
 const EditModal = (props: Props) => {
-  const { oldContent, closeEditModal, editMessage } = props;
+  const { oldContent, closeEditModal, editMethod } = props;
 
   const [newContent, setNewContent] = useState<string>(oldContent);
   const editorRef = useRef<HTMLTextAreaElement>(null);
@@ -28,7 +28,7 @@ const EditModal = (props: Props) => {
 
   const handleConfirm = () => {
     if (newContent.trim() !== "") {
-      editMessage(newContent);
+      editMethod(newContent);
       closeEditModal();
     }
   };

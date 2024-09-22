@@ -19,4 +19,4 @@ type UserMessagePreview = {
   readonly latestMessage: Message | null;
 };
 
-export type { UniqueId, User, Message, UserMessagePreview };
+export type { User, Message, UserMessagePreview };

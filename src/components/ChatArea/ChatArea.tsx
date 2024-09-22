@@ -7,30 +7,17 @@ import MessageRow from "../MessageRow/MessageRow";
 import getOrderedChatHistoryOfAB from "../../utils/getChatHistory";
 import isMessageFromAToB from "../../utils/isMessageFromAToB";
 import "./ChatArea.css";
-import { Message } from "../../types/types";
 
 const ChatArea = forwardRef(
   (_props, chatAreaRef: React.Ref<HTMLDivElement>) => {
     const { activeUser } = useActiveUserContext();
-    const { messages, messagesDispatch } = useMessagesContext();
+    const { messages } = useMessagesContext();
 
     const chatHistoryWithAciveUser = getOrderedChatHistoryOfAB(
       DEFAULT_CLIENT.id,
       activeUser!.id,
       messages,
     );
-
-    const removeMessage = (messageId: Message["id"]) =>
-      messagesDispatch({
-        type: "REMOVE_MESSAGE",
-        payload: messageId,
-      });
-
-    const updateMessage = (messageId: Message["id"], newContent: string) =>
-      messagesDispatch({
-        type: "UPDATE_MESSAGE",
-        payload: { id: messageId, newContent: newContent },
-      });
 
     if (chatHistoryWithAciveUser.length === 0) {
       return (
@@ -51,15 +38,12 @@ const ChatArea = forwardRef(
         {chatHistoryWithAciveUser.map((message) => (
           <MessageRow
             key={message.id}
-            content={message.content}
-            timestamp={message.timestamp}
+            message={message}
             isOutgoing={isMessageFromAToB(
               message,
               DEFAULT_CLIENT.id,
               activeUser!.id,
             )}
-            removeMessage={() => removeMessage(message.id)}
-            editMessage={(newContent) => updateMessage(message.id, newContent)}
           />
         ))}
       </div>

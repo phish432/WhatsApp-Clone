@@ -1,25 +1,20 @@
+import type { Message } from "../../types/types";
 import MessageBox from "../MessageBox/MessageBox";
 import "./MessageRow.css";
 
 type Props = {
-  content: string;
-  timestamp: Date;
+  message: Message;
   isOutgoing: boolean;
-  removeMessage: () => void;
-  editMessage: (newContent: string) => void;
 };
 
 const MessageRow = (props: Props) => {
-  const { content, timestamp, isOutgoing, removeMessage, editMessage } = props;
+  const { message, isOutgoing } = props;
 
   return (
     <div className={`messageRow${isOutgoing ? " outgoing" : " incoming"}`}>
       <MessageBox
-        content={content}
-        timestamp={timestamp}
+        message={message}
         isOutgoing={isOutgoing}
-        deleteMessage={removeMessage}
-        editMessage={editMessage}
       />
     </div>
   );
