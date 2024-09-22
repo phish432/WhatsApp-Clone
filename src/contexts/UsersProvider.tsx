@@ -1,4 +1,3 @@
-import DEFAULT_USERS from "../constant/defaultUsers";
 import React from "react";
 import useUserDB from "../hooks/useUserDB";
 import { UsersContext } from "./usersContext";
@@ -8,7 +7,7 @@ type Props = { children?: React.ReactNode };
 const UsersProvider = (props: Props) => {
   const { children } = props;
 
-  const { users, usersDispatch } = useUserDB("userDB", DEFAULT_USERS);
+  const { users, usersDispatch } = useUserDB("userDB", []);
 
   return (
     <UsersContext.Provider value={{ users, usersDispatch }}>

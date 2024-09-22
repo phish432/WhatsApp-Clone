@@ -10,6 +10,7 @@ import NewChatModal from "../NewChatModal/NewChatModal";
 import SearchBar from "../SearchBar/SearchBar";
 import searchUsersByName from "../../utils/searchUsersByName";
 import "./SidePanel.css";
+import Fallback from "../Fallback/Fallback";
 
 const SidePanel = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -54,7 +55,11 @@ const SidePanel = () => {
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
         />
-        <Conversations searchUsers={searchUsers} />
+        {otherUsers.length === 0 ? (
+          <Fallback>No Conversations Yet</Fallback>
+        ) : (
+          <Conversations searchUsers={searchUsers} />
+        )}
         <ActionButton onClick={() => setIsChatModalOpen(true)}>
           Start New Chat
         </ActionButton>

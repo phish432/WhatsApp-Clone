@@ -1,5 +1,5 @@
-import React from "react";
-import useActiveUser from "../hooks/useActiveUser";
+import type { User } from "../types/types";
+import React, { useState } from "react";
 import { ActiveUserContext } from "./activeUserContext";
 
 type Props = { children?: React.ReactNode };
@@ -7,7 +7,7 @@ type Props = { children?: React.ReactNode };
 const ActiveUserProvider = (props: Props) => {
   const { children } = props;
 
-  const { activeUser, setActiveUser } = useActiveUser(null);
+  const [activeUser, setActiveUser] = useState<User | null>(null);
 
   return (
     <ActiveUserContext.Provider value={{ activeUser, setActiveUser }}>
