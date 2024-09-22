@@ -1,7 +1,10 @@
+import { User } from "../types/types";
 import { createContext, useContext } from "react";
-import useActiveUser from "../hooks/useActiveUser";
 
-type ActiveUserContextType = ReturnType<typeof useActiveUser>;
+type ActiveUserContextType = {
+  activeUser: User | null;
+  setActiveUser: React.Dispatch<React.SetStateAction<User | null>>;
+};
 
 const ActiveUserContext = createContext<ActiveUserContextType | null>(null);
 const useActiveUserContext = () =>
