@@ -1,0 +1,20 @@
+.messageTooltip {
+  display: flex;
+  align-items: center;
+
+  position: fixed;
+
+  font-size: 0.875em;
+  max-width: 30em;
+
+  --foreground-color: #06cf9c;
+  --background-color: #212c33;
+
+  border: 2px solid var(--foreground-color);
+  border-radius: 4px;
+  padding: 8px;
+
+  background-color: var(--background-color);
+
+  z-index: 3;
+}
