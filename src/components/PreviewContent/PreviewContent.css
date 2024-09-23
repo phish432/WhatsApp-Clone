@@ -16,17 +16,17 @@
   justify-content: space-between;
 
   & > .bannerName {
-    --font-factor: 1;
-
-    max-height: calc(
-      (var(--font-factor) * 1rem) * (1 * var(--default-line-height))
-    );
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: pre-wrap;
 
     padding-right: 20px;
 
-    font-size: calc(var(--font-factor) * 1rem);
+    font-size: 1em;
     font-weight: bold;
-    overflow: hidden;
   }
 
   & > .bannerTime {
@@ -36,19 +36,14 @@
 }
 
 .previewContent > .message {
-  --font-factor: 0.875;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 
-  display: flex;
-  align-items: flex-start;
-
-  max-height: calc(
-    (var(--font-factor) * 1rem) * (3 * var(--default-line-height))
-  );
-
-  font-size: calc(var(--font-factor) * 1rem);
+  font-size: 0.875em;
 
   overflow: hidden;
-  overflow-wrap: anywhere;
   white-space: pre-wrap;
 
   &.none {
