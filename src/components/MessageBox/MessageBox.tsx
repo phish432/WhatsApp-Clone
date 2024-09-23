@@ -1,5 +1,6 @@
 import type { Message } from "../../types/types";
 import { useState } from "react";
+import { useDensityContext } from "../../contexts/densityContext";
 import { useMessagesContext } from "../../contexts/messagesContext";
 import ActionButton from "../ActionButton/ActionButton";
 import DeleteModal from "../DeleteModal/DeleteModal";
@@ -24,6 +25,7 @@ const MessageBox = (props: Props) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const { messagesDispatch } = useMessagesContext();
+  const { isSpacious } = useDensityContext();
 
   const handleDeleteClick = () => {
     setIsEditModalOpen(false);
@@ -51,7 +53,7 @@ const MessageBox = (props: Props) => {
     return (
       <div className="messageBox incoming">
         <div className="text">{content}</div>
-        <div className="time">{time24Hour}</div>
+        {isSpacious && <div className="time">{time24Hour}</div>}
       </div>
     );
   }
@@ -64,7 +66,7 @@ const MessageBox = (props: Props) => {
         onMouseLeave={() => setIsTooltipOpen(false)}
       >
         <div className="text">{content}</div>
-        <div className="time">{time24Hour}</div>
+        {isSpacious && <div className="time">{time24Hour}</div>}
         {isTooltipOpen && (
           <div className="hoverTooltip">
             <ActionButton onClick={handleEditClick}>Edit</ActionButton>

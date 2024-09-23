@@ -12,6 +12,31 @@
 
 .sidePanel > .header {
   height: 60px;
+
+  justify-content: space-between;
+  padding-right: 20px;
+
+  & > .actionButton {
+    --text-color: #00a884;
+    --text-color-hover: #06cf9c;
+
+    width: fit-content;
+
+    border: 1px solid rgba(134, 150, 160, 0.15);
+    border-radius: 24px;
+    padding: 8px 16px;
+
+    color: var(--text-color);
+
+    &:hover {
+      color: var(--text-color-hover);
+      box-shadow: rgba(11, 20, 26, 0.5) 0px 0px 8px 2px;
+    }
+
+    &:active {
+      background-color: #2a3942;
+    }
+  }
 }
 
 .sidePanel > .searchBar {

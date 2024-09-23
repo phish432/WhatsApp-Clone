@@ -1,6 +1,6 @@
 import type { UserMessagePreview } from "../../types/types";
 import { useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import { useDensityContext } from "../../contexts/densityContext";
 import DEFAULT_CLIENT from "../../constant/defaultClient";
 import MessageTooltip from "../MessageTooltip/MessageTooltip";
 import isMessageFromAToB from "../../utils/isMessageFromAToB";
@@ -17,6 +17,7 @@ const PreviewContent = (props: Props) => {
   const [clientPos, setClientPos] = useState({ x: 0, y: 0 });
   const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false);
   const intervalRef = useRef<number | undefined>(undefined);
+  const { isSpacious } = useDensityContext();
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isTooltipOpen) {
@@ -54,18 +55,23 @@ const PreviewContent = (props: Props) => {
           <div className="bannerName">{user.name}</div>
           <div className="bannerTime">{time24Hour}</div>
         </div>
-        <div
-          className="message"
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-        >
-          <b>{sender}:</b> {content}
-        </div>
-        {isTooltipOpen &&
-          createPortal(
-            <MessageTooltip atPos={clientPos}>{content}</MessageTooltip>,
-            document.body,
-          )}
+        {isSpacious && (
+          <>
+            <div
+              className="message"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              <b>{sender}:</b> {content}
+            </div>
+            <MessageTooltip
+              visible={isTooltipOpen}
+              atPos={clientPos}
+            >
+              {content}
+            </MessageTooltip>
+          </>
+        )}
       </div>
     );
   }
@@ -75,9 +81,11 @@ const PreviewContent = (props: Props) => {
       <div className="banner">
         <div className="bannerName">{user.name}</div>
       </div>
-      <div className="message none">
-        <em>No Messages Yet</em>
-      </div>
+      {isSpacious && (
+        <div className="message none">
+          <em>No Messages Yet</em>
+        </div>
+      )}
     </div>
   );
 };

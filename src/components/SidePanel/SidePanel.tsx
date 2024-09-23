@@ -1,6 +1,7 @@
 import type { User } from "../../types/types";
 import DEFAULT_CLIENT from "../../constant/defaultClient";
 import { useState } from "react";
+import { useDensityContext } from "../../contexts/densityContext";
 import { useUsersContext } from "../../contexts/usersContext";
 import ActionButton from "../ActionButton/ActionButton";
 import Avatar from "../Avatar/Avatar";
@@ -15,6 +16,7 @@ import Fallback from "../Fallback/Fallback";
 const SidePanel = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [isChatModalOpen, setIsChatModalOpen] = useState<boolean>(false);
+  const { isSpacious, setIsSpacious } = useDensityContext();
   const { users, usersDispatch } = useUsersContext();
 
   const otherUsers = users.filter((user) => user.id !== DEFAULT_CLIENT.id);
@@ -50,6 +52,9 @@ const SidePanel = () => {
             src={DEFAULT_CLIENT.profileImg}
             alt={DEFAULT_CLIENT.name}
           />
+          <ActionButton onClick={() => setIsSpacious(!isSpacious)}>
+            {isSpacious ? "Spacious" : "Compact"} Mode
+          </ActionButton>
         </Header>
         <SearchBar
           searchTerm={searchTerm}

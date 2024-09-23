@@ -1,13 +1,18 @@
 import React from "react";
+import { createPortal } from "react-dom";
 import "./MessageTooltip.css";
 
-type Props = {
-  atPos: { x: number; y: number };
-  children?: React.ReactNode;
-};
+type Props = (
+  | { visible: true; atPos: { x: number; y: number } }
+  | { visible: false }
+) & { children?: React.ReactNode };
+
 const MessageTooltip = (props: Props) => {
-  const { children } = props;
-  return (
+  if (!props.visible) {
+    return null;
+  }
+
+  return createPortal(
     <div
       className="messageTooltip"
       style={{
@@ -15,8 +20,9 @@ const MessageTooltip = (props: Props) => {
         top: props.atPos.y + 15,
       }}
     >
-      {children}
-    </div>
+      {props.children}
+    </div>,
+    document.body,
   );
 };
 export default MessageTooltip;
