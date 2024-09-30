@@ -1,31 +1,34 @@
-import type { Message } from "../../types/types";
+import type { Dispatch } from "react";
+import type { Message, MessageAction, User } from "../../types/types";
+
 import DEFAULT_CLIENT from "../../constant/defaultClient";
+
 import { useState } from "react";
-import { useActiveUserContext } from "../../contexts/activeUserContext";
-import { useMessagesContext } from "../../contexts/messagesContext";
+
 import ActionButton from "../ActionButton/ActionButton";
+
 import "./TextComposer.css";
 
 type Props = {
+  activeUser: User;
+  messagesDispatch: Dispatch<MessageAction>;
   scrollToEndOfChatArea: () => void;
 };
 
 const TextComposer = (props: Props) => {
-  const { scrollToEndOfChatArea } = props;
+  const { activeUser, messagesDispatch, scrollToEndOfChatArea } = props;
 
   const [newContent, setNewContent] = useState<string>("");
-  const { activeUser } = useActiveUserContext();
-  const { messagesDispatch } = useMessagesContext();
 
   const sendMessage = () => {
     if (newContent !== "") {
-      const newMessage: Message = {
+      const newMessage = {
         id: window.crypto.randomUUID(),
         timestamp: new Date(),
         fromUserId: DEFAULT_CLIENT.id,
-        toUserId: activeUser!.id,
+        toUserId: activeUser.id,
         content: newContent,
-      };
+      } as Message;
 
       messagesDispatch({
         type: "ADD_MESSAGE",

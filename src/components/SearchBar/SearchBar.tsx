@@ -1,5 +1,7 @@
 import { useRef } from "react";
+
 import ActionButton from "../ActionButton/ActionButton";
+
 import "./SearchBar.css";
 
 type Props = {

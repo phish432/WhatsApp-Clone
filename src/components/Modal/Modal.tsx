@@ -1,6 +1,9 @@
-import React from "react";
+import type { ReactNode } from "react";
+
 import { createPortal } from "react-dom";
+
 import ActionButton from "../ActionButton/ActionButton";
+
 import "./Modal.css";
 
 type Props = {
@@ -8,7 +11,7 @@ type Props = {
   confirmText?: string;
   onCancel: () => void;
   onConfirm: () => void;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 const Modal = (props: Props) => {

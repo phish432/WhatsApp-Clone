@@ -1,4 +1,5 @@
 import Modal from "../Modal/Modal";
+
 import "./DeleteModal.css";
 
 type Props = {

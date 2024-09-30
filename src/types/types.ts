@@ -16,7 +16,27 @@ type Message = {
 
 type UserMessagePreview = {
   readonly user: User;
-  readonly latestMessage: Message | null;
+  readonly latestMsg?: {
+    readonly sender: string;
+    readonly content: string;
+    readonly time: string;
+  };
 };
 
-export type { User, Message, UserMessagePreview };
+type UserAction =
+  | { type: "ADD_USER"; payload: User }
+  | { type: "REMOVE_USER"; payload: User["id"] };
+
+type MessageAction =
+  | { type: "ADD_MESSAGE"; payload: Message }
+  | { type: "REMOVE_MESSAGE"; payload: Message["id"] }
+  | {
+      type: "REMOVE_CONVERSATION";
+      payload: { userAId: User["id"]; userBId: User["id"] };
+    }
+  | {
+      type: "UPDATE_MESSAGE";
+      payload: { id: Message["id"]; newContent: Message["content"] };
+    };
+
+export type { User, Message, UserMessagePreview, UserAction, MessageAction };

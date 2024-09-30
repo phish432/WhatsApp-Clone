@@ -11,7 +11,7 @@
 }
 
 .previewCard.active {
-  background-color: #2a3942;
+  background-color: var(--dark-active);
 }
 
 .previewCard > .hoverTooltip {
@@ -23,23 +23,22 @@
   right: 0;
 
   & > .actionButton {
-    --foreground-color: #06cf9c;
-    --background-color: #212c33;
-
-    font-size: 0.75em;
+    font-size: 0.75rem;
     font-weight: bold;
 
-    border: 1px solid var(--foreground-color);
+    border: 1px solid var(--green-hover);
     border-radius: 4px;
     padding: 2px;
 
-    background-color: var(--background-color);
-    color: var(--foreground-color);
+    background-color: var(--dark-primary);
+    color: var(--green-hover);
 
     z-index: 3;
 
     &:hover {
-      box-shadow: rgba(11, 20, 26, 0.5) 0px 0px 8px 4px;
+      color: var(--dark-primary);
+      background-color: var(--green-hover);
+      box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px 1px;
     }
   }
 }

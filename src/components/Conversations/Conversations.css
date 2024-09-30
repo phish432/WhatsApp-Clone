@@ -7,7 +7,7 @@
 
   overflow-y: scroll;
 
-  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+  scrollbar-color: var(--faded);
 }
 
 .conversations > .previewCard > .avatar {
@@ -15,37 +15,35 @@
 }
 
 .conversations > .previewCard {
-  background-color: #121b22;
-
   & > .previewContent {
-    border-top: 1px solid rgba(134, 150, 160, 0.15);
+    border-top: 1px solid var(--faded);
   }
 
   &:last-of-type > .previewContent {
-    border-bottom: 1px solid rgba(134, 150, 160, 0.15);
+    border-bottom: 1px solid var(--faded);
   }
 }
 
 .conversations > .previewCard:hover {
-  background-color: #202c33;
+  background-color: var(--dark-secondary);
 
   & > .previewContent {
-    border-top: 1px solid #202c33;
+    border-top: 1px solid var(--dark-secondary);
   }
 
   &:last-of-type > .previewContent {
-    border-bottom: 1px solid #202c33;
+    border-bottom: 1px solid var(--dark-secondary);
   }
 }
 
 .conversations > .previewCard.active {
-  background-color: #2a3942;
+  background-color: var(--dark-active);
 
   & > .previewContent {
-    border-top: 1px solid #2a3942;
+    border-top: 1px solid var(--dark-active);
   }
 
   &:last-of-type > .previewContent {
-    border-bottom: 1px solid #2a3942;
+    border-bottom: 1px solid var(--dark-active);
   }
 }

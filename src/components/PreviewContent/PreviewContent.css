@@ -25,13 +25,13 @@
 
     padding-right: 20px;
 
-    font-size: 1em;
+    font-size: 1rem;
     font-weight: bold;
   }
 
   & > .bannerTime {
-    font-size: 0.75em;
-    color: #8696a0;
+    font-size: 0.75rem;
+    color: var(--white-secondary);
   }
 }
 
@@ -41,12 +41,12 @@
   line-clamp: 3;
   -webkit-box-orient: vertical;
 
-  font-size: 0.875em;
+  font-size: 0.875rem;
 
   overflow: hidden;
   white-space: pre-wrap;
 
   &.none {
-    color: #8696a0;
+    color: var(--white-secondary);
   }
 }

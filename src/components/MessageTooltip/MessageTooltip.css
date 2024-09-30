@@ -4,17 +4,14 @@
 
   position: fixed;
 
-  font-size: 0.875em;
-  max-width: 30em;
+  font-size: 0.875rem;
+  max-width: 30rem;
 
-  --foreground-color: #06cf9c;
-  --background-color: #212c33;
-
-  border: 2px solid var(--foreground-color);
+  border: 2px solid var(--green-secondary);
   border-radius: 4px;
   padding: 8px;
 
-  background-color: var(--background-color);
+  background-color: var(--dark-secondary);
 
-  z-index: 3;
+  z-index: 5;
 }

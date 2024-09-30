@@ -1,20 +1,27 @@
 :root {
-  --default-line-height: 1.25;
-  --default-font-size: 16px;
-
-  color: #e9edef;
-  background-color: #0d1318;
-
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+  --bg-full: #0d1318;
+  --bg-overlay: #0d1318cc;
+  --dark-primary: #121b21;
+  --dark-secondary: #212c33;
+  --dark-active: #293941;
+  --green-primary: #005c4c;
+  --green-secondary: #00a884;
+  --green-hover: #06cf9c;
+  --white-primary: #e9edef;
+  --white-secondary: #8696a0;
+  --white-faded: #ffffff99;
+  --faded: #8696a026;
 
   font-family: system-ui, sans-serif;
-  font-size: var(--default-font-size);
-  font-style: normal;
-  font-weight: normal;
-  line-height: var(--default-line-height);
-  text-rendering: optimizeLegibility;
+  line-height: 1.25;
+  font-weight: 400;
+  font-size: 16px;
 
+  color: var(--white-primary);
+  background-color: var(--bg-full);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

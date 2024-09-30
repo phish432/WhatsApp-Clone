@@ -1,26 +1,50 @@
-import type { User } from "../../types/types";
-import DEFAULT_CLIENT from "../../constant/defaultClient";
+import type { Dispatch, SetStateAction } from "react";
+import type { Message, MessageAction, User } from "../../types/types";
+
+import { DEFAULT_CLIENT } from "../../constant";
+
 import { useState } from "react";
-import { useDensityContext } from "../../contexts/densityContext";
-import { useUsersContext } from "../../contexts/usersContext";
+
 import ActionButton from "../ActionButton/ActionButton";
 import Avatar from "../Avatar/Avatar";
 import Conversations from "../Conversations/Conversations";
+import Fallback from "../Fallback/Fallback";
 import Header from "../Header/Header";
 import NewChatModal from "../NewChatModal/NewChatModal";
 import SearchBar from "../SearchBar/SearchBar";
-import searchUsersByName from "../../utils/searchUsersByName";
-import "./SidePanel.css";
-import Fallback from "../Fallback/Fallback";
 
-const SidePanel = () => {
+import useUserDB from "../../hooks/useUserDB";
+import getPreviews from "../../utils/getPreviews";
+import searchPreviewsByUserName from "../../utils/searchUsersByName";
+
+import "./SidePanel.css";
+
+type Props = {
+  activeUser: User | null;
+  setActiveUser: Dispatch<SetStateAction<User | null>>;
+  isSpacious: boolean;
+  setIsSpacious: Dispatch<SetStateAction<boolean>>;
+  messages: Message[];
+  messagesDispatch: Dispatch<MessageAction>;
+};
+
+const SidePanel = (props: Props) => {
+  const {
+    activeUser,
+    setActiveUser,
+    isSpacious,
+    setIsSpacious,
+    messages,
+    messagesDispatch,
+  } = props;
+
+  const [users, usersDispatch] = useUserDB("usrDB", []);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [isChatModalOpen, setIsChatModalOpen] = useState<boolean>(false);
-  const { isSpacious, setIsSpacious } = useDensityContext();
-  const { users, usersDispatch } = useUsersContext();
 
   const otherUsers = users.filter((user) => user.id !== DEFAULT_CLIENT.id);
-  const searchUsers = searchUsersByName(otherUsers, searchTerm);
+  const previews = getPreviews(otherUsers, messages, DEFAULT_CLIENT.id);
+  const searchPreviews = searchPreviewsByUserName(previews, searchTerm);
 
   const createNewChat = async (name: string) => {
     const image = await fetch(
@@ -41,7 +65,17 @@ const SidePanel = () => {
       type: "ADD_USER",
       payload: newUser,
     });
-    setIsChatModalOpen(false);
+  };
+
+  const removeConversationAndUser = (userId: User["id"]) => {
+    messagesDispatch({
+      type: "REMOVE_CONVERSATION",
+      payload: { userAId: DEFAULT_CLIENT.id, userBId: userId },
+    });
+    usersDispatch({
+      type: "REMOVE_USER",
+      payload: userId,
+    });
   };
 
   return (
@@ -56,24 +90,37 @@ const SidePanel = () => {
             {isSpacious ? "Spacious" : "Compact"} Mode
           </ActionButton>
         </Header>
+
         <SearchBar
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
         />
-        {otherUsers.length === 0 ? (
+
+        {searchPreviews.length === 0 ? (
           <Fallback>No Conversations Yet</Fallback>
         ) : (
-          <Conversations searchUsers={searchUsers} />
+          <Conversations
+            activeUser={activeUser}
+            setActiveUser={setActiveUser}
+            isSpacious={isSpacious}
+            previews={previews}
+            removeConversationAndUser={removeConversationAndUser}
+          />
         )}
+
         <ActionButton onClick={() => setIsChatModalOpen(true)}>
           Start New Chat
         </ActionButton>
       </div>
+
       {isChatModalOpen && (
         <NewChatModal
           closeChatModal={() => setIsChatModalOpen(false)}
-          createChatMethod={createNewChat}
-        ></NewChatModal>
+          createChatMethod={(name) => {
+            createNewChat(name);
+            setIsChatModalOpen(false);
+          }}
+        />
       )}
     </>
   );

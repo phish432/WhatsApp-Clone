@@ -3,16 +3,16 @@
   align-items: center;
   flex-grow: 1;
 
-  width: 24em;
-  height: 12em;
+  width: 24rem;
+  height: 12rem;
 
   border-radius: 8px;
   padding: 12px 12px;
 
-  background-color: #293941;
+  background-color: var(--dark-active);
 
   &::placeholder {
-    color: #87979f;
+    color: var(--white-secondary);
   }
 }
 

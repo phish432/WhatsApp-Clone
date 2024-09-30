@@ -1,9 +1,10 @@
-import React from "react";
+import type { ReactNode } from "react";
+
 import "./ActionButton.css";
 
 type Props = {
   onClick: () => void;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 const ActionButton = (props: Props) => {

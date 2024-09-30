@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+
 import Modal from "../Modal/Modal";
+
 import "./EditModal.css";
 
 type Props = {

@@ -1,9 +1,5 @@
-import { User } from "../types/types";
+import { User, UserAction } from "../types/types";
 import { useReducer } from "react";
-
-type UserAction =
-  | { type: "ADD_USER"; payload: User }
-  | { type: "REMOVE_USER"; payload: User["id"] };
 
 function useUserDB(key: string, initialValue: User[]) {
   const item = window.localStorage.getItem(key);
@@ -33,9 +29,9 @@ function useUserDB(key: string, initialValue: User[]) {
     }
   };
 
-  const [users, usersDispatch] = useReducer(usersReducer, userDB);
+  const [users, dispatch] = useReducer(usersReducer, userDB);
 
-  return { users, usersDispatch } as const;
+  return [users, dispatch] as const;
 }
 
 export default useUserDB;

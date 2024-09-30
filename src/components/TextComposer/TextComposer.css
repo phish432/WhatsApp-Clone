@@ -6,7 +6,7 @@
 
   padding: 12px 20px;
 
-  background-color: #212c33;
+  background-color: var(--dark-secondary);
 }
 
 .textComposer > .messageForm {
@@ -26,10 +26,10 @@
     border-radius: 8px;
     padding: 0 12px;
 
-    background-color: #293941;
+    background-color: var(--dark-active);
 
     &::placeholder {
-      color: #87979f;
+      color: var(--white-secondary);
     }
   }
 

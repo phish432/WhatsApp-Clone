@@ -1,11 +1,13 @@
-import React from "react";
+import type { ReactNode } from "react";
+
 import { createPortal } from "react-dom";
+
 import "./MessageTooltip.css";
 
 type Props = (
   | { visible: true; atPos: { x: number; y: number } }
   | { visible: false }
-) & { children?: React.ReactNode };
+) & { children?: ReactNode };
 
 const MessageTooltip = (props: Props) => {
   if (!props.visible) {

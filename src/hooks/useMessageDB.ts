@@ -1,18 +1,6 @@
-import type { User, Message } from "../types/types";
+import type { Message, MessageAction } from "../types/types";
 import { useReducer } from "react";
 import isMessageFromAToB from "../utils/isMessageFromAToB";
-
-type MessageAction =
-  | { type: "ADD_MESSAGE"; payload: Message }
-  | { type: "REMOVE_MESSAGE"; payload: Message["id"] }
-  | {
-      type: "REMOVE_CONVERSATION";
-      payload: { userAId: User["id"]; userBId: User["id"] };
-    }
-  | {
-      type: "UPDATE_MESSAGE";
-      payload: { id: Message["id"]; newContent: Message["content"] };
-    };
 
 function useMessageDB(key: string, initialValue: Message[]) {
   const item = window.localStorage.getItem(key);
@@ -72,9 +60,9 @@ function useMessageDB(key: string, initialValue: Message[]) {
     }
   };
 
-  const [messages, messagesDispatch] = useReducer(messagesReducer, messageDB);
+  const [messages, dispatch] = useReducer(messagesReducer, messageDB);
 
-  return { messages, messagesDispatch } as const;
+  return [messages, dispatch] as const;
 }
 
 export default useMessageDB;

@@ -1,43 +1,40 @@
+import type { Dispatch, SetStateAction } from "react";
 import type { User, UserMessagePreview } from "../../types/types";
-import DEFAULT_CLIENT from "../../constant/defaultClient";
-import { useMessagesContext } from "../../contexts/messagesContext";
+
 import PreviewCard from "../PreviewCard/PreviewCard";
-import getLatestMessageFromAToB from "../../utils/getLatestMessage";
+
 import "./Conversations.css";
 
 type Props = {
-  searchUsers: User[];
+  activeUser: User | null;
+  setActiveUser: Dispatch<SetStateAction<User | null>>;
+  isSpacious: boolean;
+  previews: UserMessagePreview[];
+  removeConversationAndUser: (userId: User["id"]) => void;
 };
 
 const Conversations = (props: Props) => {
-  const { searchUsers } = props;
-
-  const { messages } = useMessagesContext();
-
-  const userPreviews = searchUsers
-    .map(
-      (user) =>
-        ({
-          user: user,
-          latestMessage: getLatestMessageFromAToB(
-            DEFAULT_CLIENT.id,
-            user.id,
-            messages,
-          ),
-        }) as UserMessagePreview,
-    )
-    .sort((a, b) => {
-      if (!a.latestMessage) return 1;
-      if (!b.latestMessage) return -1;
-      return b.latestMessage.timestamp > a.latestMessage.timestamp ? 1 : -1;
-    });
+  const {
+    activeUser,
+    setActiveUser,
+    isSpacious,
+    previews,
+    removeConversationAndUser,
+  } = props;
 
   return (
     <div className="conversations">
-      {userPreviews.map((preview) => (
+      {previews.map((preview) => (
         <PreviewCard
           key={preview.user.id}
           preview={preview}
+          isActive={activeUser?.id === preview.user.id}
+          isSpacious={isSpacious}
+          onClick={() => setActiveUser(preview.user)}
+          removeConversationAndUser={() => {
+            removeConversationAndUser(preview.user.id);
+            setActiveUser(null);
+          }}
         />
       ))}
     </div>

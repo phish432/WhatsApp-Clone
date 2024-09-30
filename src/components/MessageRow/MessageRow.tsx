@@ -1,20 +1,48 @@
-import type { Message } from "../../types/types";
 import MessageBox from "../MessageBox/MessageBox";
+
 import "./MessageRow.css";
 
 type Props = {
-  message: Message;
+  isSpacious: boolean;
   isOutgoing: boolean;
+  content: string;
+  time: string;
+  removeMessage: () => void;
+  updateMessage: (newContent: string) => void;
 };
 
 const MessageRow = (props: Props) => {
-  const { message, isOutgoing } = props;
+  const {
+    isSpacious,
+    isOutgoing,
+    content,
+    time,
+    removeMessage,
+    updateMessage,
+  } = props;
+
+  if (!isOutgoing) {
+    return (
+      <div className="messageRow">
+        <MessageBox
+          isOutgoing={false}
+          isSpacious={isSpacious}
+          content={content}
+          time={time}
+        />
+      </div>
+    );
+  }
 
   return (
-    <div className={`messageRow${isOutgoing ? " outgoing" : " incoming"}`}>
+    <div className="messageRow">
       <MessageBox
-        message={message}
-        isOutgoing={isOutgoing}
+        isOutgoing={true}
+        isSpacious={isSpacious}
+        content={content}
+        time={time}
+        removeMessage={removeMessage}
+        updateMessage={updateMessage}
       />
     </div>
   );

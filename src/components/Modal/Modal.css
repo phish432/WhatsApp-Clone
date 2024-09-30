@@ -11,7 +11,9 @@
   height: 100%;
   width: 100%;
 
-  background-color: rgba(11, 20, 26, 0.85);
+  background-color: var(--bg-overlay);
+
+  z-index: 5;
 }
 
 .modal > .modalContent {
@@ -23,25 +25,22 @@
   padding: 24px;
   border-radius: 8px;
 
-  background-color: #212c33;
+  background-color: var(--dark-secondary);
 }
 
 .modal > .modalContent > .actionButton {
-  --text-color: #00a884;
-  --text-color-hover: #06cf9c;
-
   align-self: flex-end;
 
   width: fit-content;
 
-  border: 1px solid rgba(134, 150, 160, 0.15);
+  border: 1px solid var(--faded);
   border-radius: 24px;
   padding: 8px 16px;
 
-  color: var(--text-color);
+  color: var(--green-secondary);
 
   &:hover {
-    color: var(--text-color-hover);
-    box-shadow: rgba(11, 20, 26, 0.5) 0px 0px 8px 2px;
+    color: var(--green-hover);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px 1px;
   }
 }

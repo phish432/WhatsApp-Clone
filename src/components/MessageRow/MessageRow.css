@@ -7,10 +7,10 @@
   padding: 0 40px;
 }
 
-.messageRow.outgoing {
-  justify-content: flex-end;
+.messageRow > .messageBox.incoming {
+  margin-right: auto;
 }
 
-.messageRow.incoming {
-  justify-content: flex-start;
+.messageRow > .messageBox.outgoing {
+  margin-left: auto;
 }

@@ -1,8 +1,9 @@
-import React from "react";
+import type { ReactNode } from "react";
+
 import "./Fallback.css";
 
 type Props = {
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 const Fallback = (props: Props) => {
