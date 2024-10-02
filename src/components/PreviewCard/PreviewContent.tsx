@@ -1,7 +1,7 @@
 import type { MouseEvent } from "react";
 import type { UserMessagePreview } from "../../types/types";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import useShow from "../../hooks/useShow";
 
@@ -16,9 +16,19 @@ const PreviewContent = (props: Props) => {
   const { preview, isSpacious } = props;
   const { user, latestMsg } = preview;
 
-  const [clientPos, setClientPos] = useState({ x: 0, y: 0 });
-  const [isTooltipOpen, openTooltip, closeTooltip] = useShow(false);
+  const messageRef = useRef<HTMLDivElement | null>(null);
   const timeoutRef = useRef<number | undefined>(undefined);
+  const [clientPos, setClientPos] = useState({ x: 0, y: 0 });
+  const [isOverflowing, setIsOverflowing] = useState<boolean>(false);
+  const [isTooltipOpen, openTooltip, closeTooltip] = useShow(false);
+
+  useEffect(() => {
+    if (messageRef.current) {
+      setIsOverflowing(
+        messageRef.current.scrollHeight > messageRef.current.clientHeight,
+      );
+    }
+  }, [latestMsg]);
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!isTooltipOpen) {
@@ -48,13 +58,14 @@ const PreviewContent = (props: Props) => {
           <>
             <div
               className="message"
+              ref={messageRef}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
             >
               <b>{latestMsg.sender}:</b> {latestMsg.content}
             </div>
 
-            {isTooltipOpen && (
+            {isOverflowing && isTooltipOpen && (
               <PreviewTooltip
                 atPos={clientPos}
                 content={latestMsg.content}
