@@ -1,9 +1,7 @@
 import type { User } from "../types/types";
-import DEFAULT_CLIENT from "./defaultClient";
 
 // Static
 const DEFAULT_USERS: User[] = [
-  DEFAULT_CLIENT,
   {
     id: "85bf35bd-3c27-4292-98bf-9c9e857224d5",
     name: "User 1",

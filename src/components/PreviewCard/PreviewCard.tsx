@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { User, UserMessagePreview } from "../../types/types";
 
-import { useRef } from "react";
+import { memo, useRef } from "react";
 
 import useShow from "../../hooks/useShow";
 
@@ -28,13 +28,9 @@ const PreviewCard = (props: Props) => {
   const [isDeleteModalOpen, openDeleteModal, closeDeleteModal] = useShow(false);
   const previewCardRef = useRef<HTMLDivElement | null>(null);
 
-  const handleClick = () => {
-    setActiveUser(preview.user);
-  };
-
   const handleRemove = () => {
     removeConvAndUser(preview.user.id);
-    setActiveUser(null);
+    setActiveUser((prev) => (prev === preview.user ? null : prev));
     closeDeleteModal();
   };
 
@@ -45,7 +41,7 @@ const PreviewCard = (props: Props) => {
       <div
         className={`previewCard${isActive ? " active" : ""}`}
         ref={previewCardRef}
-        onClick={handleClick}
+        onClick={() => setActiveUser(preview.user)}
         onMouseEnter={openTooltip}
         onMouseLeave={closeTooltip}
       >
@@ -84,4 +80,6 @@ const PreviewCard = (props: Props) => {
   );
 };
 
-export default PreviewCard;
+const MemoizedPreviewCard = memo(PreviewCard);
+
+export default MemoizedPreviewCard;

@@ -1,26 +1,51 @@
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, Dispatch, RefObject } from "react";
+import type { Message, MessageAction, User } from "../../types/types";
 
-import { useState } from "react";
+import { DEFAULT_CLIENT } from "../../constant";
+
+import { memo, useState } from "react";
 
 import ActionButton from "../ActionButton/ActionButton";
 
 import "./TextComposer.css";
 
 type Props = {
-  createMessage: (content: string) => void;
+  activeUser: User;
+  chatAreaRef: RefObject<HTMLDivElement>;
+  messagesDispatch: Dispatch<MessageAction>;
 };
 
 const TextComposer = (props: Props) => {
-  const { createMessage } = props;
+  const { activeUser, chatAreaRef, messagesDispatch } = props;
 
   const [newContent, setNewContent] = useState<string>("");
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setNewContent(event.target.value);
+  const createNewMessage = (content: string) => {
+    if (content !== "") {
+      const newMessage = {
+        id: window.crypto.randomUUID(),
+        timestamp: new Date(),
+        fromUserId: DEFAULT_CLIENT.id,
+        toUserId: activeUser.id,
+        content: content,
+      } as Message;
+
+      messagesDispatch({
+        type: "ADD_MESSAGE",
+        payload: newMessage,
+      });
+    }
+  };
+
+  const scrollToChatAreaBottom = () => {
+    if (chatAreaRef.current) {
+      chatAreaRef.current.scrollTop = chatAreaRef.current.scrollHeight;
+    }
   };
 
   const sendMessage = () => {
-    createMessage(newContent);
+    createNewMessage(newContent);
+    scrollToChatAreaBottom();
     setNewContent("");
   };
 
@@ -33,7 +58,9 @@ const TextComposer = (props: Props) => {
           type="text"
           placeholder="Type a message"
           value={newContent}
-          onChange={handleChange}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setNewContent(e.target.value)
+          }
         />
         <ActionButton onClick={sendMessage}>
           <svg
@@ -56,4 +83,6 @@ const TextComposer = (props: Props) => {
   );
 };
 
-export default TextComposer;
+const MemoizedTextComposer = memo(TextComposer);
+
+export default MemoizedTextComposer;

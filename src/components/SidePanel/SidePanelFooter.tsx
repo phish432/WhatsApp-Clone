@@ -1,6 +1,8 @@
 import type { Dispatch } from "react";
 import type { User, UserAction } from "../../types/types";
 
+import { memo } from "react";
+
 import defaultProfileImg from "../../assets/defaultUserImage.png";
 import useShow from "../../hooks/useShow";
 
@@ -16,7 +18,7 @@ const SidePanelFooter = (props: Props) => {
 
   const [isChatModalOpen, openChatModal, closeChatModal] = useShow(false);
 
-  const createNewChat = (name: string) => {
+  const createNewUser = (name: string) => {
     const newUser: User = {
       id: window.crypto.randomUUID(),
       name: name,
@@ -27,7 +29,10 @@ const SidePanelFooter = (props: Props) => {
       type: "ADD_USER",
       payload: newUser,
     });
+  };
 
+  const createChatMethod = (name: string) => {
+    createNewUser(name);
     closeChatModal();
   };
 
@@ -37,7 +42,7 @@ const SidePanelFooter = (props: Props) => {
 
       {isChatModalOpen && (
         <NewChatModal
-          createChatMethod={createNewChat}
+          createChatMethod={createChatMethod}
           onClose={closeChatModal}
         />
       )}
@@ -45,4 +50,6 @@ const SidePanelFooter = (props: Props) => {
   );
 };
 
-export default SidePanelFooter;
+const MemoizedSidePanelFooter = memo(SidePanelFooter);
+
+export default MemoizedSidePanelFooter;

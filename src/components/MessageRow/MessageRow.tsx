@@ -14,14 +14,19 @@ type Props = {
 };
 
 const MessageRow = (props: Props) => {
-  const isOutgoing = props.message.fromUserId === DEFAULT_CLIENT.id;
+  const { isSpacious, message, removeMessage, updateMessage } = props;
+
+  const isOutgoing = message.fromUserId === DEFAULT_CLIENT.id;
 
   if (isOutgoing) {
     return (
       <div className="messageRow outgoing">
         <MessageRowBox
-          {...props}
           isOutgoing={true}
+          isSpacious={isSpacious}
+          message={message}
+          removeMessage={removeMessage}
+          updateMessage={updateMessage}
         />
       </div>
     );
@@ -30,9 +35,9 @@ const MessageRow = (props: Props) => {
   return (
     <div className="messageRow incoming">
       <MessageRowBox
-        isSpacious={props.isSpacious}
         isOutgoing={false}
-        message={props.message}
+        isSpacious={isSpacious}
+        message={message}
       />
     </div>
   );

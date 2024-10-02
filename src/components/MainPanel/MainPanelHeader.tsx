@@ -1,5 +1,7 @@
 import type { User } from "../../types/types";
 
+import { memo } from "react";
+
 import Avatar from "../Avatar/Avatar";
 import Header from "../Header/Header";
 
@@ -23,4 +25,6 @@ const MainPanelHeader = (props: Props) => {
   );
 };
 
-export default MainPanelHeader;
+const MemoizedMainPanelHeader = memo(MainPanelHeader);
+
+export default MemoizedMainPanelHeader;

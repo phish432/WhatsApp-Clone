@@ -1,6 +1,6 @@
 import type { ChangeEvent, Dispatch, SetStateAction } from "react";
 
-import { useRef } from "react";
+import { memo, useRef } from "react";
 
 import ActionButton from "../ActionButton/ActionButton";
 
@@ -56,4 +56,6 @@ const SearchBar = (props: Props) => {
   );
 };
 
-export default SearchBar;
+const MemoizedSearchBar = memo(SearchBar);
+
+export default MemoizedSearchBar;

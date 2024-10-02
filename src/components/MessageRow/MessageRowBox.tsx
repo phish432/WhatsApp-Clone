@@ -40,6 +40,8 @@ const MessageRowBox = (props: Props) => {
   if (isOutgoing) {
     const { removeMessage, updateMessage } = props;
 
+    const tooltipTargetRect = messageBoxRef.current?.getBoundingClientRect();
+
     const handleDeleteClick = () => {
       closeEditModal();
       openDeleteModal();
@@ -55,8 +57,6 @@ const MessageRowBox = (props: Props) => {
     };
 
     const deleteMethod = () => removeMessage(message.id);
-
-    const tooltipTargetRect = messageBoxRef.current?.getBoundingClientRect();
 
     return (
       <>

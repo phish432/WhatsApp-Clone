@@ -3,7 +3,7 @@ import type { Message, MessageAction, User } from "../../types/types";
 
 import { DEFAULT_CLIENT } from "../../constant";
 
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 
 import getOrderedChatHistoryOfAB from "../../utils/getChatHistory";
 
@@ -22,44 +22,10 @@ const MainPanelMain = (props: Props) => {
 
   const chatAreaRef = useRef<HTMLDivElement>(null);
 
-  const chatHistory = getOrderedChatHistoryOfAB(
-    DEFAULT_CLIENT.id,
-    activeUser.id,
-    messages,
+  const chatHistory = useMemo(
+    () => getOrderedChatHistoryOfAB(DEFAULT_CLIENT.id, activeUser.id, messages),
+    [messages, activeUser],
   );
-
-  const removeMessage = (messageId: Message["id"]) =>
-    messagesDispatch({
-      type: "REMOVE_MESSAGE",
-      payload: messageId,
-    });
-
-  const updateMessage = (messageId: Message["id"], content: string) =>
-    messagesDispatch({
-      type: "UPDATE_MESSAGE",
-      payload: { id: messageId, newContent: content },
-    });
-
-  const createMessage = (content: string) => {
-    if (content !== "") {
-      const newMessage = {
-        id: window.crypto.randomUUID(),
-        timestamp: new Date(),
-        fromUserId: DEFAULT_CLIENT.id,
-        toUserId: activeUser!.id,
-        content: content,
-      } as Message;
-
-      messagesDispatch({
-        type: "ADD_MESSAGE",
-        payload: newMessage,
-      });
-    }
-
-    if (chatAreaRef.current) {
-      chatAreaRef.current.scrollTop = chatAreaRef.current.scrollHeight;
-    }
-  };
 
   return (
     <>
@@ -67,13 +33,14 @@ const MainPanelMain = (props: Props) => {
         chatAreaRef={chatAreaRef}
         isSpacious={isSpacious}
         chatHistory={chatHistory}
-        removeMessage={removeMessage}
-        updateMessage={updateMessage}
+        messagesDispatch={messagesDispatch}
       />
 
       <TextComposer
         key={activeUser.id}
-        createMessage={createMessage}
+        activeUser={activeUser}
+        chatAreaRef={chatAreaRef}
+        messagesDispatch={messagesDispatch}
       />
     </>
   );

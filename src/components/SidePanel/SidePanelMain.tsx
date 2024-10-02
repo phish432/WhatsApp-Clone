@@ -8,7 +8,7 @@ import type {
 
 import { DEFAULT_CLIENT } from "../../constant";
 
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import getPreviews from "../../utils/getPreviews";
 import searchPreviewsByUserName from "../../utils/searchUsersByName";
@@ -39,20 +39,30 @@ const SidePanelMain = (props: Props) => {
 
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  const otherUsers = users.filter((user) => user.id !== DEFAULT_CLIENT.id);
-  const previews = getPreviews(otherUsers, messages, DEFAULT_CLIENT.id);
-  const searchPreviews = searchPreviewsByUserName(previews, searchTerm);
+  const previews = useMemo(
+    () => getPreviews(users, messages, DEFAULT_CLIENT.id),
+    [users, messages],
+  );
 
-  const removeConvAndUser = (userId: User["id"]) => {
-    messagesDispatch({
-      type: "REMOVE_CONVERSATION",
-      payload: { userAId: DEFAULT_CLIENT.id, userBId: userId },
-    });
-    usersDispatch({
-      type: "REMOVE_USER",
-      payload: userId,
-    });
-  };
+  const searchPreviews = useMemo(
+    () => searchPreviewsByUserName(previews, searchTerm),
+    [previews, searchTerm],
+  );
+
+  const removeConvAndUser = useCallback(
+    (userId: User["id"]) => {
+      console.log("r");
+      messagesDispatch({
+        type: "REMOVE_CONVERSATION",
+        payload: { userAId: DEFAULT_CLIENT.id, userBId: userId },
+      });
+      usersDispatch({
+        type: "REMOVE_USER",
+        payload: userId,
+      });
+    },
+    [messagesDispatch, usersDispatch],
+  );
 
   return (
     <>

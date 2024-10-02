@@ -2,6 +2,8 @@ import type { Dispatch, SetStateAction } from "react";
 
 import { DEFAULT_CLIENT } from "../../constant";
 
+import { memo } from "react";
+
 import ActionButton from "../ActionButton/ActionButton";
 import Avatar from "../Avatar/Avatar";
 import Header from "../Header/Header";
@@ -14,10 +16,6 @@ type Props = {
 const SidePanelHeader = (props: Props) => {
   const { isSpacious, setIsSpacious } = props;
 
-  const handleClick = () => {
-    setIsSpacious((prev) => !prev);
-  };
-
   return (
     <>
       <Header>
@@ -25,7 +23,7 @@ const SidePanelHeader = (props: Props) => {
           src={DEFAULT_CLIENT.profileImg}
           alt={DEFAULT_CLIENT.name}
         />
-        <ActionButton onClick={handleClick}>
+        <ActionButton onClick={() => setIsSpacious((prev) => !prev)}>
           {isSpacious ? "Spacious" : "Compact"} Mode
         </ActionButton>
       </Header>
@@ -33,4 +31,6 @@ const SidePanelHeader = (props: Props) => {
   );
 };
 
-export default SidePanelHeader;
+const MemoizedSidePanelHeader = memo(SidePanelHeader);
+
+export default MemoizedSidePanelHeader;

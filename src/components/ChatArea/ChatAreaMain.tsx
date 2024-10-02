@@ -1,10 +1,8 @@
-import type { Ref } from "react";
 import type { Message } from "../../types/types";
 
 import MessageRow from "../MessageRow/MessageRow";
 
 type Props = {
-  chatAreaRef: Ref<HTMLDivElement>;
   isSpacious: boolean;
   chatHistory: Message[];
   removeMessage: (messageId: Message["id"]) => void;
