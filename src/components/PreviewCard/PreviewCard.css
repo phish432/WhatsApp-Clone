@@ -8,10 +8,6 @@
   cursor: pointer;
 }
 
-.previewCard.active {
-  background-color: var(--dark-active);
-}
-
 .previewCard > .previewContent {
   display: flex;
   flex-direction: column;
@@ -22,6 +18,10 @@
   height: 100%;
 
   padding: 12px 20px 12px 0;
+}
+
+.previewCard > .avatar {
+  height: 100px;
 }
 
 .previewCard > .previewContent > .banner {
@@ -62,5 +62,39 @@
 
   &.none {
     color: var(--white-secondary);
+  }
+}
+
+.previewCard {
+  & > .previewContent {
+    border-top: 1px solid var(--faded);
+  }
+
+  &:last-of-type > .previewContent {
+    border-bottom: 1px solid var(--faded);
+  }
+}
+
+.previewCard:hover {
+  background-color: var(--dark-secondary);
+
+  & > .previewContent {
+    border-top: 1px solid var(--dark-secondary);
+  }
+
+  &:last-of-type > .previewContent {
+    border-bottom: 1px solid var(--dark-secondary);
+  }
+}
+
+.previewCard.active {
+  background-color: var(--dark-active);
+
+  & > .previewContent {
+    border-top: 1px solid var(--dark-active);
+  }
+
+  &:last-of-type > .previewContent {
+    border-bottom: 1px solid var(--dark-active);
   }
 }

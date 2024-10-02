@@ -1,47 +1,14 @@
 .conversations {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 
   width: 100%;
-  height: auto;
 
   overflow-y: scroll;
 }
 
-.conversations > .previewCard > .avatar {
-  height: 100px;
-}
-
-.conversations > .previewCard {
-  & > .previewContent {
-    border-top: 1px solid var(--faded);
-  }
-
-  &:last-of-type > .previewContent {
-    border-bottom: 1px solid var(--faded);
-  }
-}
-
-.conversations > .previewCard:hover {
-  background-color: var(--dark-secondary);
-
-  & > .previewContent {
-    border-top: 1px solid var(--dark-secondary);
-  }
-
-  &:last-of-type > .previewContent {
-    border-bottom: 1px solid var(--dark-secondary);
-  }
-}
-
-.conversations > .previewCard.active {
-  background-color: var(--dark-active);
-
-  & > .previewContent {
-    border-top: 1px solid var(--dark-active);
-  }
-
-  &:last-of-type > .previewContent {
-    border-bottom: 1px solid var(--dark-active);
-  }
+.fallback {
+  font-size: 1.5rem;
+  border-top: 1px solid var(--faded);
 }

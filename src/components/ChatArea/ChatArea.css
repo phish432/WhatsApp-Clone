@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   flex-direction: column-reverse;
+  flex-grow: 1;
   gap: 12px;
 
-  height: auto;
   width: 100%;
 
   background: url(../../assets/bg-chat-room.png) var(--bg-overlay);
@@ -14,14 +14,4 @@
 
 .chatArea > .fallback {
   font-size: 1.5rem;
-}
-
-.chatArea > .messageRow {
-  &:first-child {
-    margin-bottom: 16px;
-  }
-
-  &:last-child {
-    margin-top: 16px;
-  }
 }

@@ -32,11 +32,3 @@
     white-space: pre-wrap;
   }
 }
-
-.mainPanel .chatArea {
-  flex-grow: 1;
-}
-
-.mainPanel .textComposer {
-  height: 64px;
-}
