@@ -18,29 +18,10 @@
 
 .modal > .modalContent {
   display: flex;
-  align-items: center;
   flex-direction: column;
-  gap: 16px;
 
   padding: 24px;
   border-radius: 8px;
 
   background-color: var(--dark-secondary);
-}
-
-.modal > .modalContent > .actionButton {
-  align-self: flex-end;
-
-  width: fit-content;
-
-  border: 1px solid var(--faded);
-  border-radius: 24px;
-  padding: 8px 16px;
-
-  color: var(--green-secondary);
-
-  &:hover {
-    color: var(--green-hover);
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px 1px;
-  }
 }

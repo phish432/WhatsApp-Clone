@@ -1,12 +1,12 @@
 import "./Avatar.css";
 
 type Props = {
-  src: string;
   alt: string;
+  src: string;
 };
 
 const Avatar = (props: Props) => {
-  const { src, alt } = props;
+  const { alt, src } = props;
 
   return (
     <div className="avatar">

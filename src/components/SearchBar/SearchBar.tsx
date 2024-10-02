@@ -1,3 +1,5 @@
+import type { ChangeEvent, Dispatch, SetStateAction } from "react";
+
 import { useRef } from "react";
 
 import ActionButton from "../ActionButton/ActionButton";
@@ -6,7 +8,7 @@ import "./SearchBar.css";
 
 type Props = {
   searchTerm: string;
-  setSearchTerm: (searchTerm: string) => void;
+  setSearchTerm: Dispatch<SetStateAction<string>>;
 };
 
 const SearchBar = (props: Props) => {
@@ -18,6 +20,10 @@ const SearchBar = (props: Props) => {
     if (searchInputRef.current) {
       searchInputRef.current.focus();
     }
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
   };
 
   return (
@@ -43,7 +49,7 @@ const SearchBar = (props: Props) => {
           type="text"
           placeholder="Search"
           value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
+          onChange={handleChange}
         />
       </div>
     </div>

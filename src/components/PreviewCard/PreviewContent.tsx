@@ -1,10 +1,11 @@
+import type { MouseEvent } from "react";
 import type { UserMessagePreview } from "../../types/types";
 
 import { useRef, useState } from "react";
 
-import MessageTooltip from "../MessageTooltip/MessageTooltip";
+import useShow from "../../hooks/useShow";
 
-import "./PreviewContent.css";
+import PreviewTooltip from "./PreviewTooltip";
 
 type Props = {
   preview: UserMessagePreview;
@@ -16,15 +17,15 @@ const PreviewContent = (props: Props) => {
   const { user, latestMsg } = preview;
 
   const [clientPos, setClientPos] = useState({ x: 0, y: 0 });
-  const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false);
+  const [isTooltipOpen, openTooltip, closeTooltip] = useShow(false);
   const timeoutRef = useRef<number | undefined>(undefined);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!isTooltipOpen) {
       clearTimeout(timeoutRef.current);
-      setClientPos({ x: e.clientX, y: e.clientY });
+      setClientPos({ x: event.clientX, y: event.clientY });
       timeoutRef.current = window.setTimeout(() => {
-        setIsTooltipOpen(true);
+        openTooltip();
         clearTimeout(timeoutRef.current);
       }, 500);
     }
@@ -32,7 +33,7 @@ const PreviewContent = (props: Props) => {
 
   const handleMouseLeave = () => {
     clearTimeout(timeoutRef.current);
-    setIsTooltipOpen(false);
+    closeTooltip();
   };
 
   if (latestMsg !== undefined) {
@@ -42,6 +43,7 @@ const PreviewContent = (props: Props) => {
           <div className="bannerName">{user.name}</div>
           <div className="bannerTime">{latestMsg.time}</div>
         </div>
+
         {isSpacious && (
           <>
             <div
@@ -51,12 +53,13 @@ const PreviewContent = (props: Props) => {
             >
               <b>{latestMsg.sender}:</b> {latestMsg.content}
             </div>
-            <MessageTooltip
-              visible={isTooltipOpen}
-              atPos={clientPos}
-            >
-              {latestMsg.content}
-            </MessageTooltip>
+
+            {isTooltipOpen && (
+              <PreviewTooltip
+                atPos={clientPos}
+                content={latestMsg.content}
+              />
+            )}
           </>
         )}
       </div>

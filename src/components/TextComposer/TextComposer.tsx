@@ -1,7 +1,4 @@
-import type { Dispatch } from "react";
-import type { Message, MessageAction, User } from "../../types/types";
-
-import DEFAULT_CLIENT from "../../constant/defaultClient";
+import type { ChangeEvent } from "react";
 
 import { useState } from "react";
 
@@ -10,33 +7,21 @@ import ActionButton from "../ActionButton/ActionButton";
 import "./TextComposer.css";
 
 type Props = {
-  activeUser: User;
-  messagesDispatch: Dispatch<MessageAction>;
-  scrollToEndOfChatArea: () => void;
+  createMessage: (content: string) => void;
 };
 
 const TextComposer = (props: Props) => {
-  const { activeUser, messagesDispatch, scrollToEndOfChatArea } = props;
+  const { createMessage } = props;
 
   const [newContent, setNewContent] = useState<string>("");
 
-  const sendMessage = () => {
-    if (newContent !== "") {
-      const newMessage = {
-        id: window.crypto.randomUUID(),
-        timestamp: new Date(),
-        fromUserId: DEFAULT_CLIENT.id,
-        toUserId: activeUser.id,
-        content: newContent,
-      } as Message;
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setNewContent(event.target.value);
+  };
 
-      messagesDispatch({
-        type: "ADD_MESSAGE",
-        payload: newMessage,
-      });
-      setNewContent("");
-      scrollToEndOfChatArea();
-    }
+  const sendMessage = () => {
+    createMessage(newContent);
+    setNewContent("");
   };
 
   return (
@@ -48,7 +33,7 @@ const TextComposer = (props: Props) => {
           type="text"
           placeholder="Type a message"
           value={newContent}
-          onChange={(event) => setNewContent(event.target.value)}
+          onChange={handleChange}
         />
         <ActionButton onClick={sendMessage}>
           <svg

@@ -39,4 +39,4 @@ type MessageAction =
       payload: { id: Message["id"]; newContent: Message["content"] };
     };
 
-export type { User, Message, UserMessagePreview, UserAction, MessageAction };
+export type { Message, MessageAction, User, UserAction, UserMessagePreview };

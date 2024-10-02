@@ -1,17 +1,17 @@
-.messageTooltip {
+.previewTooltip {
   display: flex;
   align-items: center;
 
-  position: fixed;
+  position: absolute;
 
   font-size: 0.875rem;
   max-width: 30rem;
 
-  border: 2px solid var(--green-secondary);
+  border: 1px solid var(--green-hover);
   border-radius: 4px;
   padding: 8px;
 
-  background-color: var(--dark-secondary);
+  background-color: var(--dark-primary);
 
   z-index: 5;
 }

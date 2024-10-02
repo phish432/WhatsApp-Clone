@@ -2,8 +2,6 @@
   display: flex;
   align-items: center;
 
-  position: relative;
-
   width: 100%;
   height: fit-content;
 
@@ -14,31 +12,55 @@
   background-color: var(--dark-active);
 }
 
-.previewCard > .hoverTooltip {
+.previewCard > .previewContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5px;
+
+  flex-grow: 1;
+  height: 100%;
+
+  padding: 12px 20px 12px 0;
+}
+
+.previewCard > .previewContent > .banner {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
-  position: absolute;
-  top: 0;
-  right: 0;
+  & > .bannerName {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: pre-wrap;
 
-  & > .actionButton {
-    font-size: 0.75rem;
+    padding-right: 20px;
+
+    font-size: 1rem;
     font-weight: bold;
+  }
 
-    border: 1px solid var(--green-hover);
-    border-radius: 4px;
-    padding: 2px;
+  & > .bannerTime {
+    font-size: 0.75rem;
+    color: var(--white-secondary);
+  }
+}
 
-    background-color: var(--dark-primary);
-    color: var(--green-hover);
+.previewCard > .previewContent > .message {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 
-    z-index: 3;
+  font-size: 0.875rem;
 
-    &:hover {
-      color: var(--dark-primary);
-      background-color: var(--green-hover);
-      box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px 1px;
-    }
+  overflow: hidden;
+  white-space: pre-wrap;
+
+  &.none {
+    color: var(--white-secondary);
   }
 }

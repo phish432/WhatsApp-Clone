@@ -1,48 +1,38 @@
-import MessageBox from "../MessageBox/MessageBox";
+import type { Message } from "../../types/types";
+
+import { DEFAULT_CLIENT } from "../../constant";
+
+import MessageRowBox from "./MessageRowBox";
 
 import "./MessageRow.css";
 
 type Props = {
   isSpacious: boolean;
-  isOutgoing: boolean;
-  content: string;
-  time: string;
-  removeMessage: () => void;
-  updateMessage: (newContent: string) => void;
+  message: Message;
+  removeMessage: (messageId: Message["id"]) => void;
+  updateMessage: (messageId: Message["id"], content: string) => void;
 };
 
 const MessageRow = (props: Props) => {
-  const {
-    isSpacious,
-    isOutgoing,
-    content,
-    time,
-    removeMessage,
-    updateMessage,
-  } = props;
+  const isOutgoing = props.message.fromUserId === DEFAULT_CLIENT.id;
 
-  if (!isOutgoing) {
+  if (isOutgoing) {
     return (
-      <div className="messageRow">
-        <MessageBox
-          isOutgoing={false}
-          isSpacious={isSpacious}
-          content={content}
-          time={time}
+      <div className="messageRow outgoing">
+        <MessageRowBox
+          {...props}
+          isOutgoing={true}
         />
       </div>
     );
   }
 
   return (
-    <div className="messageRow">
-      <MessageBox
-        isOutgoing={true}
-        isSpacious={isSpacious}
-        content={content}
-        time={time}
-        removeMessage={removeMessage}
-        updateMessage={updateMessage}
+    <div className="messageRow incoming">
+      <MessageRowBox
+        isSpacious={props.isSpacious}
+        isOutgoing={false}
+        message={props.message}
       />
     </div>
   );

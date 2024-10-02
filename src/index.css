@@ -20,6 +20,8 @@
   color: var(--white-primary);
   background-color: var(--bg-full);
 
+  scrollbar-color: var(--white-faded) var(--faded);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -33,4 +35,13 @@
 button,
 input {
   all: unset;
+}
+
+textarea {
+  outline: none;
+  border: none;
+  resize: none;
+
+  font: inherit;
+  color: inherit;
 }

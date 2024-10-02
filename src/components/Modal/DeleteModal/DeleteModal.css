@@ -1,0 +1,42 @@
+.modal.delete .modalContent {
+  gap: 1rem;
+
+  width: 24rem;
+  min-width: fit-content;
+}
+
+.modal.delete > .modalContent > .modalHead {
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 1;
+
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.modal.delete > .modalContent > .modalFoot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1;
+  gap: 8px;
+
+  & > .actionButton {
+    width: fit-content;
+
+    border: 1px solid var(--faded);
+    border-radius: 24px;
+    padding: 8px 16px;
+
+    color: var(--green-secondary);
+
+    &:hover {
+      color: var(--green-hover);
+      box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px 1px;
+    }
+
+    &:active {
+      background-color: var(--dark-active);
+    }
+  }
+}

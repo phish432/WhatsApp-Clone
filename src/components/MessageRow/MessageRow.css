@@ -7,10 +7,45 @@
   padding: 0 40px;
 }
 
-.messageRow > .messageBox.incoming {
+.messageRow.incoming > .messageRowBox {
   margin-right: auto;
+  background-color: var(--dark-secondary);
 }
 
-.messageRow > .messageBox.outgoing {
+.messageRow.outgoing > .messageRowBox {
   margin-left: auto;
+  background-color: var(--green-primary);
+}
+
+.messageRowBox {
+  display: flex;
+  align-items: center;
+
+  max-width: 66%;
+
+  border-radius: 8px;
+  padding: 8px 8px 4px 12px;
+
+  & > .text {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+
+    padding-bottom: 8px;
+    padding-right: 8px;
+
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+  }
+
+  & > .time {
+    display: flex;
+    align-items: center;
+
+    width: fit-content;
+
+    font-size: 0.75rem;
+
+    color: var(--white-faded);
+  }
 }

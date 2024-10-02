@@ -1,61 +1,83 @@
-import type { UserMessagePreview } from "../../types/types";
+import type { Dispatch, SetStateAction } from "react";
+import type { User, UserMessagePreview } from "../../types/types";
 
-import { useState } from "react";
+import { useRef } from "react";
 
-import ActionButton from "../ActionButton/ActionButton";
+import useShow from "../../hooks/useShow";
+
+import ActionTooltip from "../ActionTooltip/ActionTooltip";
 import Avatar from "../Avatar/Avatar";
-import DeleteModal from "../DeleteModal/DeleteModal";
-import PreviewContent from "../PreviewContent/PreviewContent";
+import DeleteModal from "../Modal/DeleteModal/DeleteModal";
+import PreviewContent from "./PreviewContent";
 
 import "./PreviewCard.css";
 
 type Props = {
-  preview: UserMessagePreview;
   isActive: boolean;
   isSpacious: boolean;
-  onClick: () => void;
-  removeConversationAndUser: () => void;
+  preview: UserMessagePreview;
+  removeConvAndUser: (userId: User["id"]) => void;
+  setActiveUser: Dispatch<SetStateAction<User | null>>;
 };
 
 const PreviewCard = (props: Props) => {
-  const { preview, isActive, isSpacious, onClick, removeConversationAndUser } =
+  const { preview, isActive, isSpacious, setActiveUser, removeConvAndUser } =
     props;
 
-  const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const [isTooltipOpen, openTooltip, closeTooltip] = useShow(false);
+  const [isDeleteModalOpen, openDeleteModal, closeDeleteModal] = useShow(false);
+  const previewCardRef = useRef<HTMLDivElement | null>(null);
+
+  const handleClick = () => {
+    setActiveUser(preview.user);
+  };
+
+  const handleRemove = () => {
+    removeConvAndUser(preview.user.id);
+    setActiveUser(null);
+    closeDeleteModal();
+  };
+
+  const tooltipTargetRect = previewCardRef.current?.getBoundingClientRect();
 
   return (
     <>
       <div
         className={`previewCard${isActive ? " active" : ""}`}
-        onClick={onClick}
-        onMouseEnter={() => setIsTooltipOpen(true)}
-        onMouseLeave={() => setIsTooltipOpen(false)}
+        ref={previewCardRef}
+        onClick={handleClick}
+        onMouseEnter={openTooltip}
+        onMouseLeave={closeTooltip}
       >
         <Avatar
-          src={preview.user.profileImg}
           alt={preview.user.name}
+          src={preview.user.profileImg}
         />
 
         <PreviewContent
-          preview={preview}
           isSpacious={isSpacious}
+          preview={preview}
         />
 
         {isTooltipOpen && (
-          <div className="hoverTooltip">
-            <ActionButton onClick={() => setIsDeleteModalOpen(true)}>
-              Delete
-            </ActionButton>
-          </div>
+          <ActionTooltip
+            buttons={[
+              {
+                name: "Delete",
+                onClick: openDeleteModal,
+              },
+            ]}
+            position="inside"
+            targetRect={tooltipTargetRect}
+          />
         )}
       </div>
 
       {isDeleteModalOpen && (
         <DeleteModal
-          confirmText="Delete Conversation"
-          closeDeleteModal={() => setIsDeleteModalOpen(false)}
-          deleteMethod={removeConversationAndUser}
+          onClose={closeDeleteModal}
+          title="Delete Conversation"
+          onDelete={handleRemove}
         />
       )}
     </>
