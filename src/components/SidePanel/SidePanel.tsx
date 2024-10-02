@@ -1,8 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { Message, MessageAction, User } from "../../types/types";
 
-import { DEFAULT_USERS } from "../../constant";
-
 import useUserDB from "../../hooks/useUserDB";
 
 import SidePanelFooter from "./SidePanelFooter";
@@ -30,7 +28,7 @@ const SidePanel = (props: Props) => {
     setIsSpacious,
   } = props;
 
-  const [users, usersDispatch] = useUserDB("usrDB", DEFAULT_USERS);
+  const [users, usersDispatch] = useUserDB("usrDB", []);
 
   return (
     <div className="sidePanel">

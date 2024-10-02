@@ -1,7 +1,5 @@
 import type { User } from "./types/types";
 
-import { DEFAULT_MESSAGES } from "./constant";
-
 import { useState } from "react";
 
 import useMessageDB from "./hooks/useMessageDB";
@@ -14,7 +12,7 @@ import "./App.css";
 const App = () => {
   const [activeUser, setActiveUser] = useState<User | null>(null);
   const [isSpacious, setIsSpacious] = useState<boolean>(true);
-  const [messages, messagesDispatch] = useMessageDB("msgDB", DEFAULT_MESSAGES);
+  const [messages, messagesDispatch] = useMessageDB("msgDB", []);
 
   return (
     <div id="app">
