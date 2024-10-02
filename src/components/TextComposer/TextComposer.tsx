@@ -1,4 +1,4 @@
-import type { ChangeEvent, Dispatch, RefObject } from "react";
+import type { Dispatch, RefObject } from "react";
 import type { Message, MessageAction, User } from "../../types/types";
 
 import { DEFAULT_CLIENT } from "../../constant";
@@ -58,9 +58,7 @@ const TextComposer = (props: Props) => {
           type="text"
           placeholder="Type a message"
           value={newContent}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setNewContent(e.target.value)
-          }
+          onChange={(e) => setNewContent(e.target.value)}
         />
         <ActionButton onClick={sendMessage}>
           <svg

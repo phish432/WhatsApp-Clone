@@ -1,5 +1,3 @@
-import type { ChangeEvent } from "react";
-
 import { useEffect, useRef, useState } from "react";
 
 import ActionButton from "../../ActionButton/ActionButton";
@@ -25,10 +23,6 @@ const NewChatModal = (props: Props) => {
     }
   }, []);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setUserName(event.target.value);
-  };
-
   const handleCancel = () => {
     onClose();
   };
@@ -53,7 +47,7 @@ const NewChatModal = (props: Props) => {
             name="chatName"
             className="chatName"
             value={userName}
-            onChange={handleChange}
+            onChange={(e) => setUserName(e.target.value)}
             placeholder="Enter chat name"
           />
         }

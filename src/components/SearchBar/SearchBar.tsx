@@ -1,4 +1,4 @@
-import type { ChangeEvent, Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 import { memo, useRef } from "react";
 
@@ -20,10 +20,6 @@ const SearchBar = (props: Props) => {
     if (searchInputRef.current) {
       searchInputRef.current.focus();
     }
-  };
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
   };
 
   return (
@@ -49,7 +45,7 @@ const SearchBar = (props: Props) => {
           type="text"
           placeholder="Search"
           value={searchTerm}
-          onChange={handleChange}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
     </div>

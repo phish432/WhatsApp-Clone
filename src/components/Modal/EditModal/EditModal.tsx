@@ -1,5 +1,3 @@
-import type { ChangeEvent } from "react";
-
 import { useEffect, useRef, useState } from "react";
 
 import ActionButton from "../../ActionButton/ActionButton";
@@ -28,10 +26,6 @@ const EditModal = (props: Props) => {
     }
   }, []);
 
-  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setNewContent(event.target.value);
-  };
-
   const handleCancel = () => {
     onClose();
   };
@@ -55,7 +49,7 @@ const EditModal = (props: Props) => {
             name="contentEditor"
             className="contentEditor"
             value={newContent}
-            onChange={handleChange}
+            onChange={(e) => setNewContent(e.target.value)}
           />
         }
         foot={
