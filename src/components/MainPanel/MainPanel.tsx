@@ -1,9 +1,16 @@
 import type { Dispatch } from "react";
 import type { Message, MessageAction, User } from "../../types/types";
 
+import { lazy } from "react";
+
+import withSuspense from "../../hocs/withSuspense";
+
+import Loading from "../Loading/Loading";
 import MainPanelFallback from "./MainPanelFallback";
 import MainPanelHeader from "./MainPanelHeader";
-import MainPanelMain from "./MainPanelMain";
+
+const MainPanelMain = lazy(() => import("./MainPanelMain"));
+const LazyMainPanelMain = withSuspense(MainPanelMain, <Loading />);
 
 import "./MainPanel.css";
 
@@ -24,7 +31,7 @@ const MainPanel = (props: Props) => {
       ) : (
         <>
           <MainPanelHeader activeUser={activeUser} />
-          <MainPanelMain
+          <LazyMainPanelMain
             activeUser={activeUser}
             isSpacious={isSpacious}
             messages={messages}
