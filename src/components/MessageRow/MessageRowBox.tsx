@@ -50,8 +50,8 @@ const MessageRowBox = (props: Props) => {
       openEditModal();
     };
 
-    const editMethod = () => {
-      return (newContent: string) => updateMessage(message.id, newContent);
+    const editMethod = (newContent: string) => {
+      updateMessage(message.id, newContent);
     };
 
     const deleteMethod = () => removeMessage(message.id);
