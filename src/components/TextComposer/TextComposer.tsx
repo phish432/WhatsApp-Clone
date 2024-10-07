@@ -4,6 +4,7 @@ import type { Message, MessageAction, User } from "../../types/types";
 import { DEFAULT_CLIENT } from "../../constant";
 
 import { memo, useState } from "react";
+import { v4 as uuid } from "uuid";
 
 import ActionButton from "../ActionButton/ActionButton";
 
@@ -23,7 +24,7 @@ const TextComposer = (props: Props) => {
   const createNewMessage = (content: string) => {
     if (content !== "") {
       const newMessage = {
-        id: window.crypto.randomUUID(),
+        id: uuid(),
         timestamp: new Date(),
         fromUserId: DEFAULT_CLIENT.id,
         toUserId: activeUser.id,

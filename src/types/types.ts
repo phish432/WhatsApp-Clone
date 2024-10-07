@@ -1,4 +1,6 @@
-type UniqueId = ReturnType<typeof self.crypto.randomUUID>;
+import { v4 as uuid } from "uuid";
+
+type UniqueId = ReturnType<typeof uuid>;
 
 type User = {
   readonly id: UniqueId;

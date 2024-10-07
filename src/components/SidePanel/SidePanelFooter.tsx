@@ -2,6 +2,7 @@ import type { Dispatch } from "react";
 import type { User, UserAction } from "../../types/types";
 
 import { memo } from "react";
+import { v4 as uuid } from "uuid";
 
 import defaultProfileImg from "../../assets/defaultUserImage.png";
 import useShow from "../../hooks/useShow";
@@ -20,7 +21,7 @@ const SidePanelFooter = (props: Props) => {
 
   const createNewUser = (name: string) => {
     const newUser: User = {
-      id: window.crypto.randomUUID(),
+      id: uuid(),
       name: name,
       profileImg: defaultProfileImg,
     };

@@ -1,16 +1,18 @@
 import type { Message } from "../types/types";
 
+import { v4 as uuid } from "uuid";
+
 const DEFAULT_MESSAGES: Message[] = [
   // Conversation 1: Client (User 0) and User 1
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     toUserId: "85bf35bd-3c27-4292-98bf-9c9e857224d5", // User 1
     timestamp: new Date(new Date().getTime() - 1000 * 60 * 60 * 6),
     content: "Hi! How’s it going?",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     toUserId: "85bf35bd-3c27-4292-98bf-9c9e857224d5", // User 1
     timestamp: new Date(
@@ -19,7 +21,7 @@ const DEFAULT_MESSAGES: Message[] = [
     content: "Have you finished the report I sent you?",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     toUserId: "85bf35bd-3c27-4292-98bf-9c9e857224d5", // User 1
     timestamp: new Date(
@@ -28,7 +30,7 @@ const DEFAULT_MESSAGES: Message[] = [
     content: "Let me know if you need any help with it.",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "85bf35bd-3c27-4292-98bf-9c9e857224d5", // User 1
     toUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     timestamp: new Date(
@@ -37,7 +39,7 @@ const DEFAULT_MESSAGES: Message[] = [
     content: "Hey! I’m doing well, thanks for asking.",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "85bf35bd-3c27-4292-98bf-9c9e857224d5", // User 1
     toUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     timestamp: new Date(
@@ -46,7 +48,7 @@ const DEFAULT_MESSAGES: Message[] = [
     content: "I’m almost done with the report.",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "85bf35bd-3c27-4292-98bf-9c9e857224d5", // User 1
     toUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     timestamp: new Date(
@@ -55,7 +57,7 @@ const DEFAULT_MESSAGES: Message[] = [
     content: "I might need a bit more time, but I’ll manage.",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     toUserId: "85bf35bd-3c27-4292-98bf-9c9e857224d5", // User 1
     timestamp: new Date(
@@ -64,7 +66,7 @@ const DEFAULT_MESSAGES: Message[] = [
     content: "No worries. Just update me when you’re ready.",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     toUserId: "85bf35bd-3c27-4292-98bf-9c9e857224d5", // User 1
     timestamp: new Date(
@@ -75,14 +77,14 @@ const DEFAULT_MESSAGES: Message[] = [
 
   // Conversation 2: Client (User 0) and User 2
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "6cb8d912-7574-432e-9922-27b9099cf44f", // User 2
     toUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     timestamp: new Date(new Date().getTime() - 1000 * 60 * 60 * 4),
     content: "Hello! I’ve been meaning to ask you about the project.",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "6cb8d912-7574-432e-9922-27b9099cf44f", // User 2
     toUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     timestamp: new Date(
@@ -91,7 +93,7 @@ const DEFAULT_MESSAGES: Message[] = [
     content: "Are there any updates on the timeline?",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "6cb8d912-7574-432e-9922-27b9099cf44f", // User 2
     toUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     timestamp: new Date(
@@ -100,7 +102,7 @@ const DEFAULT_MESSAGES: Message[] = [
     content: "I’m eager to get started on the next phase.",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     toUserId: "6cb8d912-7574-432e-9922-27b9099cf44f", // User 2
     timestamp: new Date(
@@ -109,7 +111,7 @@ const DEFAULT_MESSAGES: Message[] = [
     content: "Hi! The project timeline has been updated.",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     toUserId: "6cb8d912-7574-432e-9922-27b9099cf44f", // User 2
     timestamp: new Date(
@@ -120,14 +122,14 @@ const DEFAULT_MESSAGES: Message[] = [
 
   // Conversation 3: Client (User 0) and User 3
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "54a2755d-91b3-413c-82f2-3aed7e592c77", // User 3
     toUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     timestamp: new Date(new Date().getTime() - 1000 * 60 * 60 * 3),
     content: "Hi there! Can we schedule a meeting for tomorrow?",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "54a2755d-91b3-413c-82f2-3aed7e592c77", // User 3
     toUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     timestamp: new Date(
@@ -136,7 +138,7 @@ const DEFAULT_MESSAGES: Message[] = [
     content: "I’d like to discuss the progress on the new feature.",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "54a2755d-91b3-413c-82f2-3aed7e592c77", // User 3
     toUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     timestamp: new Date(
@@ -145,7 +147,7 @@ const DEFAULT_MESSAGES: Message[] = [
     content: "Let me know your availability.",
   },
   {
-    id: self.crypto.randomUUID(),
+    id: uuid(),
     fromUserId: "3c3f6626-3a37-48b2-8c6d-dfa407f4e7b0", // Client (User 0)
     toUserId: "54a2755d-91b3-413c-82f2-3aed7e592c77", // User 3
     timestamp: new Date(
